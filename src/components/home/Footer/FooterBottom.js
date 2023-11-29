@@ -15,7 +15,6 @@ const FooterBottom = () => {
 
         </p>
         <p className="text-titleFont font-normal text-center flex md:items-center justify-center text-lightText duration-200 text-sm"> 2041 W Marconi Ave, Phoenix AZ 85023
-          EIN Assigned: 93-2568535
           Legal Name: RIDECONNECT LLC</p>
       </div>
     </div>

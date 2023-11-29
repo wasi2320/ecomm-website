@@ -29,7 +29,6 @@ const About = () => {
           <span className="text-primeColor font-semibold text-lg">Address</span>{" "}
           <br></br>
           2041 W Marconi Ave, Phoenix AZ 85023
-          EIN Assigned: 93-2568535
           Legal Name: RIDECONNECT LLC
         </h1>
         <Link to="/shop">
