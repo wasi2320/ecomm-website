@@ -20,7 +20,7 @@ import bestSellerThree from "./products/bestSeller/bestSellerThree.webp";
 import bestSellerFour from "./products/bestSeller/bestSellerFour.webp";
 
 // Special Offers
-import spfOne from "./products/specialOffer/spfOne.webp";
+import spfOne from "./products/specialOffer/spfOne.jpg";
 import spfTwo from "./products/specialOffer/spfTwo.webp";
 import spfThree from "./products/specialOffer/spfThree.webp";
 import spfFour from "./products/specialOffer/spfFour.webp";
