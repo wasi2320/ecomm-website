@@ -1,0 +1,62 @@
+import React from "react";
+import Heading from "../Products/Heading";
+import Product from "../Products/Product";
+import {
+  bestSellerOne,
+  bestSellerTwo,
+  bestSellerThree,
+  bestSellerFour,
+} from "../../../assets/images/index";
+
+const BestSellers = () => {
+  return (
+    <div className="w-full pb-20" style={{ backgroundColor: "grey", padding: '20px', color: 'white' }}>
+      <Heading heading="Our Best Sellers" />
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lgl:grid-cols-3 xl:grid-cols-4 gap-10">
+        <Product
+          _id="1011"
+          img={bestSellerOne}
+          productName="Flower Base"
+          price="35.00"
+          color="Blank and White"
+          badge={true}
+          rating={4}
+          des="Flower Base: An elegant vessel designed to showcase and complement the beauty of floral arrangements, enhancing the ambiance of any space."
+        />
+        <Product
+          _id="1012"
+          img={bestSellerTwo}
+          productName="New Backpack"
+          price="180.00"
+          color="Gray"
+          badge={false}
+          rating={5}
+          des="New Backpack: A stylish and functional companion for your daily adventures, offering ample storage and modern design to suit your on-the-go lifestyle."
+        />
+        <Product
+          _id="1013"
+          img={bestSellerThree}
+          productName="Household materials"
+          price="25.00"
+          color="Mixed"
+          badge={true}
+          rating={4}
+          des="Household Materials: Essential items and supplies for everyday living, encompassing a range of products that contribute to the functionality and comfort of a home."
+        />
+        <Product
+          _id="1014"
+          img={bestSellerFour}
+          productName="Travel Bag"
+          price="220.00"
+          color="Black"
+          badge={false}
+          rating={5}
+          des=
+          "Travel Bag: Your go-to companion for journeys near and far, combining practicality with style to accommodate your essentials on the road."
+        />
+      </div>
+    </div>
+  );
+};
+
+export default BestSellers;
