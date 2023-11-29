@@ -59,6 +59,8 @@ const NewArrivals = () => {
             color="Black"
             badge={true}
             rating={4.5}
+            reviewName="Alex M"
+            review="Sleek Design"
             des=
             "Round Table Clock: A timeless and decorative timepiece, seamlessly blending functionality with aesthetic appeal, perfect for any tabletop or desk."
           />
@@ -72,6 +74,8 @@ const NewArrivals = () => {
             color="Black"
             badge={true}
             rating={4}
+            reviewName="Emily W"
+            review="Powerful Performance"
             des=
             "Smart Watch: A cutting-edge wearable device seamlessly merging style and technology, empowering you with fitness tracking, notifications, and connectivity on your wrist."
           />
@@ -85,6 +89,8 @@ const NewArrivals = () => {
             color="Mixed"
             badge={true}
             rating={5}
+            reviewName="Jason T."
+            review="User-Friendly"
             des=
             "Cloth Basket: A versatile and stylish storage solution, combining form and function to organize your belongings with a touch of aesthetic charm."
           />
@@ -98,6 +104,8 @@ const NewArrivals = () => {
             color="Mixed"
             badge={false}
             rating={4}
+            reviewName="Sarah K"
+            review=" Compact Size"
             des=
             "Funny Toys for Babies: Playful and engaging companions designed to bring smiles and laughter to little ones, fostering joy and developmental exploration."
           />
@@ -111,6 +119,8 @@ const NewArrivals = () => {
             color="Mixed"
             badge={false}
             rating={4}
+            reviewName="Ryan H."
+            review="Lightweight"
             des=
             "Funny Toys for Babies: Playful and engaging companions designed to bring smiles and laughter to little ones, fostering joy and developmental exploration."
           />

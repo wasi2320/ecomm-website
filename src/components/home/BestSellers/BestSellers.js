@@ -21,6 +21,8 @@ const BestSellers = () => {
           color="Blank and White"
           badge={true}
           rating={4}
+          reviewName="Megan S."
+          review="High Quality"
           des="Flower Base: An elegant vessel designed to showcase and complement the beauty of floral arrangements, enhancing the ambiance of any space."
         />
         <Product
@@ -31,6 +33,8 @@ const BestSellers = () => {
           color="Gray"
           badge={false}
           rating={5}
+          reviewName="Chris L."
+          review=" Durable Build"
           des="New Backpack: A stylish and functional companion for your daily adventures, offering ample storage and modern design to suit your on-the-go lifestyle."
         />
         <Product
@@ -41,6 +45,8 @@ const BestSellers = () => {
           color="Mixed"
           badge={true}
           rating={4}
+          reviewName="Olivia B."
+          review="Affordable Price"
           des="Household Materials: Essential items and supplies for everyday living, encompassing a range of products that contribute to the functionality and comfort of a home."
         />
         <Product
@@ -51,6 +57,8 @@ const BestSellers = () => {
           color="Black"
           badge={false}
           rating={5}
+          reviewName="Kevin C"
+          review="Stylish Look"
           des=
           "Travel Bag: Your go-to companion for journeys near and far, combining practicality with style to accommodate your essentials on the road."
         />

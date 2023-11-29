@@ -21,6 +21,8 @@ const SpecialOffers = () => {
           color="Blank and White"
           badge={true}
           rating={5}
+          reviewName="Stephon"
+          review="Amazing Product"
           des=
           "Cap for boys: A trendy and versatile accessory that adds a cool and sporty flair to any casual outfit."
         />
@@ -32,6 +34,8 @@ const SpecialOffers = () => {
           color="Gray"
           badge={true}
           rating={4}
+          reviewName="Macchall"
+          review="Good Quality"
           des=
           "Tea table: A stylish and functional centerpiece, perfect for elevating your tea time or enhancing the aesthetic appeal of your living space."
         />
@@ -42,6 +46,8 @@ const SpecialOffers = () => {
           price="25.00"
           color="Mixed"
           badge={true}
+          reviewName="Naqi"
+          review="Good"
           rating={5}
           des="Headphones: Immersive audio experience and comfort combined in a sleek design, delivering high-quality sound for your listening pleasure."
         />
@@ -52,6 +58,8 @@ const SpecialOffers = () => {
           price="220.00"
           color="Black"
           badge={true}
+          reviewName="Angelina"
+          review="Amazing Product"
           rating={4}
           des="Sunglasses: Fashionable eye protection that blends style and UV defense for a chic and shielded outdoor experience."
         />

@@ -65,6 +65,8 @@ const Product = (props) => {
                     badge: props.badge,
                     price: props.price,
                     colors: props.color,
+                    reviewName: props.reviewName,
+                    review: props.review
                   })
                 )
               }
@@ -98,10 +100,12 @@ const Product = (props) => {
           <h2 className="text-lg text-primeColor font-bold">
             {props.productName}
           </h2>
-          <p className="text-[#767676] text-[14px]" style={{ color: "white" }}>${props.price}</p>
+          <p className="text-[#767676] text-[14px]" style={{ color: "black" }}>${props.price}</p>
         </div>
         <div>
-          <p className="text-[#767676] text-[14px]" style={{ color: "white" }}>{props.color}</p>
+          <p className="text-[#767676] text-[14px]" style={{ color: "black" }}>{props.color}</p>
+          <b style={{ color: "black" }}>{props.reviewName}</b>
+          <p>{props.review}</p>
           <div className="rating">{renderStars()}</div>
         </div>
       </div>

@@ -48,6 +48,8 @@ export const SplOfferData = [
     color: "Blank and White",
     badge: true,
     rating: "4",
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Cap for boys: A trendy and versatile accessory that adds a cool and sporty flair to any casual outfit",
   },
   {
@@ -58,6 +60,8 @@ export const SplOfferData = [
     color: "Gray",
     badge: true,
     rating: "5",
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des:
       "Tea table: A stylish and functional centerpiece, perfect for elevating your tea time or enhancing the aesthetic appeal of your living space.",
   },
@@ -69,6 +73,8 @@ export const SplOfferData = [
     color: "Mixed",
     rating: "4",
     badge: true,
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Headphones: Immersive audio experience and comfort combined in a sleek design, delivering high-quality sound for your listening pleasure.",
   },
   {
@@ -79,6 +85,8 @@ export const SplOfferData = [
     color: "Black",
     rating: "5",
     badge: true,
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Sun glasses: Fashionable eye protection that blends style and UV defense for a chic and shielded outdoor experience.",
   },
 ];
@@ -95,6 +103,8 @@ export const paginationItems = [
     color: "Blank and White",
     badge: true,
     rating: "4",
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des:
       "Cap for boys: A trendy and versatile accessory that adds a cool and sporty flair to any casual outfit.",
   },
@@ -106,6 +116,8 @@ export const paginationItems = [
     color: "Gray",
     badge: true,
     rating: "4",
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des:
       "Tea table: A stylish and functional centerpiece, perfect for elevating your tea time or enhancing the aesthetic appeal of your living space.",
   },
@@ -117,6 +129,8 @@ export const paginationItems = [
     color: "Mixed",
     rating: "4",
     badge: true,
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Headphones: Immersive audio experience and comfort combined in a sleek design, delivering high-quality sound for your listening pleasure.",
   },
   {
@@ -127,6 +141,8 @@ export const paginationItems = [
     color: "Black",
     rating: "5",
     badge: true,
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Sun glasses: Fashionable eye protection that blends style and UV defense for a chic and shielded outdoor experience.",
   },
   {
@@ -137,6 +153,8 @@ export const paginationItems = [
     color: "Blank and White",
     badge: true,
     rating: "5",
+    reviewName: 'Stephon',
+    review: "Amazing Product",
     des: "Flower Base: An elegant vessel designed to showcase and complement the beauty of floral arrangements, enhancing the ambiance of any space."
   },
   {

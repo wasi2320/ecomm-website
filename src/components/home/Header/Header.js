@@ -72,8 +72,8 @@ const Header = () => {
                 >
                   <div className="w-full h-full bg-primeColor p-6">
                     <img
-                      className="w-28 mb-6"
-                      src={logoLight}
+                      className="w-38 mb-6"
+                      src={RTC}
                       alt="logoLight"
                     />
                     <ul className="text-gray-200 flex flex-col gap-2">
