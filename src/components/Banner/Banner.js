@@ -11,6 +11,7 @@ import Image from "../designLayouts/Image";
 import banner from "../../assets/images/banner/bannerImg.jpg"
 import banner1 from "../../assets/images/banner/bannerImg2.jpg"
 import banner2 from "../../assets/images/banner/bannerimg3.jpg"
+import banner4 from "../../assets/images/banner/bannerImg4.jpg"
 const Banner = () => {
   const [dotActive, setDocActive] = useState(0);
   const settings = {
@@ -118,6 +119,11 @@ const Banner = () => {
         <Link to="/offer">
           <div>
             <Image imgSrc={banner} />
+          </div>
+        </Link>
+        <Link to="/offer">
+          <div>
+            <Image imgSrc={banner4} />
           </div>
         </Link>
       </Slider>

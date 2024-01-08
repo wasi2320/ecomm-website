@@ -7,6 +7,7 @@ import {
   newArrTwo,
   newArrThree,
   newArrFour,
+  newArrFive,
 } from "../../../assets/images/index";
 import SampleNextArrow from "./SampleNextArrow";
 import SamplePrevArrow from "./SamplePrevArrow";
@@ -123,6 +124,21 @@ const NewArrivals = () => {
             review="Lightweight"
             des=
             "Funny Toys for Babies: Playful and engaging companions designed to bring smiles and laughter to little ones, fostering joy and developmental exploration."
+          />
+        </div>
+        <div className="px-2">
+          <Product
+            _id="100005"
+            img={newArrFive}
+            productName="Perfume"
+            price="260.00"
+            color="Transparent"
+            badge={false}
+            rating={4}
+            reviewName="Henry."
+            review="Absolutely mesmerizing!"
+            des=
+            "Unveil a world of allure with our enchanting perfume. A carefully crafted blend of sophistication and allure that transcends time. The initial burst of top notes introduces you to a journey of sensuality, while the lingering base notes leave a lasting impression. This fragrance is more than just a scent; it's a narrative that unfolds uniquely on every wearer. Elevate your everyday moments to extraordinary with this olfactory masterpiece."
           />
         </div>
       </Slider>

@@ -6,6 +6,7 @@ import {
   spfTwo,
   spfThree,
   spfFour,
+  spfFive,
 } from "../../../assets/images/index";
 
 const SpecialOffers = () => {
@@ -62,6 +63,18 @@ const SpecialOffers = () => {
           review="Amazing Product"
           rating={4}
           des="Sunglasses: Fashionable eye protection that blends style and UV defense for a chic and shielded outdoor experience."
+        />
+        <Product
+          _id="1104"
+          img={spfFive}
+          productName="Perfume"
+          price="220.00"
+          color="transparent"
+          badge={true}
+          reviewName="Taylor"
+          review="This perfume is pure magic in a bottle!"
+          rating={5}
+          des="Step into a realm of timeless elegance with our exquisite perfume. Each spray is a poetic dance of floral and oriental notes, creating an aura of undeniable grace. The carefully curated blend captures the essence of femininity and mystery, making it the perfect accessory for any occasion. Immerse yourself in the symphony of scents that unfold, leaving a trail of sophistication in your wake."
         />
       </div>
     </div>

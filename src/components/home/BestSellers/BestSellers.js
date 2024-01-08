@@ -6,6 +6,7 @@ import {
   bestSellerTwo,
   bestSellerThree,
   bestSellerFour,
+  BestSellersFive,
 } from "../../../assets/images/index";
 
 const BestSellers = () => {
@@ -61,6 +62,19 @@ const BestSellers = () => {
           review="Stylish Look"
           des=
           "Travel Bag: Your go-to companion for journeys near and far, combining practicality with style to accommodate your essentials on the road."
+        />
+        <Product
+          _id="1014"
+          img={BestSellersFive}
+          productName="Perfume"
+          price="380.00"
+          color="Transparent"
+          badge={false}
+          rating={5}
+          reviewName="K.P"
+          review="Long Lasting"
+          des=
+          "Indulge your senses in the exquisite allure of our signature fragrance. A harmonious blend of captivating notes that dance together, creating a symphony of elegance and charm. Immerse yourself in the essence of luxury with each enchanting spritz. Elevate your presence, leaving an unforgettable trail of sophistication. Embrace the power of scent and make every moment unforgettable with our captivating perfume."
         />
       </div>
     </div>
