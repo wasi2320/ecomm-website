@@ -22,7 +22,11 @@ import Offer from "./pages/Offer/Offer";
 import Payment from "./pages/payment/Payment";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-
+import NewArrivals from "./components/home/NewArrivals/NewArrivals";
+import ArrivalPage from "./components/home/NewArrivals/ArrivalPage";
+import Gadgets from "./components/category/gadgets";
+import Electronics from "./components/category/Electronics";
+import OfficeAcc from "./components/category/OfficeAcc";
 const Layout = () => {
   return (
     <div>
@@ -54,6 +58,10 @@ const router = createBrowserRouter(
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
+      <Route path="/newArrival" element={<ArrivalPage />}></Route>
+      <Route path="/gadgets" element={<Gadgets />}></Route>
+      <Route path="/electronics" element={<Electronics />}></Route>
+      <Route path="/officeacc" element={<OfficeAcc />}></Route>
     </Route>
   )
 );

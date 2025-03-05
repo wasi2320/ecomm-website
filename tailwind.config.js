@@ -6,6 +6,9 @@ module.exports = {
       maxWidth: {
         container: "1440px",
       },
+      animation: {
+        "spin-slow": "spin 8s linear infinite",
+      },
       screens: {
         xs: "320px",
         sm: "375px",
