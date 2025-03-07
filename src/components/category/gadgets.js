@@ -4,6 +4,7 @@ import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../../components/home/Products/Product";
 import Header from "../../components/home/Header/Header";
 import HeaderBottom from "../../components/home/Header/HeaderBottom";
+import Footer from "../home/Footer/Footer";
 import {
   newArrOne,
   newArrTwo,
@@ -125,6 +126,8 @@ const gadgets = () => {
       </div>
       {/* ================= Products End here ===================== */}
     </div>
+    <Footer
+    />
     </div>
   )
 }

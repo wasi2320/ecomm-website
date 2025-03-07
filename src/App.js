@@ -27,6 +27,7 @@ import ArrivalPage from "./components/home/NewArrivals/ArrivalPage";
 import Gadgets from "./components/category/gadgets";
 import Electronics from "./components/category/Electronics";
 import OfficeAcc from "./components/category/OfficeAcc";
+import Categories from "./pages/categories/categories";
 const Layout = () => {
   return (
     <div>
@@ -49,6 +50,7 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/categories" element={<Categories />}></Route>
         <Route path="/journal" element={<Journal />}></Route>
         {/* ==================== Header Navlink End here ===================== */}
         <Route path="/offer" element={<Offer />}></Route>

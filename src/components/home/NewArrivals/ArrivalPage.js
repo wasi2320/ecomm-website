@@ -4,6 +4,7 @@ import ShopSideNav from "../../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../Products/Product";
 import Header from "../Header/Header";
 import HeaderBottom from "../Header/HeaderBottom";
+import Footer from "../Footer/Footer";
 import {
   newArrOne,
   newArrTwo,
@@ -128,6 +129,7 @@ const ArrivalPage = () => {
       </div>
       {/* ================= Products End here ===================== */}
     </div>
+    <Footer />
     </div>
   );
 };
