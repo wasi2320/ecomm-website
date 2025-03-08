@@ -62,11 +62,12 @@ const CategoryGrid = () => {
   const [hovered, setHovered] = useState(null);
 
   return (
-    <div className="w-full bg-gray-100 p-6">
+    <div className="w-full bg-gray-100 px-4 py-6">
+      {/* Centered Title */}
       <h2 className="text-2xl font-bold mb-6 text-center">Shop Categories</h2>
 
-      {/* Category Grid - All Categories Visible */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      {/* Category Grid - Responsive Layout */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 justify-center">
         {categories.map((category) => (
           <motion.div
             key={category.id}
@@ -75,15 +76,16 @@ const CategoryGrid = () => {
             onClick={() => navigate(category.path)}
             className="flex flex-col items-center cursor-pointer"
           >
-            {/* Animated Circular Icon with MacBook Hover Effect */}
+            {/* Animated Circular Icon */}
             <motion.div
-              className="w-24 h-24 flex items-center justify-center rounded-full border-4 border-gray-300 bg-white shadow-md"
-              animate={{ scale: hovered === category.id ? 1.4 : 1 }}
+              className="w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center rounded-full border-4 border-gray-300 bg-white shadow-md"
+              animate={{ scale: hovered === category.id ? 1.3 : 1 }} // MacBook hover effect
               transition={{ duration: 0.3 }}
             >
-              <img src={category.image} alt={category.name} className="w-16 h-16 object-contain" />
+              <img src={category.image} alt={category.name} className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
             </motion.div>
-            <p className="mt-2 text-lg font-medium text-gray-700">{category.name}</p>
+            {/* Category Name */}
+            <p className="mt-2 text-sm sm:text-base font-medium text-gray-700 text-center">{category.name}</p>
           </motion.div>
         ))}
       </div>

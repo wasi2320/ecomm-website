@@ -30,49 +30,55 @@ import testInstruments from "../../../assets/images/categoryGird2/test-instrumen
 import lab from "../../../assets/images/categoryGird2/G5940842.png";
 
 const categories = [
-  { id: 1, name: "Tools", image: tools, path: "/tools" },
-  { id: 2, name: "Office", image: office, path: "/office" },
-  { id: 3, name: "Plumbing", image: plumbing, path: "/plumbing" },
-  { id: 4, name: "Safety", image: safety, path: "/safety" },
-  { id: 5, name: "Vehicle", image: vehicle, path: "/vehicle" },
-  { id: 6, name: "Grounds", image: ground, path: "/grounds" },
-  { id: 7, name: "Heating", image: heating, path: "/heating" },
-  { id: 8, name: "Electrical", image: electrical, path: "/electrical" },
-  { id: 9, name: "Power Transmission", image: power, path: "/power" },
-  { id: 10, name: "Storage", image: storage, path: "/storage" },
-  { id: 11, name: "Material Handling", image: material, path: "/material" },
-  { id: 12, name: "Electronics", image: electronics, path: "/electronics" },
-  { id: 13, name: "Lighting", image: lighting, path: "/lighting" },
-  { id: 14, name: "Janitorial", image: janitorial, path: "/cleaning" },
-  { id: 15, name: "Raw Materials", image: raw, path: "/raw" },
-  { id: 16, name: "Food Service", image: foodService, path: "/food" },
-  { id: 17, name: "Hardware", image: hardware, path: "/hardware" },
-  { id: 18, name: "Furniture", image: furniture, path: "/furniture" },
-  { id: 19, name: "Adhesives", image: adhesives, path: "/adhesives" },
-  { id: 20, name: "Welding", image: welding, path: "/welding" },
-  { id: 21, name: "Pumps", image: pumps, path: "/pumps" },
-  { id: 22, name: "Paint", image: paint, path: "/paint" },
-  { id: 23, name: "Medical", image: medical, path: "/medical" },
-  { id: 24, name: "Test Instruments", image: testInstruments, path: "/test" },
-  { id: 25, name: "Lab Equipment", image: lab, path: "/lab" },
+  { id: 1, name: "Tools", image: tools },
+  { id: 2, name: "Office", image: office },
+  { id: 3, name: "Plumbing", image: plumbing },
+  { id: 4, name: "Safety", image: safety },
+  { id: 5, name: "Vehicle", image: vehicle },
+  { id: 6, name: "Grounds", image: ground },
+  { id: 7, name: "Heating", image: heating },
+  { id: 8, name: "Electrical", image: electrical },
+  { id: 9, name: "Power Transmission", image: power },
+  { id: 10, name: "Storage", image: storage },
+  { id: 11, name: "Material Handling", image: material },
+  { id: 12, name: "Electronics", image: electronics },
+  { id: 13, name: "Lighting", image: lighting },
+  { id: 14, name: "Janitorial", image: janitorial },
+  { id: 15, name: "Raw Materials", image: raw },
+  { id: 16, name: "Food Service", image: foodService },
+  { id: 17, name: "Hardware", image: hardware },
+  { id: 18, name: "Furniture", image: furniture },
+  { id: 19, name: "Adhesives", image: adhesives },
+  { id: 20, name: "Welding", image: welding },
+  { id: 21, name: "Pumps", image: pumps },
+  { id: 22, name: "Paint", image: paint },
+  { id: 23, name: "Medical", image: medical },
+  { id: 24, name: "Test Instruments", image: testInstruments },
+  { id: 25, name: "Lab Equipment", image: lab },
 ];
 
 const CategoryOrbit = () => {
   const navigate = useNavigate();
-  const radius = 500; // Adjusted radius for better spacing
   const [isPaused, setIsPaused] = useState(false);
   const [hovered, setHovered] = useState(null);
 
   return (
     <div className="flex justify-center items-center h-screen relative">
-      {/* Center Title */}
-      <div className="absolute w-64 h-64 flex justify-center items-center bg-gray-900 text-white text-2xl font-bold rounded-full shadow-lg">
+      {/* Center Button (Clickable) */}
+      <motion.div
+        className="absolute flex justify-center items-center bg-gray-900 text-white text-xl font-bold rounded-full shadow-lg cursor-pointer"
+        initial={{ width: 150, height: 150 }}
+        animate={{ width: ["150px", "170px", "150px"], height: ["150px", "170px", "150px"] }}
+        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+        onClick={() => navigate("/categories")} // Redirects to category page
+      >
         Shop Categories
-      </div>
+      </motion.div>
 
       {/* Rotating Icons */}
       {categories.map((category, index) => {
         const angle = (index / categories.length) * (2 * Math.PI);
+        const radius = window.innerWidth < 768 ? 200 : 400; // Smaller radius for mobile
         const x = Math.cos(angle) * radius;
         const y = Math.sin(angle) * radius;
 
@@ -94,15 +100,14 @@ const CategoryOrbit = () => {
               setIsPaused(false);
               setHovered(null);
             }}
-            onClick={() => navigate(category.path)}
-            className="absolute flex flex-col justify-center items-center cursor-pointer"
+            className="absolute flex flex-col justify-center items-center"
           >
             <motion.div
-              className="w-20 h-20 rounded-full bg-white shadow-md flex justify-center items-center transition-all"
-              animate={{ scale: hovered === category.id ? 1.4 : 1 }} // Enlarges the hovered icon
+              className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-white shadow-md flex justify-center items-center transition-all"
+              animate={{ scale: hovered === category.id ? 1.4 : 1 }}
               transition={{ duration: 0.3 }}
             >
-              <img src={category.image} alt={category.name} className="w-12 h-12 object-contain" />
+              <img src={category.image} alt={category.name} className="w-10 h-10 object-contain" />
             </motion.div>
           </motion.div>
         );
