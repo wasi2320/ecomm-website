@@ -5,14 +5,44 @@ import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../../components/home/Products/Product";
 import productsData from "./productsData";
 
+// Category mapping to map URL category to productsData key
+const categoryProductMapping = {
+  "tools": "tools",
+  "office": "office_shipping",
+  "plumbing": "plumbing",
+  "safety": "safety_security",
+  "vehicle": "vehicle_maintenance",
+  "grounds": "grounds_outdoor",
+  "heating": "heating_cooling",
+  "electrical": "electrical_supplies",
+  "power": "power_transmission",
+  "storage": "storage_workspace",
+  "material": "material_handling",
+  "electronics": "electronics",
+  "lighting": "lighting",
+  "cleaning": "janitorial_cleaning",
+  "raw": "raw_materials",
+  "food": "food_service",
+  "hardware": "hardware_building",
+  "furniture": "furniture_decor",
+  "adhesives": "adhesives_tapes",
+  "welding": "welding_soldering",
+  "pumps": "pumps",
+  "paint": "paint_coatings",
+  "medical": "medical_personal_care",
+  "test": "test_instruments",
+  "lab": "lab_equipment",
+};
+
 const CategoryPage = () => {
   const { category } = useParams(); // Get category name from URL
 
-  const products = productsData[category] || []; // Get products for the selected category
+  // Map the category to the corresponding product key
+  const categoryKey = categoryProductMapping[category.toLowerCase()];
+  const products = categoryKey ? productsData[categoryKey] : []; // Get products for the selected category
 
   return (
     <div>
-      
       <div className="max-w-container mx-auto px-4">
         <Breadcrumbs title={category.charAt(0).toUpperCase() + category.slice(1)} />
 
@@ -46,7 +76,6 @@ const CategoryPage = () => {
           </div>
         </div>
       </div>
-     
     </div>
   );
 };

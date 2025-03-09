@@ -610,8 +610,8 @@ import {
     lab_equipment: [
       {
         _id: "100001",
-        img: newArrOne,
-        productName: "Round Table Clock",
+        img: newArrTwo,
+        productName: "Round Table Clockkk",
         price: "44.00",
         color: "Black",
         badge: true,

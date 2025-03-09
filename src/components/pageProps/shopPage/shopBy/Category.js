@@ -1,15 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavTitle from "./NavTitle";
 
 // Import category images (Replace with actual paths)
-import newArrivalImg from "../../../../assets/images/banner/newArr.jpg";
-import gadgetsImg from "../../../../assets/images/banner/gadgets.jpg";
-import officeAccImg from "../../../../assets/images/banner/officeAcc.jpg";
-import electronicsImg from "../../../../assets/images/banner/electronicLogo.jpg";
-import othersImg from "../../../../assets/images/banner/others.jpg";
-import perfumesImg from "../../../../assets/images/banner/perfume.jpg";
-
 import tools from "../../../../assets/images/categoryGird2/tools.png";
 import office from "../../../../assets/images/categoryGird2/office-and-shipping.png";
 import plumbing from "../../../../assets/images/categoryGird2/plumbing-and-hvac.png";
@@ -35,6 +28,8 @@ import paint from "../../../../assets/images/categoryGird2/paint.png";
 import medical from "../../../../assets/images/categoryGird2/medical and personal care.png";
 import testInstruments from "../../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
 import lab from "../../../../assets/images/categoryGird2/G5940842.png";
+
+// Initial categories without swapping functionality
 const initialCategories = [
   { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
   { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
@@ -63,40 +58,20 @@ const initialCategories = [
   { id: 25, name: "Lab Equipment & Supplies", image: lab, path: "/category/lab" },
 ];
 
-
-
-
 const Category = () => {
   const navigate = useNavigate();
-  const [categories, setCategories] = useState(initialCategories);
-
-  // Function to shuffle categories smoothly every 5 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCategories((prevCategories) => {
-        let shuffled = [...prevCategories];
-        let temp = shuffled[0];
-        for (let i = 0; i < shuffled.length - 1; i++) {
-          shuffled[i] = shuffled[i + 1];
-        }
-        shuffled[shuffled.length - 1] = temp;
-        return shuffled;
-      });
-    }, 5000);
-
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, []);
+  const [categories] = useState(initialCategories); // Static categories without shuffling
 
   return (
     <div className="w-full">
       <NavTitle title="Shop by Category" icons={false} />
   
-      {/* Category Grid (4 Items Per Row) with Smooth Motion */}
+      {/* Category Grid (4 Items Per Row) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12 text-center mt-6">
         {categories.map((category) => (
           <div
             key={category.id}
-            className="flex flex-col items-center cursor-pointer category-move transform hover:scale-105 transition-all duration-300"
+            className="flex flex-col items-center cursor-pointer"
             onClick={() => navigate(category.path)}
           >
             {/* Circular Background Around the Icon */}
@@ -114,24 +89,8 @@ const Category = () => {
           </div>
         ))}
       </div>
-  
-      {/* Add Global Styles for Smooth Motion */}
-      <style>
-        {`
-          @keyframes moveCategories {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(10px); }
-            100% { transform: translateY(0px); }
-          }
-  
-          .category-move {
-            animation: moveCategories 4s infinite ease-in-out;
-          }
-        `}
-      </style>
     </div>
   );
-  
 };
 
 export default Category;
