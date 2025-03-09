@@ -3,9 +3,6 @@ import { useParams } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../../components/home/Products/Product";
-import Header from "../../components/home/Header/Header";
-import HeaderBottom from "../../components/home/Header/HeaderBottom";
-import Footer from "../home/Footer/Footer";
 import productsData from "./productsData";
 
 const CategoryPage = () => {
