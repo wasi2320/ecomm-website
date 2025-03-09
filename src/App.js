@@ -28,6 +28,7 @@ import Gadgets from "./components/category/gadgets";
 import Electronics from "./components/category/Electronics";
 import OfficeAcc from "./components/category/OfficeAcc";
 import Categories from "./pages/categories/categories";
+import CategoryPage from "./components/category/CategoryPage";
 const Layout = () => {
   return (
     <div>
@@ -57,12 +58,13 @@ const router = createBrowserRouter(
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/paymentgateway" element={<Payment />}></Route>
+        <Route path="/category/:category" element={<CategoryPage />} />
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
       <Route path="/signin" element={<SignIn />}></Route>
       <Route path="/newArrival" element={<ArrivalPage />}></Route>
       <Route path="/gadgets" element={<Gadgets />}></Route>
-      <Route path="/electronics" element={<Electronics />}></Route>
+      {/* <Route path="/electronics" element={<Electronics />}></Route> */}
       <Route path="/officeacc" element={<OfficeAcc />}></Route>
     </Route>
   )

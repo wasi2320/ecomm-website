@@ -30,7 +30,7 @@ import testInstruments from "../../../assets/images/categoryGird2/test-instrumen
 import lab from "../../../assets/images/categoryGird2/G5940842.png";
 
 const categories = [
-  { id: 1, name: "Tools & Machining", image: tools, path: "/tools" },
+  { id: 1, name: "Tools & Machining", image: tools, path: "/category/electronics" },
   { id: 2, name: "Office & Shipping Supplies", image: office, path: "/office" },
   { id: 3, name: "Plumbing", image: plumbing, path: "/plumbing" },
   { id: 4, name: "Safety & Security", image: safety, path: "/safety" },
