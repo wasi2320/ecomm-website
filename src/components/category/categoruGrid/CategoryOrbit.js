@@ -28,33 +28,20 @@ import paint from "../../../assets/images/categoryGird2/paint.png";
 import medical from "../../../assets/images/categoryGird2/medical and personal care.png";
 import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
 import lab from "../../../assets/images/categoryGird2/G5940842.png";
+import perfume from "../../../assets/images/banner/perfume.jpg";
+
 
 const categories = [
   { id: 1, name: "Tools", image: tools },
   { id: 2, name: "Office", image: office },
   { id: 3, name: "Plumbing", image: plumbing },
   { id: 4, name: "Safety", image: safety },
-  { id: 5, name: "Vehicle", image: vehicle },
-  { id: 6, name: "Grounds", image: ground },
-  { id: 7, name: "Heating", image: heating },
-  { id: 8, name: "Electrical", image: electrical },
-  { id: 9, name: "Power Transmission", image: power },
-  { id: 10, name: "Storage", image: storage },
-  { id: 11, name: "Material Handling", image: material },
-  { id: 12, name: "Electronics", image: electronics },
-  { id: 13, name: "Lighting", image: lighting },
-  { id: 14, name: "Janitorial", image: janitorial },
-  { id: 15, name: "Raw Materials", image: raw },
-  { id: 16, name: "Food Service", image: foodService },
-  { id: 17, name: "Hardware", image: hardware },
-  { id: 18, name: "Furniture", image: furniture },
-  { id: 19, name: "Adhesives", image: adhesives },
-  { id: 20, name: "Welding", image: welding },
-  { id: 21, name: "Pumps", image: pumps },
-  { id: 22, name: "Paint", image: paint },
-  { id: 23, name: "Medical", image: medical },
-  { id: 24, name: "Test Instruments", image: testInstruments },
-  { id: 25, name: "Lab Equipment", image: lab },
+  { id: 5, name: "Grounds", image: ground },
+  { id: 6, name: "Electronics", image: electronics },
+  { id: 7, name: "Janitorial", image: janitorial },
+  { id: 8, name: "Food Service", image: foodService },
+  { id: 9, name: "Lab Equipment", image: lab },
+  { id: 10, name: "Perfumes", image: perfume},
 ];
 
 const CategoryOrbit = () => {

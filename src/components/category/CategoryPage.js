@@ -4,34 +4,18 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../../components/home/Products/Product";
 import productsData from "./productsData";
-
 // Category mapping to map URL category to productsData key
 const categoryProductMapping = {
   "tools": "tools",
   "office": "office_shipping",
   "plumbing": "plumbing",
-  "safety": "safety_security",
-  "vehicle": "vehicle_maintenance",
   "grounds": "grounds_outdoor",
   "heating": "heating_cooling",
   "electrical": "electrical_supplies",
-  "power": "power_transmission",
-  "storage": "storage_workspace",
-  "material": "material_handling",
-  "electronics": "electronics",
-  "lighting": "lighting",
   "cleaning": "janitorial_cleaning",
-  "raw": "raw_materials",
   "food": "food_service",
-  "hardware": "hardware_building",
-  "furniture": "furniture_decor",
-  "adhesives": "adhesives_tapes",
-  "welding": "welding_soldering",
-  "pumps": "pumps",
-  "paint": "paint_coatings",
-  "medical": "medical_personal_care",
   "test": "test_instruments",
-  "lab": "lab_equipment",
+  "perfumes": "perfumes",
 };
 
 const CategoryPage = () => {

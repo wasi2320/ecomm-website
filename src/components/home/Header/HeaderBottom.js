@@ -12,54 +12,23 @@ import tools from "../../../assets/images/categoryGird2/tools.png";
 import office from "../../../assets/images/categoryGird2/office-and-shipping.png";
 import plumbing from "../../../assets/images/categoryGird2/plumbing-and-hvac.png";
 import safety from "../../../assets/images/categoryGird2/safety-and-security.png";
-import vehicle from "../../../assets/images/categoryGird2/automotive-belts.png";
 import ground from "../../../assets/images/categoryGird2/grounds-maintenance-and-outdoor-equipment.png";
-import heating from "../../../assets/images/categoryGird2/fans-and-HVAC-equipment.png";
-import electrical from "../../../assets/images/categoryGird2/G2165773.png";
-import power from "../../../assets/images/categoryGird2/power-transmission-and-pneumatics.png";
-import storage from "../../../assets/images/categoryGird2/storage-shelving-ladders-and-lifts.png";
-import material from "../../../assets/images/categoryGird2/G4370934.png";
 import electronics from "../../../assets/images/categoryGird2/monitors-displays-and-projectors.png";
-import lighting from "../../../assets/images/categoryGird2/lighting equipment.png";
 import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
-import raw from "../../../assets/images/categoryGird2/raw-materials.png";
 import foodService from "../../../assets/images/categoryGird2/G5201001.png";
-import hardware from "../../../assets/images/categoryGird2/hardware.png";
-import furniture from "../../../assets/images/categoryGird2/tables.png";
-import adhesives from "../../../assets/images/categoryGird2/adhesives-and-sealants.png";
-import welding from "../../../assets/images/categoryGird2/welding-and-soldering-equipment-and-supplies.png";
-import pumps from "../../../assets/images/categoryGird2/pumps.png";
-import paint from "../../../assets/images/categoryGird2/paint.png";
-import medical from "../../../assets/images/categoryGird2/medical and personal care.png";
 import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
-import lab from "../../../assets/images/categoryGird2/G5940842.png";
-
+import perfume from "../../../assets/images/banner/perfume.jpg";
 const categories = [
-  { id: 1, name: "Tools & Machining", image: tools, path: "/tools" },
-  { id: 2, name: "Office & Shipping Supplies", image: office, path: "/office" },
-  { id: 3, name: "Plumbing", image: plumbing, path: "/plumbing" },
-  { id: 4, name: "Safety", image: safety, path: "/safety" },
-  { id: 5, name: "Vehicle Maintenance", image: vehicle, path: "/vehicle" },
-  { id: 6, name: "Grounds & Outdoor", image: ground, path: "/grounds" },
-  { id: 7, name: "Heating & Cooling", image: heating, path: "/heating" },
-  { id: 8, name: "Electrical Supplies", image: electrical, path: "/electrical" },
-  { id: 9, name: "Power Transmission", image: power, path: "/power" },
-  { id: 10, name: "Storage & Workspace", image: storage, path: "/storage" },
-  { id: 11, name: "Material Handling", image: material, path: "/material" },
-  { id: 12, name: "Electronics", image: electronics, path: "/electronics" },
-  { id: 13, name: "Lighting", image: lighting, path: "/lighting" },
-  { id: 14, name: "Janitorial & Cleaning", image: janitorial, path: "/cleaning" },
-  { id: 15, name: "Raw Materials", image: raw, path: "/raw" },
-  { id: 16, name: "Food Service", image: foodService, path: "/food" },
-  { id: 17, name: "Hardware", image: hardware, path: "/hardware" },
-  { id: 18, name: "Furniture & Decor", image: furniture, path: "/furniture" },
-  { id: 19, name: "Adhesives & Tapes", image: adhesives, path: "/adhesives" },
-  { id: 20, name: "Welding & Soldering", image: welding, path: "/welding" },
-  { id: 21, name: "Pumps", image: pumps, path: "/pumps" },
-  { id: 22, name: "Paint & Coatings", image: paint, path: "/paint" },
-  { id: 23, name: "Medical & Personal Care", image: medical, path: "/medical" },
-  { id: 24, name: "Test Instruments", image: testInstruments, path: "/test" },
-  { id: 25, name: "Lab Equipment", image: lab, path: "/lab" },
+ { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
+    { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
+    { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
+    { id: 4, name: "Safety", image: safety, path: "/category/safety" },
+    { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
+    { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
+    { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
+    { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
+    { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
+    { id: 10, name: "Perfumes", image: perfume, path: "/category/perfumes" },
 ];
 
 const HeaderBottom = () => {

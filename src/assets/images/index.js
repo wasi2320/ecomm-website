@@ -33,7 +33,8 @@ import productOfTheYear from "./products/productOfTheYear.jpg";
 // ============== Products End here ======================
 import paymentCard from "./payment.png";
 import emptyCart from "../images/emptyCart.png";
-
+//electrinics
+import electronicsOne from "./electronics/elec1.png";
 export {
   logo,
   logoLight,
@@ -70,4 +71,6 @@ export {
   // ===================== Products End here ==============
   paymentCard,
   emptyCart,
+  //electronics
+  electronicsOne,
 };

@@ -4,7 +4,7 @@ import { MdClose } from "react-icons/md";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { logo, logoLight } from "../../../assets/images";
-import RTC from "../../../assets/images/RTC.png"
+import RTC from "../../../assets/images/logoTRC2.png"
 import Image from "../../designLayouts/Image";
 import { navBarList } from "../../../constants";
 import Flex from "../../designLayouts/Flex";
