@@ -4,7 +4,7 @@ import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
   const [subscription, setSubscription] = useState(false);
@@ -27,6 +27,13 @@ const Footer = () => {
       setEmailInfo("");
     }
   };
+  const categories = [
+    { name: "Tools & Machining", path: "/category/tools" },
+    { name: "Safety", path: "/category/safety" },
+    { name: "Electronics", path: "/category/electronics" },
+    { name: "Perfumes", path: "/category/perfumes" },
+    { name: "Test Instruments & Gauges", path: "/category/test" },
+  ];
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
       <div className="max-w-container mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
@@ -79,22 +86,19 @@ const Footer = () => {
         <div>
           <FooterListTitle title="Shop" />
           <ul className="flex flex-col gap-2">
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Accesories
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Clothes
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Electronics
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Home appliances
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              New Arrivals
-            </li>
-          </ul>
+    {categories.map((category, index) => (
+      <li key={index}>
+        <Link
+          to={category.path}
+          className="font-titleFont text-base text-lightText hover:text-black 
+                     hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 
+                     cursor-pointer duration-300"
+        >
+          {category.name}
+        </Link>
+      </li>
+    ))}
+  </ul>
         </div>
         <div>
           <FooterListTitle title="Your account" />

@@ -28,6 +28,16 @@ import {
   import off8 from "../../assets/images/tools/off8.jpg"
   import off9 from "../../assets/images/tools/off9.jpg"
   import off10 from "../../assets/images/tools/off10.jpeg"
+  import plu1 from "../../assets/images/tools/plu1.jpg"
+  import plu2 from "../../assets/images/tools/plu2.jpg"
+  import plu3 from "../../assets/images/tools/plu3.jpg"
+  import plu4 from "../../assets/images/tools/plu4.jpg"
+  import plu5 from "../../assets/images/tools/plu5.jpg"
+  import plu6 from "../../assets/images/tools/plu6.jpg"
+  import plu7 from "../../assets/images/tools/plu7.jpg"
+  import plu8 from "../../assets/images/tools/plu8.jpg"
+  import plu9 from "../../assets/images/tools/plu9.jpg"
+  import plu10 from "../../assets/images/tools/plu10.jpg"
   const productsData = {
     electronics: [
       {
@@ -180,27 +190,123 @@ import {
     plumbing: [
       {
         _id: "100001",
-        img: electronicsOne,
-        productName: "Round Table Clock",
+        img: plu1,
+        productName: "Water Spray Nozzle",
         price: "44.00",
-        color: "Black",
+        color: "Orange",
         badge: true,
         rating: 4.5,
         reviewName: "Alex M",
         review: "Sleek Design",
-        des: "A timeless and decorative timepiece for any tabletop or desk.",
+        des: "Pistol Grip Water Spray Nozzle, 3/4 in FGHT, 100 psi, 6.5 gpm, 5 in L, Orange",
       },
       {
         _id: "100002",
-        img: newArrTwo,
-        productName: "Smart Watch",
+        img: plu2,
+        productName: "Lever Handle",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Lever Handle 8 Mount, Commercial 2 Hole Straight Service Sink Faucet",
+      },
+      {
+        _id: "100003",
+        img: plu3,
+        productName: "2 Hole Low Arc Kitchen Faucet",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Manual, 8 Mount, 2 Hole Low Arc Kitchen Faucet",
+      },
+      {
+        _id: "100004",
+        img: plu4,
+        productName: "Ball Valve",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Ball Valve, 2 in Pipe, Full Port, 600 psi CWP, Lever Handle, FNPT, Chrome Plated Brass",
+      },
+      {
+        _id: "100005",
+        img: plu5,
+        productName: "Hose Bibb",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Hose Bibb, MPT, 3/4 in., T-Handle",
+      },
+      {
+        _id: "100006",
+        img: plu6,
+        productName: "Connector",
+        price: "250.00",
+        color: "White",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "1-1/2 x 1-1/2 Dia, Valve: ABS; Membrane: Silicone; Cover: Styrofoam; Connector: Rubber, White",
+      },
+      {
+        _id: "100007",
+        img: plu7,
+        productName: "Slip Connection",
+        price: "250.00",
+        color: "White",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "P-Trap, 1-1/2 in Pipe Size, Slip Connection, 10 in Overall Lg, Plastic, White",
+      },
+      {
+        _id: "100008",
+        img: plu8,
+        productName: "Sink",
         price: "250.00",
         color: "Black",
         badge: true,
         rating: 4,
         reviewName: "Emily W",
         review: "Powerful Performance",
-        des: "A wearable device merging style and technology with fitness tracking.",
+        des: "17.25 W x 17.25 L x Granite Composite",
+      },
+      {
+        _id: "100009",
+        img: plu9,
+        productName: "Toilet Seat",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Elongated Toilet Seat W/Cover, Closed Front, External Check Hinge, 2in Seat H, 14-1/8in W, Wood, White",
+      },
+      {
+        _id: "1000010",
+        img: plu10,
+        productName: "Framed Mirror",
+        price: "250.00",
+        color: "Silver",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Framed Mirror, Wall Mount, 36 in H x 18 in W x3/4 in D, Stainless Steel, Bright Annealed Finish",
       },
     ],
     safety_security: [
