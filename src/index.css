@@ -13,6 +13,10 @@
     @apply hover:underline underline-offset-2 cursor-pointer text-gray-300 hover:text-white;
   }
 }
+/* body {
+  background: linear-gradient(to right, #35373a, #97a6c2);
+
+} */
 
 /* ============= NavLink active Start here ============== */
 nav .active li {

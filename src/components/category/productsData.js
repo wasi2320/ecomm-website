@@ -38,6 +38,16 @@ import {
   import plu8 from "../../assets/images/tools/plu8.jpg"
   import plu9 from "../../assets/images/tools/plu9.jpg"
   import plu10 from "../../assets/images/tools/plu10.jpg"
+  import s1 from "../../assets/images/tools/s1.jpg"
+  import s2 from "../../assets/images/tools/s2.jpg"
+  import s3 from "../../assets/images/tools/s3.jpg"
+  import s4 from "../../assets/images/tools/s4.jpg"
+  import s5 from "../../assets/images/tools/s5.jpg"
+  import s6 from "../../assets/images/tools/s6.jpg"
+  import s7 from "../../assets/images/tools/s7.jpg"
+  import s8 from "../../assets/images/tools/s8.jpg"
+  import s9 from "../../assets/images/tools/s9.jpg"
+  import s10 from "../../assets/images/tools/s10.jpg"
   const productsData = {
     electronics: [
       {
@@ -312,27 +322,123 @@ import {
     safety_security: [
       {
         _id: "100001",
-        img: newArrOne,
-        productName: "Round Table Clock",
+        img: s1,
+        productName: "Premium Nitrile Disposable Gloves",
         price: "44.00",
         color: "Black",
         badge: true,
         rating: 4.5,
         reviewName: "Alex M",
         review: "Sleek Design",
-        des: "A timeless and decorative timepiece for any tabletop or desk.",
+        des: "Premium Nitrile Disposable Gloves, 6 mil, Powder-Free, Fully Textured, L, 100 PK, Black",
       },
       {
         _id: "100002",
-        img: newArrTwo,
-        productName: "Smart Watch",
-        price: "250.00",
+        img: s2,
+        productName: "Disposable Nitrile Gloves",
+        price: "16.15",
+        color: "Blue",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "TouchNTuff 92-675, Disposable Nitrile Gloves, Textured Fingertips, 4.3 mil Palm, Powder-Free, S",
+      },
+      {
+        _id: "100003",
+        img: s3,
+        productName: "Leather Palm Gloves",
+        price: "4.25",
+        color: "White",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Leather Palm Gloves, Cowhide, Gunn Cut, Full Finger, Safety Cuff, Cotton/Poly Liner, Gray, L, 1 PR",
+      },
+      {
+        _id: "100004",
+        img: s4,
+        productName: " Anti-Fog/Anti-Scratch",
+        price: "26.15",
         color: "Black",
         badge: true,
         rating: 4,
         reviewName: "Emily W",
         review: "Powerful Performance",
-        des: "A wearable device merging style and technology with fitness tracking.",
+        des: "Bionic Shield Assembly with Ratchet Adjustment Suspension, Anti-Fog/Anti-Scratch, Clear Lens",
+      },
+      {
+        _id: "100005",
+        img: s5,
+        productName: "Faceshield Visor",
+        price: "38.19",
+        color: "white",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Faceshield Visor, Clear 6 1/2 in Height, Universal Adapter Suspension",
+      },
+      {
+        _id: "100006",
+        img: s6,
+        productName: "High-Visibility Vest",
+        price: "19,87",
+        color: "Yellow",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "High-Visibility Vest, Type R, ANSI Class 2, U-Block, Silver Stripe, Zipper, Mesh Polyester, Lime, XL",
+      },
+      {
+        _id: "100007",
+        img: s7,
+        productName: "PVC Work Boots",
+        price: "18,87",
+        color: "Black",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Chesapeake Plain-Toe PVC Work Boots, Waterproof, Defined Heel, Oil Resistant Sole, Black, Size 10",
+      },
+      {
+        _id: "100008",
+        img: s8,
+        productName: "Yellow Wet Floor Sign",
+        price: "15.78",
+        color: "Yellow",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Bilingual Yellow Wet Floor Sign, 12.05 x 1.55 x 24.3",
+      },
+      {
+        _id: "100009",
+        img: s9,
+        productName: "Exit Sign",
+        price: "19.99",
+        color: "White",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Exit Sign, Emergency Battery Backup, 7 1/4 in H x 11 5/8 in W, LED, 1 or 2 Faces, White/Red",
+      },
+      {
+        _id: "1000010",
+        img: s10,
+        productName: "Traffic Paddle Sign",
+        price: "23.99",
+        color: "Black",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Traffic Paddle Sign, 2-Sided Stop/Slow, Non-Reflective, 18 in HxW, 9 in Polygrip Handle",
       },
     ],
     tools: [

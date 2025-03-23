@@ -9,51 +9,58 @@ import {
   bestSellerFour,
   BestSellersFive,
 } from "../../../assets/images/index";
-
+import plu2 from "../../../assets/images/tools/plu2.jpg"
+import off1 from "../../../assets/images/tools/off1.jpg"
+import tools4 from "../../../assets/images/tools/tools4.jpg"
+import tools9 from "../../../assets/images/tools/tools9.jpg"
 const products = [
   {
-    _id: "1011",
-    img: bestSellerOne,
-    productName: "Flower Base",
-    price: 35.00,
-    category: "Featured",
+    _id: "100002",
+    img: plu2,
+    productName: "Lever Handle",
+    price: "150.00",
+    color: "Silver",
+    badge: true,
     rating: 4,
-    reviewName: "Megan S.",
-    review: "High Quality",
-    des: "An elegant vessel for floral arrangements.",
+    reviewName: "Emily W",
+    review: "Powerful Performance",
+    des: "Lever Handle 8 Mount, Commercial 2 Hole Straight Service Sink Faucet",
   },
   {
-    _id: "1012",
-    img: bestSellerTwo,
-    productName: "New Backpack",
-    price: 180.00,
-    category: "New Arrival",
-    rating: 5,
-    reviewName: "Chris L.",
-    review: "Durable Build",
-    des: "A stylish and functional backpack.",
+    _id: "100001",
+    img: off1,
+    productName: "Tape Dispenser",
+    price: "44.00",
+    color: "Black",
+    badge: true,
+    rating: 4.5,
+    reviewName: "Alex M",
+    review: "Sleek Design",
+    des: "Tape Dispenser, Handheld, For Tape 2 in W, 3 in Core Dia, 11 3/4 in L, Pistol Grip, Blue",
   },
   {
-    _id: "1013",
-    img: bestSellerThree,
-    productName: "Household Materials",
-    price: 25.00,
-    category: "Best Sellers",
+    _id: "100004",
+    img: tools4,
+    productName: "Square Drive Socket Set",
+    price: "19.97",
+    color: "Black",
+    badge: true,
     rating: 4,
-    reviewName: "Olivia B.",
-    review: "Affordable Price",
-    des: "Essential items for everyday living.",
+    reviewName: "Emily W",
+    review: "Excellent Performance",
+    des: "1/4 Hex, 1/2 Square; 3/8 x 7/16, 1/2 x 9/16, 5/8 x 11/16, 3/4 x 13/16, and 7/8 x 15/16 Drive",
   },
   {
-    _id: "1014",
-    img: bestSellerFour,
-    productName: "Travel Bag",
-    price: 220.00,
-    category: "Final Offer",
-    rating: 5,
-    reviewName: "Kevin C",
-    review: "Stylish Look",
-    des: "A stylish and practical travel companion.",
+    _id: "100009",
+    img: tools9,
+    productName: "Tool Box",
+    price: "19.97",
+    color: "Black",
+    badge: true,
+    rating: 4,
+    reviewName: "Emily W",
+    review: "Excellent Performance",
+    des: "PACKOUT 4-Drawer Tool Box, Polymer, Black/Red, 22 in W x 16-1/2 in D x 14-1/2 in H",
   },
   {
     _id: "1015",
@@ -86,7 +93,7 @@ const BestSellers = () => {
   });
 
   return (
-    <div className="w-full pb-20 bg-gray-700 p-5 text-white">
+    <div className="w-full pb-20  p-5 text-white">
       
       <ProductBanner handleSortChange={setSortBy} />
       <Heading heading="Our Best Sellers" />

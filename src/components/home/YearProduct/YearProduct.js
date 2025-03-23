@@ -1,29 +1,116 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { productOfTheYear } from "../../../assets/images";
-import ShopNow from "../../designLayouts/buttons/ShopNow";
-import Image from "../../designLayouts/Image";
+import React, { useState, useEffect } from "react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import pro1 from "../../../assets/pro1.jpg";
+import pro2 from "../../../assets/pro2.jpg";
+import pro3 from "../../../assets/pro3.jpg";
+import pro4 from "../../../assets/pro4.jpg";
+import pro5 from "../../../assets/pro5.jpg";
+
+const testimonials = [
+  {
+    id: 1,
+    name: "Elisa Wiliams",
+    role: "Workshop Owner",
+    company: "Khan Auto Services",
+    rating: 4.7,
+    image: pro1,
+    text: "The Ride Connect has completely transformed my workshop! Their tools are top-notch, and the quality is unmatched.",
+    stat: "60%",
+    statDescription: "Increase in efficiency using premium tools from The Ride Connect.",
+  },
+  {
+    id: 2,
+    name: "Angel Johnson",
+    role: "Homeowner",
+    company: "DIY Enthusiast",
+    rating: 4.8,
+    image: pro2,
+    text: "I love the variety of perfumes at The Ride Connect! Their fragrances are long-lasting and truly premium.",
+    stat: "80%",
+    statDescription: "Customers reported improved satisfaction with our exclusive perfume collection.",
+  },
+  {
+    id: 3,
+    name: "Daniel James",
+    role: "Construction Engineer",
+    company: "SafeBuild Contractors",
+    rating: 4.6,
+    image: pro3,
+    text: "The Ride Connect provides the best safety and plumbing products. Our site workers feel more secure than ever.",
+    stat: "50%",
+    statDescription: "Reduction in workplace hazards with our premium safety gear.",
+  },
+  {
+    id: 4,
+    name: "Sophia Martinez",
+    role: "Salon Owner",
+    company: "Glamour Touch",
+    rating: 4.9,
+    image: pro4,
+    text: "Our salon's ambiance has been elevated thanks to the stunning decor from The Ride Connect. Highly recommended!",
+    stat: "70%",
+    statDescription: "Increase in customer satisfaction with improved salon aesthetics.",
+  },
+  // {
+  //   id: 5,
+  //   name: "Michael Lee",
+  //   role: "Restaurant Manager",
+  //   company: "Spice Delight",
+  //   rating: 4.7,
+  //   image: pro5,
+  //   text: "Our kitchen is more efficient than ever, thanks to the innovative tools provided by The Ride Connect.",
+  //   stat: "65%",
+  //   statDescription: "Increase in kitchen efficiency using top-notch equipment.",
+  // },
+];
 
 const YearProduct = () => {
-  return (
-    <Link to="/shop" >
-      <div className="w-full h-80 mb-20 bg-[#f3f3f3] md:bg-transparent relative font-titleFont mt-4">
-        <Image
-          className="w-full h-full object-cover hidden md:inline-block"
-          imgSrc={productOfTheYear}
-        />
-        <div className="w-full md:w-2/3 xl:w-1/2 h-80 absolute px-4 md:px-0 top-0 right-0 flex flex-col items-start gap-6 justify-center">
-          <h1 className="text-3xl font-semibold text-primeColor">
-            Product of The year
-          </h1>
-          <p className="text-base font-normal text-primeColor max-w-[600px] mr-4">
+  const [activeIndex, setActiveIndex] = useState(0);
 
-            The wall clock, a timeless and functional piece of decor, has evolved over the years, seamlessly blending style with utility. Serving as more than just a timekeeping device, modern wall clocks have become a statement of design and personal taste.
-          </p>
-          <ShopNow />
-        </div>
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="w-full bg-gradient-to-b from-[#374151] to-[#000000] py-16 px-6 text-white flex flex-col items-center">
+      <h2 className="text-3xl font-bold text-center mb-8">Real Business Results</h2>
+
+      <div className="flex items-center justify-center space-x-6 w-full max-w-6xl overflow-hidden relative flex-wrap sm:flex-col md:flex-row">
+        {testimonials.map((testimonial, index) => {
+          const isActive = index === activeIndex;
+
+          return (
+            <div
+              key={testimonial.id}
+              className={`flex flex-col items-center p-6 rounded-xl shadow-lg transition-all duration-1000 ease-in-out w-full sm:w-4/5 md:w-1/5 bg-gray-800 transform ${
+                isActive ? "scale-105 z-10" : "scale-95 opacity-80"
+              } mb-8 sm:mb-4 md:mb-0`}
+            >
+              <img
+                src={testimonial.image}
+                alt={testimonial.name}
+                className="w-24 h-24 object-cover rounded-full mb-4"
+              />
+              <h3 className="text-lg font-semibold">{testimonial.name}</h3>
+              <p className="text-sm">{testimonial.role}</p>
+              <p className="text-sm text-gray-400">{testimonial.company}</p>
+              <p className="mt-2 text-lg">⭐⭐⭐⭐ {testimonial.rating} </p>
+              <p
+                className={`mt-4 text-gray-300 text-center ${
+                  isActive ? "text-lg" : "text-sm"
+                }`}
+              >
+                {testimonial.text}
+              </p>
+            </div>
+          );
+        })}
       </div>
-    </Link>
+    </div>
   );
 };
 

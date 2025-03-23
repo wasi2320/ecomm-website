@@ -9,6 +9,7 @@ const categoryProductMapping = {
   "tools": "tools",
   "office": "office_shipping",
   "plumbing": "plumbing",
+  "safety": "safety_security",
   "grounds": "grounds_outdoor",
   "heating": "heating_cooling",
   "electrical": "electrical_supplies",
