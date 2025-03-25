@@ -12,7 +12,7 @@ const categoryProductMapping = {
   "safety": "safety_security",
   "grounds": "grounds_outdoor",
   "heating": "heating_cooling",
-  "electrical": "electrical_supplies",
+  "electronics": "electronics",
   "cleaning": "janitorial_cleaning",
   "food": "food_service",
   "test": "test_instruments",

@@ -48,6 +48,16 @@ import {
   import s8 from "../../assets/images/tools/s8.jpg"
   import s9 from "../../assets/images/tools/s9.jpg"
   import s10 from "../../assets/images/tools/s10.jpg"
+  import g1 from "../../assets/images/tools/g1.jpg"
+  import g2 from "../../assets/images/tools/g2.jpg"
+  import g3 from "../../assets/images/tools/g3.jpg"
+  import g4 from "../../assets/images/tools/g4.jpg"
+  import g5 from "../../assets/images/tools/g5.jpg"
+  import g6 from "../../assets/images/tools/g6.jpg"
+  import g7 from "../../assets/images/tools/g7.jpg"
+  import g8 from "../../assets/images/tools/g8.jpg"
+  import g9 from "../../assets/images/tools/g9.jpg"
+  import g10 from "../../assets/images/tools/g10.jpg"
   const productsData = {
     electronics: [
       {
@@ -566,27 +576,123 @@ import {
     grounds_outdoor: [
       {
         _id: "100001",
-        img: newArrOne,
-        productName: "Round Table Clock",
-        price: "44.00",
+        img: g1,
+        productName: "Drain Spade Shovel",
+        price: "22.00",
         color: "Black",
         badge: true,
         rating: 4.5,
         reviewName: "Alex M",
         review: "Sleek Design",
-        des: "A timeless and decorative timepiece for any tabletop or desk.",
+        des: "14 ga Drain Spade Shovel, Steel Blade, 46-3/4 in L Yellow Fiberglass Handle",
       },
       {
         _id: "100002",
-        img: newArrTwo,
-        productName: "Smart Watch",
-        price: "250.00",
+        img: g2,
+        productName: "Scoop Shovel",
+        price: "33.00",
         color: "Black",
         badge: true,
         rating: 4,
         reviewName: "Emily W",
         review: "Powerful Performance",
-        des: "A wearable device merging style and technology with fitness tracking.",
+        des: "12 Scoop Shovel, Plastic Blade, 30 in L Black Wood Handle",
+      },
+      {
+        _id: "100003",
+        img: g3,
+        productName: "Hygienic Square Point Shovel",
+        price: "35.00",
+        color: "Blue",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Hygienic Square Point Shovel, Polypropylene Blade, 28 in L, Blue, Polypropylene Handle",
+      },
+      {
+        _id: "100004",
+        img: g4,
+        productName: "Hot Water Hose",
+        price: "33.20",
+        color: "Red",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "25 ft L Hot Water Hose, 5/8 in Inside Dia, Red, Rubber",
+      },
+      {
+        _id: "100005",
+        img: g5,
+        productName: " Hot Water Nozzle",
+        price: "22.60",
+        color: "Black",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Gilmour 1 Pattern Solid Stream Zinc Hot Water Nozzle",
+      },
+      {
+        _id: "100006",
+        img: g6,
+        productName: "Double Tent",
+        price: "398.88",
+        color: "Green",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Double Tent Cot w/Rainfly",
+      },
+      {
+        _id: "100007",
+        img: g7,
+        productName: "Fan Trellis",
+        price: "21.25",
+        color: "Brown",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "48 BRN WD Fan Trellis",
+      },
+      {
+        _id: "100008",
+        img: g8,
+        productName: "Windmill",
+        price: "109.99",
+        color: "Green",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Classic 8 Foot Windmill",
+      },
+      {
+        _id: "100009",
+        img: g9,
+        productName: "Leaf Rake",
+        price: "35.00",
+        color: "Black",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Leaf Rake, Aluminum, 17-1/2 L.",
+      },
+      {
+        _id: "100010",
+        img: g10,
+        productName: "Netting",
+        price: "31.25/ea",
+        color: "Black",
+        badge: true,
+        rating: 4,
+        reviewName: "Emily W",
+        review: "Powerful Performance",
+        des: "Poultry Netting, Height 72 In, 50 Ft.",
       },
     ],
    
