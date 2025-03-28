@@ -29,6 +29,7 @@ import Electronics from "./components/category/Electronics";
 import OfficeAcc from "./components/category/OfficeAcc";
 import Categories from "./pages/categories/categories";
 import CategoryPage from "./components/category/CategoryPage";
+import HomeVideo from "./constants/HomeVideo";
 const Layout = () => {
   return (
     <div>
@@ -39,6 +40,7 @@ const Layout = () => {
       <Outlet />
       <Footer />
       <FooterBottom />
+      <HomeVideo />
     </div>
   );
 };
