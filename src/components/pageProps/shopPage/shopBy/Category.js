@@ -12,18 +12,22 @@ import electronics from "../../../../assets/images/categoryGird2/monitors-displa
 import janitorial from "../../../../assets/images/categoryGird2/cleaning-supplies.png";
 import foodService from "../../../../assets/images/categoryGird2/G5201001.png";
 import testInstruments from "../../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
-
+import men from "../../../../assets/images/menPerfume/men2.jpg";
+import women from "../../../../assets/images/womenPerfume/women2.jpg";
 // Initial categories without swapping functionality
 const initialCategories = [
-  { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
-  { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
-  { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
-  { id: 4, name: "Safety", image: safety, path: "/category/safety" },
-  { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
-  { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
-  { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
-  { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
-  { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
+  // { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
+  // { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
+  // { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
+  // { id: 4, name: "Safety", image: safety, path: "/category/safety" },
+  // { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
+  // { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
+  // { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
+  // { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
+  // { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
+  { id: 10, name: "Man's", image: men, path: "/category/Male" },
+  { id: 11, name: "Woman's", image: women, path: "/category/female" },
+  
   
 ];
 

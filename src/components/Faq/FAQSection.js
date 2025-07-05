@@ -5,24 +5,36 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "What products do you offer?",
-      answer: "We offer a wide range of products including perfumes, tools, and safety plumbing products."
+      question: "Are your perfumes original and authentic?",
+      answer: "Yes, all our perfumes are 100% authentic and sourced directly from verified suppliers and brands."
     },
     {
-      question: "How can I contact customer support?",
-      answer: "You can contact us through email at info@therideconnect.com or by phone at 913 414 3536."
+      question: "How long do your perfumes last?",
+      answer: "Our perfumes are designed to be long-lasting, with many customers reporting scent longevity of 6–10 hours or more."
     },
     {
-      question: "Do you offer international shipping?",
-      answer: "Yes, we provide international shipping. Shipping costs vary depending on your location."
+      question: "Do you offer perfume samples?",
+      answer: "Yes, we offer sample sizes for select fragrances so you can try before committing to a full-size bottle."
     },
     {
-      question: "What is your return policy?",
-      answer: "We accept returns within 30 days of purchase for most items. Please check our return policy page for more details."
+      question: "Are your perfumes suitable as gifts?",
+      answer: "Absolutely! Our perfumes come in elegant packaging and make perfect gifts for any occasion."
     },
     {
-      question: "Do you offer any discounts?",
-      answer: "We occasionally offer promotions and discounts. You can sign up for our newsletter to stay updated on special offers."
+      question: "How should I store my perfumes?",
+      answer: "Store perfumes in a cool, dry place away from direct sunlight to maintain their quality and longevity."
+    },
+    {
+      question: "What types of perfumes do you offer?",
+      answer: "We offer a variety of fragrances including Eau de Parfum, Eau de Toilette, and body mists for both men and women."
+    },
+    {
+      question: "Can I return a perfume if I don’t like the scent?",
+      answer: "Yes, we accept returns on unopened perfumes within 30 days of purchase. Please review our return policy for more details."
+    },
+    {
+      question: "Do you sell branded perfumes or niche fragrances?",
+      answer: "We sell both! You'll find popular designer brands as well as unique niche fragrances in our collection."
     }
   ];
 

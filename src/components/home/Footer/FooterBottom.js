@@ -9,7 +9,7 @@ const FooterBottom = () => {
           <span className="text-md mr-[1px] mt-[2px] md:mt-0 text-center hidden md:inline-flex">
             <AiOutlineCopyright />
           </span>
-          Copyright 2023 | RTC shopping | All Rights Reserved
+          Copyright 2023 | TRC shopping | All Rights Reserved
 
 
 

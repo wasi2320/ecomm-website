@@ -28,60 +28,18 @@ const Footer = () => {
     }
   };
   const categories = [
-    { name: "Tools & Machining", path: "/category/tools" },
-    { name: "Safety", path: "/category/safety" },
-    { name: "Electronics", path: "/category/electronics" },
-    { name: "Perfumes", path: "/category/perfumes" },
-    { name: "Test Instruments & Gauges", path: "/category/test" },
+    { name: "Perfumes",  path: "/category/perfumes" },
+    { name: "Man Perfume",  path: "/category/male" },
+    {name: "Woman Perfume",  path: "/category/female" },
   ];
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
       <div className="max-w-container-fluid mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
         <div className="col-span-2">
-          <FooterListTitle title=" More about RTC Shop" />
-          <div className="flex flex-col gap-6">
-            <p className="text-base w-full xl:w-[80%]">
-              "Explore our curated collection on the ultimate e-commerce destination. Discover quality products, seamless shopping, and exceptional service at your fingertips."
-            </p>
-            <ul className="flex items-center gap-2">
-              <a
-                href="https://www.youtube.com/@reactjsBD"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaYoutube />
-                </li>
-              </a>
-              <a
-                href="https://github.com/noorjsdivs"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaGithub />
-                </li>
-              </a>
-              <a
-                href="https://www.facebook.com/Noorlalu143/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaFacebook />
-                </li>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/noor-mohammad-ab2245193/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <li className="w-7 h-7 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-lg rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaLinkedin />
-                </li>
-              </a>
-            </ul>
-          </div>
+          <FooterListTitle title=" More about TRC Shop" />
+          <p className="font-titleFont text-base text-lightText mt-4">
+          TRC Shop is a premier online destination for luxury and everyday perfumes, offering an extensive selection of fragrances for both men and women. Our mission is to bring you 100% authentic, long-lasting scents from top designer brands and niche fragrance houses—at competitive prices. Whether you're looking for your signature scent or the perfect gift, TRC Shop is committed to providing high-quality perfumes with fast shipping and exceptional customer service that keeps you coming back.
+          </p>
         </div>
         <div>
           <FooterListTitle title="Shop" />

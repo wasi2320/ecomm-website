@@ -18,17 +18,22 @@ import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.p
 import foodService from "../../../assets/images/categoryGird2/G5201001.png";
 import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
 import perfume from "../../../assets/images/banner/perfume.jpg";
+import men from "../../../assets/images/menPerfume/men2.jpg"
+import women from "../../../assets/images/womenPerfume/women2.jpg"
 const categories = [
- { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
-    { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
-    { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
-    { id: 4, name: "Safety", image: safety, path: "/category/safety" },
-    { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
-    { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
-    { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
-    { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
-    { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
+//  { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
+//     { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
+//     { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
+//     { id: 4, name: "Safety", image: safety, path: "/category/safety" },
+//     { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
+//     { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
+//     { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
+//     { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
+//     { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
     { id: 10, name: "Perfumes", image: perfume, path: "/category/perfumes" },
+    { id: 9, name: "Men Perfume", image: men, path: "/category/male" },
+    { id: 9, name: "Women Perfume", image: women, path: "/category/female" },
+    
 ];
 
 const HeaderBottom = () => {

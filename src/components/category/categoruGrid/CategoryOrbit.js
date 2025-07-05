@@ -42,6 +42,7 @@ const categories = [
   { id: 8, name: "Food Service", image: foodService },
   { id: 9, name: "Lab Equipment", image: lab },
   { id: 10, name: "Perfumes", image: perfume},
+  
 ];
 
 const CategoryOrbit = () => {

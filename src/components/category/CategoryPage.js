@@ -6,17 +6,20 @@ import Product from "../../components/home/Products/Product";
 import productsData from "./productsData";
 // Category mapping to map URL category to productsData key
 const categoryProductMapping = {
-  "tools": "tools",
-  "office": "office_shipping",
-  "plumbing": "plumbing",
-  "safety": "safety_security",
-  "grounds": "grounds_outdoor",
-  "heating": "heating_cooling",
-  "electronics": "electronics",
-  "cleaning": "janitorial_cleaning",
-  "food": "food_service",
-  "test": "test_instruments",
+  // "tools": "tools",
+  // "office": "office_shipping",
+  // "plumbing": "plumbing",
+  // "safety": "safety_security",
+  // "grounds": "grounds_outdoor",
+  // "heating": "heating_cooling",
+  // "electronics": "electronics",
+  // "cleaning": "janitorial_cleaning",
+  // "food": "food_service",
+  // "test": "test_instruments",
   "perfumes": "perfumes",
+  "male":"male",
+  "female":"female"
+  
 };
 
 const CategoryPage = () => {
@@ -48,7 +51,7 @@ const CategoryPage = () => {
                     img={item.img}
                     productName={item.productName}
                     price={item.price}
-                    color={item.color}
+                    Oz={item.Oz}
                     badge={item.badge}
                     des={item.des}
                     rating={item.rating}

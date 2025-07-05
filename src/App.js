@@ -40,7 +40,7 @@ const Layout = () => {
       <Outlet />
       <Footer />
       <FooterBottom />
-      <HomeVideo />
+      {/* <HomeVideo /> */}
     </div>
   );
 };
