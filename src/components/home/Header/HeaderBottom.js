@@ -17,9 +17,11 @@ import electronics from "../../../assets/images/categoryGird2/monitors-displays-
 import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
 import foodService from "../../../assets/images/categoryGird2/G5201001.png";
 import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
-import perfume from "../../../assets/images/banner/perfume.jpg";
+import perfume from "../../../assets/images/giftsets/gs4.jpg";
 import men from "../../../assets/images/menPerfume/men2.jpg"
 import women from "../../../assets/images/womenPerfume/women2.jpg"
+import test from "../../../assets/images/tester/test2.jpg";
+import children from "../../../assets/images/children/ch2.jpg";
 const categories = [
 //  { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
 //     { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
@@ -30,9 +32,11 @@ const categories = [
 //     { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
 //     { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
 //     { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
-    { id: 10, name: "Perfumes", image: perfume, path: "/category/perfumes" },
-    { id: 9, name: "Men Perfume", image: men, path: "/category/male" },
-    { id: 9, name: "Women Perfume", image: women, path: "/category/female" },
+    { id: 10, name: "Giftsets", image: perfume, path: "/category/perfumes" },
+    { id: 11, name: "Men Perfume", image: men, path: "/category/male" },
+    { id: 12, name: "Women Perfume", image: women, path: "/category/female" },
+    { id: 13, name: "Tester", image: test, path: "/category/tester" },
+    { id: 13, name: "Childern", image: children, path: "/category/children" },
     
 ];
 

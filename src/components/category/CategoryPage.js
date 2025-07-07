@@ -18,7 +18,9 @@ const categoryProductMapping = {
   // "test": "test_instruments",
   "perfumes": "perfumes",
   "male":"male",
-  "female":"female"
+  "female":"female",
+  "tester": "tester",
+  "children": "children", 
   
 };
 

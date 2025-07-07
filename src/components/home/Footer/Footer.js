@@ -28,9 +28,11 @@ const Footer = () => {
     }
   };
   const categories = [
-    { name: "Perfumes",  path: "/category/perfumes" },
-    { name: "Man Perfume",  path: "/category/male" },
-    {name: "Woman Perfume",  path: "/category/female" },
+    { name: "Giftsets",  path: "/category/perfumes" },
+    { name: "Man's Perfume",  path: "/category/male" },
+    {name: "Woman's Perfume",  path: "/category/female" },
+    { name: "Children's Perfume", path: "/category/children" },
+    { name: "Tester", path: "/category/tester" },
   ];
   return (
     <div className="w-full bg-[#F5F5F3] py-20">
