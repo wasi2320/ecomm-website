@@ -31,7 +31,7 @@ const categories = [
     { id: 11, name: "Man Perfume", image: men, path: "/category/male" },
     { id: 12, name: "Woman Perfume", image: women, path: "/category/female" },
     { id: 13, name: "Tester", image: test, path: "/category/tester" },
-    { id: 13, name: "Childern", image: children, path: "/category/children" },
+    { id: 14, name: "Childern", image: children, path: "/category/children" },
   
 ];
 
