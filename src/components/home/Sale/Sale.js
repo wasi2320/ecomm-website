@@ -15,7 +15,7 @@ const Sale = () => {
       {/* Left Section */}
       <div className="w-full md:w-2/3 lg:w-1/2 h-auto flex flex-col gap-4 lg:gap-10">
         <div className="h-1/2 w-full">
-          <Link to="/category/Male">
+          <Link to="/category/perfumes">
             <div className="relative">
               <Image className="h-full w-full object-cover rounded-lg" imgSrc={giftsetPerfume} />
               <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
@@ -25,7 +25,7 @@ const Sale = () => {
           </Link>
         </div>
         <div className="h-1/2 w-full">
-          <Link to="/category/female">
+          <Link to="/category/children">
             <div className="relative">
               <Image className="h-full w-full object-cover rounded-lg" imgSrc={childrenPerfume} />
               <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
