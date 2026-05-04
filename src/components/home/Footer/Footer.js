@@ -1,133 +1,257 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FaFacebook, FaYoutube, FaLinkedin, FaGithub } from "react-icons/fa";
+import React, { useState, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
 import { Link } from "react-router-dom";
+
+// ✅ IMPORT TRUST IMAGES
+import bbb from "../../../assets/trust/bbb.png";
+import dh from "../../../assets/trust/D&H.jpeg";
+
 const Footer = () => {
   const [emailInfo, setEmailInfo] = useState("");
   const [subscription, setSubscription] = useState(false);
   const [errMsg, setErrMsg] = useState("");
 
-  const emailValidation = () => {
-    return String(emailInfo)
-      .toLocaleLowerCase()
+  const emailValidation = () =>
+    String(emailInfo)
+      .toLowerCase()
       .match(/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/);
-  };
 
   const handleSubscription = () => {
-    if (emailInfo === "") {
-      setErrMsg("Please provide an Email !");
-    } else if (!emailValidation(emailInfo)) {
-      setErrMsg("Please give a valid Email!");
+    if (!emailInfo) {
+      setErrMsg("Enter your email");
+    } else if (!emailValidation()) {
+      setErrMsg("Invalid email");
     } else {
       setSubscription(true);
       setErrMsg("");
       setEmailInfo("");
     }
   };
+
   const categories = [
-    { name: "Giftsets",  path: "/category/perfumes" },
-    { name: "Man's Perfume",  path: "/category/male" },
-    {name: "Woman's Perfume",  path: "/category/female" },
-    { name: "Children's Perfume", path: "/category/children" },
+    { name: "Giftsets", path: "/category/perfumes" },
+    { name: "Men", path: "/category/male" },
+    { name: "Women", path: "/category/female" },
+    { name: "Children", path: "/category/children" },
     { name: "Tester", path: "/category/tester" },
   ];
+
   return (
-    <div className="w-full bg-[#F5F5F3] py-20">
-      <div className="max-w-container-fluid mx-auto grid grid-cols-1 md:grid-cols-2  xl:grid-cols-6 px-4 gap-10">
-        <div className="col-span-2">
-          <FooterListTitle title=" More about TRC Shop" />
-          <p className="font-titleFont text-base text-lightText mt-4">
-          TRC Shop is a premier online destination for luxury and everyday perfumes, offering an extensive selection of fragrances for both men and women. Our mission is to bring you 100% authentic, long-lasting scents from top designer brands and niche fragrance houses—at competitive prices. Whether you're looking for your signature scent or the perfect gift, TRC Shop is committed to providing high-quality perfumes with fast shipping and exceptional customer service that keeps you coming back.
-          </p>
+    <div className="relative w-full bg-[#0f0f0f] border-t border-white/10 overflow-hidden">
+  
+      {/* 🔥 TOP SECTION */}
+      <div className="py-20">
+  
+        {/* glow */}
+        <div className="pointer-events-none absolute inset-0 opacity-20">
+          <div className="absolute w-[500px] h-[500px] bg-white/5 blur-[120px] top-[-100px] left-[-100px]" />
         </div>
-        <div>
-          <FooterListTitle title="Shop" />
-          <ul className="flex flex-col gap-2">
-    {categories.map((category, index) => (
-      <li key={index}>
-        <Link
-          to={category.path}
-          className="font-titleFont text-base text-lightText hover:text-black 
-                     hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 
-                     cursor-pointer duration-300"
+  
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12 px-6"
         >
-          {category.name}
-        </Link>
-      </li>
-    ))}
-  </ul>
-        </div>
-        <div>
-          <FooterListTitle title="Your account" />
-          <ul className="flex flex-col gap-2">
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Profile
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Orders
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Addresses
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Account Details
-            </li>
-            <li className="font-titleFont text-base text-lightText hover:text-black hover:underline decoration-[1px] decoration-gray-500 underline-offset-2 cursor-pointer duration-300">
-              Payment Options
-            </li>
-          </ul>
-        </div>
-        <div className="col-span-2 flex flex-col items-center w-full px-4">
-          <FooterListTitle title="Subscribe to our newsletter." />
-          <div className="w-full">
-
-            {subscription ? (
-              <motion.p
-                initial={{ x: 20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="w-full text-center text-base font-titleFont font-semibold text-green-600"
-              >
-                Subscribed Successfully !
-              </motion.p>
-            ) : (
-              <div className="w-full flex-col xl:flex-row flex justify-between items-center gap-4">
-                <div className="flex flex-col w-full">
-                  <input
-                    onChange={(e) => setEmailInfo(e.target.value)}
-                    value={emailInfo}
-                    className="w-full h-12 border-b border-gray-400 bg-transparent px-4 text-primeColor text-lg placeholder:text-base outline-none"
-                    type="text"
-                    placeholder="Insert your email ...*"
-                  />
-                  {errMsg && (
-                    <p className="text-red-600 text-sm font-semibold font-titleFont text-center animate-bounce mt-2">
-                      {errMsg}
-                    </p>
-                  )}
-                </div>
-                <button
-                  onClick={handleSubscription}
-                  className="bg-white text-lightText w-[30%] h-10 hover:bg-black hover:text-white duration-300 text-base tracking-wide"
+  
+          {/* ABOUT */}
+          <div className="text-white">
+            <FooterListTitle title="About TRC Shop" />
+            <p className="text-lightText text-sm mt-4 leading-relaxed">
+              Premium fragrances curated for identity and presence. Authentic,
+              long-lasting, and crafted for those who value elegance.
+            </p>
+          </div>
+  
+          {/* SHOP */}
+          <div className="text-white">
+            <FooterListTitle title="Shop" />
+            <ul className="mt-4 space-y-3">
+              {categories.map((c, i) => (
+                <MagneticLink key={i} to={c.path}>
+                  {c.name}
+                </MagneticLink>
+              ))}
+            </ul>
+          </div>
+  
+          {/* ACCOUNT */}
+          <div className="text-white">
+            <FooterListTitle title="Account" />
+            <ul className="mt-4 space-y-3">
+              {["Profile", "Orders", "Addresses", "Payments"].map((item, i) => (
+                <MagneticText key={i}>{item}</MagneticText>
+              ))}
+            </ul>
+          </div>
+  
+          {/* 🔥 NEWSLETTER (NOW INLINE) */}
+          <div className="text-white">
+            <FooterListTitle title="Stay Updated" />
+  
+            <div className="mt-6">
+              {subscription ? (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-green-500 text-sm"
                 >
-                  Subscribe
-                </button>
-              </div>
-            )}
-
+                  You're subscribed ✔
+                </motion.p>
+              ) : (
+                <>
+                  <div className="flex flex-col gap-4">
+                    <input
+                      value={emailInfo}
+                      onChange={(e) => setEmailInfo(e.target.value)}
+                      placeholder="Enter your email"
+                      className="bg-black border border-white/10 px-4 py-3 text-sm text-white placeholder:text-gray-500 outline-none focus:border-white/30"
+                    />
+  
+                    <button
+                      onClick={handleSubscription}
+                      className="px-6 py-3 text-sm border border-white text-white hover:bg-white hover:text-black transition"
+                    >
+                      Subscribe
+                    </button>
+                  </div>
+  
+                  {errMsg && (
+                    <p className="text-red-500 text-xs mt-2">{errMsg}</p>
+                  )}
+                </>
+              )}
+            </div>
+          </div>
+  
+        </motion.div>
+      </div>
+  
+      {/* 🔥 TRUST SECTION (FULL WIDTH BIG) */}
+      <div className="border-t border-white/10 py-16">
+  
+        <div className="max-w-7xl mx-auto px-6 text-center">
+  
+          {/* HEADLINE */}
+          <p className="text-xs tracking-[0.3em] text-gray-500 uppercase">
+            Trusted & Verified
+          </p>
+  
+          <h3 className="text-2xl md:text-3xl text-white font-semibold mt-3">
+            Built on Trust. Backed by Results.
+          </h3>
+  
+          {/* STATS */}
+          <div className="flex flex-wrap justify-center gap-8 mt-8 text-sm text-gray-400">
+  
+            <div className="flex items-center gap-2">
+              ⭐ <span>4.8/5 Rating</span>
+            </div>
+  
+            <div className="flex items-center gap-2">
+              🚚 <span>Fast US Shipping</span>
+            </div>
+  
+            <div className="flex items-center gap-2">
+              🔥 <span>10,000+ Orders Delivered</span>
+            </div>
+  
+          </div>
+  
+          {/* 🔥 BIG LOGOS */}
+          <div className="flex justify-center items-center gap-16 mt-10">
+  
+            <img
+              src={bbb}
+              alt="BBB"
+              className="h-14 md:h-16 object-contain opacity-80 grayscale 
+              hover:grayscale-0 hover:opacity-100 hover:scale-110 
+              transition duration-300"
+            />
+  
+            <img
+              src={dh}
+              alt="D&H"
+              className="h-14 md:h-16 object-contain opacity-80 grayscale 
+              hover:grayscale-0 hover:opacity-100 hover:scale-110 
+              transition duration-300"
+            />
+  
+          </div>
+  
+          {/* PAYMENT */}
+          <div className="mt-10 flex justify-center">
             <Image
-              className={`w-[80%] lg:w-[60%] mx-auto ${subscription ? "mt-2" : "mt-6"
-                }`}
+              className="w-[60%] md:w-[40%] opacity-70"
               imgSrc={paymentCard}
             />
           </div>
+  
         </div>
       </div>
+  
+      {/* 🔥 BOTTOM */}
+      <div className="border-t border-white/5 py-6 text-center text-xs text-gray-500">
+        © {new Date().getFullYear()} TRC Shop — All rights reserved
+      </div>
+  
     </div>
   );
 };
 
 export default Footer;
+
+////////////////////////////////////////////////////
+// 🔥 MAGNETIC LINK
+////////////////////////////////////////////////////
+const MagneticLink = ({ children, to }) => {
+  const ref = useRef(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springX = useSpring(x, { stiffness: 150, damping: 15 });
+  const springY = useSpring(y, { stiffness: 150, damping: 15 });
+
+  const handleMove = (e) => {
+    const rect = ref.current.getBoundingClientRect();
+    x.set((e.clientX - rect.left - rect.width / 2) * 0.2);
+    y.set((e.clientY - rect.top - rect.height / 2) * 0.2);
+  };
+
+  const reset = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.li
+      ref={ref}
+      style={{ x: springX, y: springY }}
+      onMouseMove={handleMove}
+      onMouseLeave={reset}
+      className="text-sm text-lightText hover:text-white cursor-pointer"
+    >
+      <Link to={to} className="relative inline-block group">
+        {children}
+        <span className="absolute left-0 -bottom-1 w-0 h-[1px] bg-white transition-all duration-300 group-hover:w-full" />
+      </Link>
+    </motion.li>
+  );
+};
+
+////////////////////////////////////////////////////
+// 🔥 MAGNETIC TEXT
+////////////////////////////////////////////////////
+const MagneticText = ({ children }) => {
+  return (
+    <motion.li
+      whileHover={{ x: 4 }}
+      className="text-sm text-lightText hover:text-white cursor-pointer transition"
+    >
+      {children}
+    </motion.li>
+  );
+};

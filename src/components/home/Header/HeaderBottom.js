@@ -1,13 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
-import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-// import logo from "../../../assets/images/RTC.png"; // Add your logo here
+import { useNavigate } from "react-router-dom";
 
-// Import category images
+// Images
 import tools from "../../../assets/images/categoryGird2/tools.png";
 import office from "../../../assets/images/categoryGird2/office-and-shipping.png";
 import plumbing from "../../../assets/images/categoryGird2/plumbing-and-hvac.png";
@@ -15,71 +12,178 @@ import safety from "../../../assets/images/categoryGird2/safety-and-security.png
 import ground from "../../../assets/images/categoryGird2/grounds-maintenance-and-outdoor-equipment.png";
 import electronics from "../../../assets/images/categoryGird2/monitors-displays-and-projectors.png";
 import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
-import foodService from "../../../assets/images/categoryGird2/G5201001.png";
-import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
 import perfume from "../../../assets/images/giftsets/gs4.jpg";
-import men from "../../../assets/images/menPerfume/men2.jpg"
-import women from "../../../assets/images/womenPerfume/women2.jpg"
-import test from "../../../assets/images/tester/test2.jpg";
-import children from "../../../assets/images/children/ch2.jpg";
+
 const categories = [
-//  { id: 1, name: "Tools & Machining", image: tools, path: "/category/tools" },
-//     { id: 2, name: "Office, School & Shipping Supplies", image: office, path: "/category/office" },
-//     { id: 3, name: "Plumbing", image: plumbing, path: "/category/plumbing" },
-//     { id: 4, name: "Safety", image: safety, path: "/category/safety" },
-//     { id: 5, name: "Grounds & Outdoor", image: ground, path: "/category/grounds" },
-//     { id: 6, name: "Electronics", image: electronics, path: "/category/electronics" },
-//     { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
-//     { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
-//     { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
-    { id: 10, name: "Giftsets", image: perfume, path: "/category/perfumes" },
-    { id: 11, name: "Men Perfume", image: men, path: "/category/male" },
-    { id: 12, name: "Women Perfume", image: women, path: "/category/female" },
-    { id: 13, name: "Tester", image: test, path: "/category/tester" },
-    { id: 13, name: "Childern", image: children, path: "/category/children" },
-    
+  {
+    name: "Tools & Machining",
+    key: "tools",
+    image: tools,
+    sections: [
+      { title: "Hand Tools", items: ["Hammer", "Wrench", "Pliers"] },
+      { title: "Power Tools", items: ["Drill", "Grinder", "Saw"] },
+    ],
+  },
+  {
+    name: "Office Supplies",
+    key: "office",
+    image: office,
+    sections: [
+      { title: "Stationery", items: ["Pens", "Paper", "Files"] },
+      { title: "Furniture", items: ["Chair", "Desk"] },
+    ],
+  },
+  {
+    name: "Plumbing",
+    key: "plumbing",
+    image: plumbing,
+    sections: [
+      { title: "Pipes", items: ["PVC", "Steel"] },
+      { title: "Fittings", items: ["Elbow", "Adapters"] },
+    ],
+  },
+  {
+    name: "Safety",
+    key: "safety",
+    image: safety,
+    sections: [
+      { title: "Protection", items: ["Gloves", "Helmet"] },
+      { title: "Security", items: ["CCTV", "Alarms"] },
+    ],
+  },
+  {
+    name: "Outdoor",
+    key: "grounds",
+    image: ground,
+    sections: [
+      { title: "Gardening", items: ["Seeds", "Tools"] },
+      { title: "Equipment", items: ["Mowers", "Trimmers"] },
+    ],
+  },
+  {
+    name: "Electronics",
+    key: "electronics",
+    image: electronics,
+    sections: [
+      { title: "Devices", items: ["Laptop", "Mobile"] },
+      { title: "Accessories", items: ["Headphones", "Chargers"] },
+    ],
+  },
+  {
+    name: "Cleaning",
+    key: "cleaning",
+    image: janitorial,
+    sections: [
+      { title: "Supplies", items: ["Mop", "Vacuum"] },
+      { title: "Chemicals", items: ["Detergent", "Sanitizer"] },
+    ],
+  },
+  {
+    name: "Perfumes",
+    key: "perfumes",
+    image: perfume,
+    sections: [
+      { title: "Men", items: ["Fresh", "Woody"] },
+      { title: "Women", items: ["Floral", "Sweet"] },
+    ],
+  },
 ];
 
 const HeaderBottom = () => {
-  const products = useSelector((state) => state.orebiReducer.products);
-  const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(categories[0]);
+  const timeoutRef = useRef(null);
   const navigate = useNavigate();
 
-  return (
-    <div className="w-full bg-[#F5F5F3] relative">
-      <div className="max-w-container mx-auto">
-        <Flex className="flex flex-row items-center justify-between w-full px-4 h-16 lg:h-24">
-          
-          
+  const handleEnter = () => {
+    clearTimeout(timeoutRef.current);
+    setOpen(true);
+  };
 
-          {/* Category Dropdown */}
+  const handleLeave = () => {
+    timeoutRef.current = setTimeout(() => setOpen(false), 150);
+  };
+
+  return (
+    <div className="w-full bg-[#F5F5F3] relative z-40">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <Flex className="items-center h-14">
+
+          {/* LEFT MENU BUTTON */}
           <div
-            onClick={() => setShow(!show)}
-            className="flex h-10 cursor-pointer items-center gap-2 text-primeColor relative"
+            onMouseEnter={handleEnter}
+            onMouseLeave={handleLeave}
+            className="relative flex items-center gap-2 cursor-pointer text-black"
           >
             <HiOutlineMenuAlt4 className="w-5 h-5" />
-            <p className="text-[14px] font-normal hidden sm:block">Categories</p>
+            <span className="text-sm font-medium">All Categories</span>
 
-            {/* Dropdown Menu */}
-            {show && (
-              <motion.ul
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="absolute top-12 left-0 z-50 bg-primeColor w-56 text-[#767676] h-auto p-4 pb-6"
-              >
-                {categories.map((category) => (
-                  <li
-                    key={category.id}
-                    className="flex items-center gap-2 px-4 py-2 border-b border-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer"
-                    onClick={() => navigate(category.path)}
-                  >
-                    <img src={category.image} alt={category.name} className="w-6 h-6 object-contain" />
-                    {category.name}
-                  </li>
-                ))}
-              </motion.ul>
-            )}
+            {/* 🔥 MEGA MENU */}
+            <AnimatePresence>
+              {open && (
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute left-0 top-full mt-2 w-[1000px] bg-white shadow-2xl rounded-xl border flex"
+                >
+                  {/* LEFT SIDEBAR */}
+                  <div className="w-[260px] bg-gray-50 border-r">
+                    {categories.map((cat) => (
+                      <div
+                        key={cat.key}
+                        onMouseEnter={() => setActive(cat)}
+                        className={`flex items-center gap-3 px-4 py-3 cursor-pointer ${
+                          active.key === cat.key
+                            ? "bg-white font-semibold"
+                            : "hover:bg-gray-100"
+                        }`}
+                      >
+                        <img src={cat.image} className="w-7 h-7" />
+                        {cat.name}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* RIGHT SIDE */}
+                  <div className="flex-1 p-6 grid grid-cols-3 gap-6">
+                    {active.sections.map((sec, i) => (
+                      <div key={i}>
+                        <h3 className="font-semibold mb-2">{sec.title}</h3>
+                        {sec.items.map((item, j) => (
+                          <p
+                            key={j}
+                            onClick={() =>
+                              navigate(`/category/${active.key}`)
+                            }
+                            className="text-sm text-gray-600 hover:text-black cursor-pointer mb-1"
+                          >
+                            {item}
+                          </p>
+                        ))}
+                      </div>
+                    ))}
+
+                    {/* FEATURE BOX */}
+                    <div>
+                      <h3 className="font-semibold mb-2">Featured</h3>
+                      <img
+                        src={active.image}
+                        className="w-full h-28 object-cover rounded"
+                      />
+                      <button
+                        onClick={() =>
+                          navigate(`/category/${active.key}`)
+                        }
+                        className="mt-3 w-full bg-black text-white py-2 rounded"
+                      >
+                        Shop All
+                      </button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </Flex>
       </div>

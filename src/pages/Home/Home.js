@@ -17,11 +17,11 @@ const Home = () => {
       <Banner />
       <BannerBottom />
       {/* <HomeVideo /> */}
-      <div className="max-w-container-fluid mx-auto px-4">
+     
         <Sale />
-        <div className="w-full bg-gradient-to-b from-[#374151] to-[#000000] py-16 px-6 text-white rounded ">
+       
         <NewArrivals />
-        </div >
+       
         {/* <BestSellers /> */}
         
         {/* <SpecialOffers /> */}
@@ -32,7 +32,7 @@ const Home = () => {
        
         
         
-      </div>
+    
     </div>
   );
 };

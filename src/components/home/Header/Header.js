@@ -1,156 +1,347 @@
-import React, { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { MdClose } from "react-icons/md";
-import { HiMenuAlt2 } from "react-icons/hi";
-import { motion } from "framer-motion";
-import { logo, logoLight } from "../../../assets/images";
-import RTC from "../../../assets/images/logoTRC2.png"
-import Image from "../../designLayouts/Image";
-import { navBarList } from "../../../constants";
-import Flex from "../../designLayouts/Flex";
+import React, { useState, useRef, useEffect } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { FiUser } from "react-icons/fi";
+import { HiOutlineMenu } from "react-icons/hi";
+import { RiShoppingCart2Fill } from "react-icons/ri";
+import { motion, AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+
+// 🔥 PRODUCTS
+import productsData from "../../category/productsData";
+
+// images
+import tools from "../../../assets/images/categoryGird2/tools.png";
+import office from "../../../assets/images/categoryGird2/office-and-shipping.png";
+import plumbing from "../../../assets/images/categoryGird2/plumbing-and-hvac.png";
+import safety from "../../../assets/images/categoryGird2/safety-and-security.png";
+import electronics from "../../../assets/images/categoryGird2/monitors-displays-and-projectors.png";
+import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
+import perfume from "../../../assets/images/giftsets/gs4.jpg";
+
+// 🔥 Item
+const Item = ({ icon, label, link, badge }) => (
+  <Link to={link} className="relative flex items-center gap-2 group">
+    {icon}
+    <span className="hidden group-hover:block text-sm">{label}</span>
+
+    {badge > 0 && (
+      <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs px-1.5 rounded-full">
+        {badge}
+      </span>
+    )}
+  </Link>
+);
+
+// 🔥 Categories (MANUAL LINKS ONLY)
+const categoriesData = [
+  {
+    title: "Tools",
+    key: "tools",
+    path: "/category/tools",
+    image: tools,
+    sections: [
+      {
+        title: "Hand Tools",
+        links: [
+          { name: "Hammer", path: "/category/tools?type=hammer" },
+          { name: "Wrench", path: "/category/tools?type=wrench" },
+          { name: "Screwdriver", path: "/category/tools?type=screwdriver" },
+          { name: "Pliers", path: "/category/tools?type=pliers" },
+        ],
+      },
+      {
+        title: "Power Tools",
+        links: [
+          { name: "Drill", path: "/category/tools?type=drill" },
+          { name: "Saw", path: "/category/tools?type=saw" },
+          { name: "Grinder", path: "/category/tools?type=grinder" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Office Supplies",
+    key: "office",
+    path: "/category/office",
+    image: office,
+    sections: [
+      {
+        title: "Stationery",
+        links: [
+          { name: "Pens", path: "/category/office?type=pens" },
+          { name: "Paper", path: "/category/office?type=paper" },
+          { name: "Notebooks", path: "/category/office?type=notebooks" },
+        ],
+      },
+      {
+        title: "Shipping",
+        links: [
+          { name: "Boxes", path: "/category/office?type=boxes" },
+          { name: "Tape", path: "/category/office?type=tape" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Cleaning",
+    key: "cleaning",
+    path: "/category/cleaning",
+    image: janitorial,
+    sections: [
+      {
+        title: "Tools",
+        links: [
+          { name: "Mops", path: "/category/cleaning?type=mops" },
+          { name: "Brooms", path: "/category/cleaning?type=brooms" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Plumbing",
+    key: "plumbing",
+    path: "/category/plumbing",
+    image: plumbing,
+    sections: [
+      {
+        title: "Pipes",
+        links: [
+          { name: "PVC Pipes", path: "/category/plumbing?type=pvc" },
+          { name: "Steel Pipes", path: "/category/plumbing?type=steel" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Safety",
+    key: "safety",
+    path: "/category/safety",
+    image: safety,
+    sections: [
+      {
+        title: "Protection",
+        links: [
+          { name: "Gloves", path: "/category/safety?type=gloves" },
+          { name: "Helmets", path: "/category/safety?type=helmets" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Electronics",
+    key: "electronics",
+    path: "/category/electronics",
+    image: electronics,
+    sections: [
+      {
+        title: "Devices",
+        links: [
+          { name: "Laptops", path: "/category/electronics?type=laptops" },
+          { name: "Phones", path: "/category/electronics?type=phones" },
+        ],
+      },
+    ],
+  },
+  {
+    title: "Perfumes",
+    key: "perfumes",
+    path: "/category/perfumes",
+    image: perfume,
+    sections: [
+      {
+        title: "Types",
+        links: [
+          { name: "Men", path: "/category/male" },
+          { name: "Women", path: "/category/female" },
+          { name: "Tester", path: "/category/tester" },
+        ],
+      },
+    ],
+  },
+];
 
 const Header = () => {
-  const [showMenu, setShowMenu] = useState(true);
-  const [sidenav, setSidenav] = useState(false);
-  const [category, setCategory] = useState(false);
-  const [brand, setBrand] = useState(false);
-  const location = useLocation();
+  const cartProducts = useSelector((state) => state.orebiReducer.products);
+  const navigate = useNavigate();
+
+  // 🔥 SEARCH
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearch, setShowSearch] = useState(false);
+
+  const allProducts = Object.values(productsData).flat();
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+
+    if (!value.trim()) {
+      setSearchResults([]);
+      setShowSearch(false);
+      return;
+    }
+
+    const filtered = allProducts.filter((item) =>
+      item.productName.toLowerCase().includes(value.toLowerCase())
+    );
+
+    setSearchResults(filtered.slice(0, 6));
+    setShowSearch(true);
+  };
+
+  const handleSelectProduct = (id) => {
+    setSearchTerm("");
+    setShowSearch(false);
+    navigate(`/product/${id}`);
+  };
+
   useEffect(() => {
-    let ResponsiveMenu = () => {
-      if (window.innerWidth < 667) {
-        setShowMenu(false);
-      } else {
-        setShowMenu(true);
-      }
-    };
-    ResponsiveMenu();
-    window.addEventListener("resize", ResponsiveMenu);
+    const close = () => setShowSearch(false);
+    window.addEventListener("click", close);
+    return () => window.removeEventListener("click", close);
   }, []);
 
+  // 🔥 MEGA MENU
+  const [showMega, setShowMega] = useState(false);
+  const [activeCat, setActiveCat] = useState(categoriesData[0]);
+  const timeoutRef = useRef(null);
+
+  const openMenu = () => {
+    clearTimeout(timeoutRef.current);
+    setShowMega(true);
+  };
+
+  const closeMenu = () => {
+    timeoutRef.current = setTimeout(() => setShowMega(false), 150);
+  };
+
   return (
-    <div className="w-full h-20 bg-white sticky top-0 z-50 border-b-[1px] border-b-gray-200">
-      <nav className="h-full px-4 max-w-container-fluid mx-auto relative">
-        <Flex className="flex items-center justify-between h-full">
+    <div className="w-full bg-[#0f0f0f] sticky top-0 z-50 border-b border-gray-800">
+      <div className="max-w-[1400px] mx-auto px-6 flex items-center justify-between h-20">
+
+        {/* LEFT */}
+        <div className="flex items-center gap-6">
+
           <Link to="/">
-            <div>
-              <Image className="w-20 object-cover" imgSrc={RTC} />
-            </div>
+            <h1 className="text-white text-2xl font-extrabold">
+              RIDE<span className="text-yellow-400">CONNECT</span>
+            </h1>
           </Link>
-          <div>
-            {showMenu && (
-              <motion.ul
-                initial={{ y: 30, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex items-center w-auto z-50 p-0 gap-2"
-              >
-                <>
-                  {navBarList.map(({ _id, title, link }) => (
-                    <NavLink
-                      key={_id}
-                      className="flex font-normal hover:font-bold w-20 h-6 justify-center items-center px-12 text-base text-[#767676] hover:underline underline-offset-[4px] decoration-[1px] hover:text-[#262626] md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
-                      to={link}
-                      state={{ data: location.pathname.split("/")[1] }}
-                    >
-                      <li>{title}</li>
-                    </NavLink>
-                  ))}
-                </>
-              </motion.ul>
-            )}
-            <HiMenuAlt2
-              onClick={() => setSidenav(!sidenav)}
-              className="inline-block md:hidden cursor-pointer w-8 h-6 absolute top-6 right-4"
-            />
-            {sidenav && (
-              <div className="fixed top-0 left-0 w-full h-screen bg-black text-gray-200 bg-opacity-80 z-50">
-                <motion.div
-                  initial={{ x: -300, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                  className="w-[80%] h-full relative"
-                >
-                  <div className="w-full h-full bg-primeColor p-6">
-                    <img
-                      className="w-38 mb-6"
-                      src={RTC}
-                      alt="logoLight"
-                    />
-                    <ul className="text-gray-200 flex flex-col gap-2">
-                      {navBarList.map((item) => (
-                        <li
-                          className="font-normal hover:font-bold items-center text-lg text-gray-200 hover:underline underline-offset-[4px] decoration-[1px] hover:text-white md:border-r-[2px] border-r-gray-300 hoverEffect last:border-r-0"
-                          key={item._id}
-                        >
-                          <NavLink
-                            to={item.link}
-                            state={{ data: location.pathname.split("/")[1] }}
-                            onClick={() => setSidenav(false)}
+
+          {/* MEGA MENU */}
+          <div
+            className="relative"
+            onMouseEnter={openMenu}
+            onMouseLeave={closeMenu}
+          >
+            <div className="flex items-center gap-2 text-white cursor-pointer px-3 py-2 hover:bg-[#1a1a1a] rounded">
+              <HiOutlineMenu />
+              Categories
+            </div>
+
+            <AnimatePresence>
+              {showMega && (
+                <motion.div className="absolute left-0 top-full mt-2 w-[1000px] bg-white text-black rounded-xl shadow-xl flex">
+
+                  {/* LEFT */}
+                  <div className="w-[260px] bg-gray-50 border-r">
+                    {categoriesData.map((cat) => (
+                      <Link
+                        key={cat.key}
+                        to={cat.path}
+                        onMouseEnter={() => setActiveCat(cat)}
+                        className={`px-4 py-3 flex items-center gap-2 ${
+                          activeCat.key === cat.key
+                            ? "bg-white font-semibold"
+                            : "hover:bg-gray-100"
+                        }`}
+                      >
+                        <img src={cat.image} className="w-7 h-7" />
+                        {cat.title}
+                      </Link>
+                    ))}
+                  </div>
+
+                  {/* RIGHT */}
+                  <div className="flex-1 p-6 grid grid-cols-3 gap-6">
+                    {activeCat.sections.map((sec, i) => (
+                      <div key={i}>
+                        <h3 className="font-semibold mb-3">{sec.title}</h3>
+                        {sec.links.map((l, j) => (
+                          <Link
+                            key={j}
+                            to={l.path}
+                            className="block text-sm text-gray-600 hover:text-black mb-1"
                           >
-                            {item.title}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-4">
-                      <h1
-                        onClick={() => setCategory(!category)}
-                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
+                            {l.name}
+                          </Link>
+                        ))}
+                      </div>
+                    ))}
+
+                    <div>
+                      <h3 className="font-semibold mb-3">Featured</h3>
+                      <img src={activeCat.image} className="w-full h-28 object-cover rounded" />
+                      <Link
+                        to={activeCat.path}
+                        className="mt-3 block w-full bg-black text-white py-2 rounded text-center"
                       >
-                        Shop by Category{" "}
-                        <span className="text-lg">{category ? "-" : "+"}</span>
-                      </h1>
-                      {category && (
-                        <motion.ul
-                          initial={{ y: 15, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.4 }}
-                          className="text-sm flex flex-col gap-1"
-                        >
-                          <li className="headerSedenavLi">New Arrivals</li>
-                          <li className="headerSedenavLi">Gudgets</li>
-                          <li className="headerSedenavLi">Accessories</li>
-                          <li className="headerSedenavLi">Electronics</li>
-                          <li className="headerSedenavLi">Others</li>
-                        </motion.ul>
-                      )}
-                    </div>
-                    <div className="mt-4">
-                      <h1
-                        onClick={() => setBrand(!brand)}
-                        className="flex justify-between text-base cursor-pointer items-center font-titleFont mb-2"
-                      >
-                        Shop by Brand
-                        <span className="text-lg">{brand ? "-" : "+"}</span>
-                      </h1>
-                      {brand && (
-                        <motion.ul
-                          initial={{ y: 15, opacity: 0 }}
-                          animate={{ y: 0, opacity: 1 }}
-                          transition={{ duration: 0.4 }}
-                          className="text-sm flex flex-col gap-1"
-                        >
-                          <li className="headerSedenavLi">New Arrivals</li>
-                          <li className="headerSedenavLi">Gudgets</li>
-                          <li className="headerSedenavLi">Accessories</li>
-                          <li className="headerSedenavLi">Electronics</li>
-                          <li className="headerSedenavLi">Others</li>
-                        </motion.ul>
-                      )}
+                        Shop All
+                      </Link>
                     </div>
                   </div>
-                  <span
-                    onClick={() => setSidenav(false)}
-                    className="w-8 h-8 border-[1px] border-gray-300 absolute top-2 -right-10 text-gray-300 text-2xl flex justify-center items-center cursor-pointer hover:border-red-500 hover:text-red-500 duration-300"
-                  >
-                    <MdClose />
-                  </span>
+
                 </motion.div>
-              </div>
-            )}
+              )}
+            </AnimatePresence>
           </div>
-        </Flex>
-      </nav>
+
+          <NavLink to="/" className="text-white">Home</NavLink>
+          <NavLink to="/shop" className="text-white">Shop</NavLink>
+          <NavLink to="/about" className="text-white">About</NavLink>
+          <NavLink to="/contact" className="text-white">Contact</NavLink>
+        </div>
+
+        {/* SEARCH */}
+        <div className="relative w-[40%]" onClick={(e) => e.stopPropagation()}>
+          <input
+            value={searchTerm}
+            onChange={handleSearch}
+            className="w-full h-10 px-3 rounded-md outline-none"
+            placeholder="Search products..."
+          />
+
+          {showSearch && (
+            <div className="absolute top-full left-0 w-full bg-white text-black shadow-xl rounded-md max-h-80 overflow-y-auto">
+              {searchResults.map((item) => (
+                <div
+                  key={item._id}
+                  onClick={() => handleSelectProduct(item._id)}
+                  className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer"
+                >
+                  <img src={item.img} className="w-10 h-10 rounded" />
+                  <div>
+                    <p className="text-sm">{item.productName}</p>
+                    <p className="text-xs text-gray-500">${item.price}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* RIGHT */}
+        <div className="flex items-center gap-5 text-white">
+          <Item icon={<FiUser />} label="Profile" link="/signin" />
+          <Item
+            icon={<RiShoppingCart2Fill />}
+            label="Cart"
+            link="/cart"
+            badge={cartProducts?.length || 0}
+          />
+        </div>
+
+      </div>
     </div>
   );
 };

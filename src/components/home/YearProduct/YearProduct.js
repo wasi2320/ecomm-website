@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+
 import pro1 from "../../../assets/pro1.jpg";
 import pro2 from "../../../assets/pro2.jpg";
 import pro3 from "../../../assets/pro3.jpg";
 import pro4 from "../../../assets/pro4.jpg";
-import pro5 from "../../../assets/pro5.jpg";
 
 const testimonials = [
   {
@@ -14,9 +14,7 @@ const testimonials = [
     company: "Khan Auto Services",
     rating: 4.7,
     image: pro1,
-    text: "Even in a workshop setting, The Ride Connect's perfumes create a fresh and welcoming environment. The scents are bold and long-lasting!",
-    stat: "60%",
-    statDescription: "Boost in team morale thanks to the refreshing ambiance created by our perfumes.",
+    text: "Even in a workshop setting, The Ride Connect's perfumes create a fresh and welcoming environment.",
   },
   {
     id: 2,
@@ -25,20 +23,16 @@ const testimonials = [
     company: "DIY Enthusiast",
     rating: 4.8,
     image: pro2,
-    text: "I love the variety of perfumes at The Ride Connect! Their fragrances are long-lasting and truly premium.",
-    stat: "80%",
-    statDescription: "Customers reported improved satisfaction with our exclusive perfume collection.",
+    text: "Their fragrances are long-lasting and truly premium. It feels like luxury every day.",
   },
   {
     id: 3,
     name: "Daniel James",
-    role: "Construction Engineer",
+    role: "Engineer",
     company: "SafeBuild Contractors",
     rating: 4.6,
     image: pro3,
-    text: "The Ride Connect's perfumes bring a surprising touch of luxury to our daily grind. I even keep one in my work locker!",
-    stat: "50%",
-    statDescription: "Increase in workplace satisfaction with the introduction of high-end fragrances.",
+    text: "A surprising touch of elegance in my daily routine. Highly recommended.",
   },
   {
     id: 4,
@@ -47,68 +41,97 @@ const testimonials = [
     company: "Glamour Touch",
     rating: 4.9,
     image: pro4,
-    text: "Our clients love the sophisticated fragrance in our salon from The Ride Connect. It enhances the entire beauty experience!",
-    stat: "70%",
-    statDescription: "Increase in customer satisfaction due to our signature perfume scent in the salon.",
+    text: "Our clients instantly notice the difference. It elevates the entire experience.",
   },
-  // {
-  //   id: 5,
-  //   name: "Michael Lee",
-  //   role: "Restaurant Manager",
-  //   company: "Spice Delight",
-  //   rating: 4.7,
-  //   image: pro5,
-  //   text: "Our kitchen is more efficient than ever, thanks to the innovative tools provided by The Ride Connect.",
-  //   stat: "65%",
-  //   statDescription: "Increase in kitchen efficiency using top-notch equipment.",
-  // },
 ];
 
 const YearProduct = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [index, setIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-    }, 4000);
-
+      nextSlide();
+    }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [index]);
+
+  const nextSlide = () => {
+    setIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    );
+  };
+
+  const active = testimonials[index];
 
   return (
-    <div className="w-full bg-gradient-to-b from-[#374151] to-[#000000] py-16 px-6 text-white flex flex-col items-center">
-      <h2 className="text-3xl font-bold text-center mb-8">Real Business Results</h2>
+    <div className="w-full bg-[#0f0f0f] text-white py-24 px-6">
+      
+      {/* Heading */}
+      <div className="max-w-6xl mx-auto mb-16 text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-wide">
+          What Our Clients Say
+        </h2>
+        <p className="text-gray-400 mt-2 text-sm">
+          Real stories from real customers
+        </p>
+      </div>
 
-      <div className="flex items-center justify-center space-x-6 w-full max-w-6xl overflow-hidden relative flex-wrap sm:flex-col md:flex-row">
-        {testimonials.map((testimonial, index) => {
-          const isActive = index === activeIndex;
+      {/* Main Layout */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
 
-          return (
-            <div
-              key={testimonial.id}
-              className={`flex flex-col items-center p-6 rounded-xl shadow-lg transition-all duration-1000 ease-in-out w-full sm:w-4/5 md:w-1/5 bg-gray-800 transform ${
-                isActive ? "scale-105 z-10" : "scale-95 opacity-80"
-              } mb-8 sm:mb-4 md:mb-0`}
+        {/* Image Side */}
+        <div className="relative group">
+          <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent blur-2xl opacity-30"></div>
+          <img
+            src={active.image}
+            alt={active.name}
+            className="relative rounded-3xl w-full h-[420px] object-cover shadow-2xl"
+          />
+        </div>
+
+        {/* Content Side */}
+        <div className="flex flex-col justify-center">
+
+          {/* Quote */}
+          <h3 className="text-2xl md:text-3xl font-medium leading-relaxed mb-6">
+            “{active.text}”
+          </h3>
+
+          {/* Info */}
+          <div className="mt-4">
+            <p className="text-lg font-semibold">{active.name}</p>
+            <p className="text-sm text-gray-400">
+              {active.role} • {active.company}
+            </p>
+          </div>
+
+          {/* Rating */}
+          <div className="mt-4 text-gray-300">
+            ⭐⭐⭐⭐ {active.rating}
+          </div>
+
+          {/* Controls */}
+          <div className="flex items-center space-x-4 mt-8">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition"
             >
-              <img
-                src={testimonial.image}
-                alt={testimonial.name}
-                className="w-24 h-24 object-cover rounded-full mb-4"
-              />
-              <h3 className="text-lg font-semibold">{testimonial.name}</h3>
-              <p className="text-sm">{testimonial.role}</p>
-              <p className="text-sm text-gray-400">{testimonial.company}</p>
-              <p className="mt-2 text-lg">⭐⭐⭐⭐ {testimonial.rating} </p>
-              <p
-                className={`mt-4 text-gray-300 text-center ${
-                  isActive ? "text-lg" : "text-sm"
-                }`}
-              >
-                {testimonial.text}
-              </p>
-            </div>
-          );
-        })}
+              <FaArrowLeft />
+            </button>
+
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition"
+            >
+              <FaArrowRight />
+            </button>
+          </div>
+
+        </div>
       </div>
     </div>
   );

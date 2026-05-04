@@ -1,30 +1,41 @@
 import React, { useState } from "react";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import Pagination from "../../components/pageProps/shopPage/Pagination";
-import ProductBanner from "../../components/pageProps/shopPage/ProductBanner";
 import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
+import productsData from "../../components/category/productsData";
 
 const Shop = () => {
   const [itemsPerPage, setItemsPerPage] = useState(12);
-  const itemsPerPageFromBanner = (itemsPerPage) => {
-    setItemsPerPage(itemsPerPage);
-  };
+
+  // 🔥 Combine ALL products
+  const allProducts = Object.values(productsData).flat();
 
   return (
-    <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="Products" />
-      {/* ================= Products Start here =================== */}
-      <div className="w-full h-full flex pb-20 gap-10">
-        <div className="w-[20%] lgl:w-[25%] hidden mdl:inline-flex h-full">
-          <ShopSideNav />
-        </div>
-        <div className="w-full mdl:w-[80%] lgl:w-[75%] h-full flex flex-col gap-10">
-          
-          {/* <ProductBanner itemsPerPageFromBanner={itemsPerPageFromBanner} /> */}
-          <Pagination itemsPerPage={itemsPerPage} />
+    <div className="bg-[#0f0f0f] text-white min-h-screen">
+      <div className="max-w-[1400px] mx-auto px-6 py-8">
+
+        <Breadcrumbs title="Shop" />
+
+        <div className="flex gap-8 mt-6">
+
+          {/* Sidebar */}
+          <div className="w-[260px] hidden lg:block">
+            <div className="sticky top-24 bg-[#1a1a1a] p-5 rounded-2xl border border-gray-800">
+              <h2 className="text-lg font-semibold mb-4">Filters</h2>
+              <ShopSideNav />
+            </div>
+          </div>
+
+          {/* Products */}
+          <div className="flex-1">
+            <Pagination 
+              itemsPerPage={itemsPerPage} 
+              items={allProducts} 
+            />
+          </div>
+
         </div>
       </div>
-      {/* ================= Products End here ===================== */}
     </div>
   );
 };

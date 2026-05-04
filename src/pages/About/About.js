@@ -1,62 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 
 const About = () => {
   const location = useLocation();
-  const [prevLocation, setPrevLocation] = useState("");
-
-  useEffect(() => {
-    setPrevLocation(location.state.data);
-  }, [location]);
+  const prevLocation = location.state?.data || "Home";
 
   return (
-    <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="About" prevLocation={prevLocation} />
+    <div className="bg-[#0f0f0f] min-h-screen text-white px-4 py-10">
+      <div className="max-w-6xl mx-auto">
 
-      <div className="pb-10 flex flex-col lg:flex-row items-center">
-        {/* Text Section (Left) */}
-        <div className="lg:w-1/2 mb-8 lg:mb-0">
-          <h1 className="max-w-[600px] text-base text-lightText mb-2">
-            <span className="text-primeColor font-semibold text-lg">TRC</span>{" "}
-            is your premier online destination for premium perfumes. We specialize in offering a carefully curated collection of authentic fragrances for both men and women—from luxury designer brands to niche and rare scents.
-            <br /><br />
-            At TRC, we believe that a great fragrance is more than just a scent—it's an experience. That’s why we’re committed to delivering only 100% genuine perfumes sourced directly from trusted suppliers. Whether you're looking for a personal signature scent or the perfect gift, our catalog is designed to inspire.
-            <br /><br />
-            Our user-friendly platform makes it easy to explore fragrance families, browse bestsellers, and discover new favorites. Every bottle is handled with care and attention, ensuring it reaches you in pristine condition. 
-            <br /><br />
-            We also prioritize customer satisfaction through secure checkout, responsive support, and fast, reliable shipping. With a commitment to quality and luxury, TRC is redefining the online perfume shopping experience—making elegance and sophistication just a click away.
-            <br /><br />
-            Choose TRC to explore a world of fine fragrances. Let your scent speak before you do.
-          </h1>
+        <Breadcrumbs title="About" prevLocation={prevLocation} />
 
-          <h1 className="max-w-[600px] text-base text-lightText mb-2">
-            <span className="text-primeColor font-semibold text-lg">Address</span>{" "}
-            <br />
-            2041 W Marconi Ave, Phoenix AZ 85023
-            <br />
-            Legal Name: RIDECONNECT LLC
-          </h1>
+        {/* MAIN CARD */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mt-8 bg-[#151515] border border-gray-800 rounded-2xl p-8 shadow-xl"
+        >
+          <div className="flex flex-col lg:flex-row gap-10 items-center">
 
-          <Link to="/shop">
-            <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-              Browse Perfumes
-            </button>
-          </Link>
-        </div>
+            {/* LEFT CONTENT */}
+            <div className="lg:w-1/2 space-y-6">
 
-        {/* Video Section (Right) */}
-        <div className="lg:w-1/2">
-          <video
-            className="w-full h-auto"
-            controls
-            autoPlay
-            loop
-          >
-            <source src="/trcVideo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
+              <h1 className="text-3xl font-bold">
+                About <span className="text-yellow-400">RIDECONNECT</span>
+              </h1>
+
+              <p className="text-gray-400 leading-relaxed">
+                RIDECONNECT is your all-in-one online marketplace designed to bring
+                together a wide range of high-quality products across multiple
+                industries. From tools and industrial equipment to electronics,
+                office supplies, cleaning essentials, and lifestyle products—we
+                make sourcing everything you need simple and efficient.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                Our mission is to provide a seamless shopping experience backed by
+                reliability, quality, and innovation. Whether you're a business
+                owner, professional, or everyday customer, our platform is built
+                to serve your needs with precision and ease.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                With a focus on customer satisfaction, we offer secure checkout,
+                fast shipping, and responsive support. Every product is carefully
+                selected to meet high standards, ensuring you get the best value
+                every time you shop.
+              </p>
+
+              {/* FEATURES GRID */}
+              <div className="grid grid-cols-2 gap-4 mt-6">
+                {[
+                  "Tools & Equipment",
+                  "Office Supplies",
+                  "Electronics",
+                  "Cleaning & Janitorial",
+                  "Outdoor & Sports",
+                  "Industrial Solutions",
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="bg-[#1a1a1a] p-3 rounded-md border border-gray-700 text-sm text-center"
+                  >
+                    {item}
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* ADDRESS */}
+              <div className="text-gray-400 mt-6">
+                <p className="font-semibold text-white">Address</p>
+                <p>2041 W Marconi Ave, Phoenix AZ 85023</p>
+                <p>Legal Name: RIDECONNECT LLC</p>
+              </div>
+
+              {/* BUTTON */}
+              <Link to="/shop">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-4 bg-yellow-400 text-black px-6 py-3 rounded-md font-semibold hover:bg-yellow-500 transition"
+                >
+                  Explore Products
+                </motion.button>
+              </Link>
+            </div>
+
+            {/* RIGHT VIDEO */}
+            <div className="lg:w-1/2">
+              <motion.video
+                whileHover={{ scale: 1.02 }}
+                className="w-full rounded-xl shadow-lg border border-gray-800"
+                controls
+                autoPlay
+                loop
+                muted
+              >
+                <source src="/trcVideo.mp4" type="video/mp4" />
+              </motion.video>
+            </div>
+
+          </div>
+        </motion.div>
       </div>
     </div>
   );

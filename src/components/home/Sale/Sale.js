@@ -1,67 +1,65 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Image from "../../designLayouts/Image";
-import sales1 from "../../../assets/images/sale/sales1.jpg";
-import sales2 from "../../../assets/images/sale/sales2.jpg";
-import sales4 from "../../../assets/images/sale/sales4.jpg";
 import giftsetPerfume from "../../../assets/images/sale/giftset2.jpg";
 import menPerfume from "../../../assets/images/sale/menPerfume.jpg";
 import womenPerfume from "../../../assets/images/sale/womenPerfume.jpg";
 import childrenPerfume from "../../../assets/images/sale/children.jpg";
+
 const Sale = () => {
+  const items = [
+    { img: giftsetPerfume, link: "/category/perfumes", title: "Gift Sets" },
+    { img: childrenPerfume, link: "/category/children", title: "Kids" },
+    { img: menPerfume, link: "/category/male", title: "Men" }, // ✅ fixed case
+    { img: womenPerfume, link: "/category/female", title: "Women" },
+  ];
+
   return (
-    <div className="py-20 flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-10">
-      {/* Left Section */}
-      <div className="w-full md:w-2/3 lg:w-1/2 h-auto flex flex-col gap-4 lg:gap-10">
-        <div className="h-1/2 w-full">
-          <Link to="/category/perfumes">
-            <div className="relative">
-              <Image className="h-full w-full object-cover rounded-lg" imgSrc={giftsetPerfume} />
-              <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
-                Buy Now
-              </button>
+    <div className="py-20 px-60  bg-[#0f0f0f]">
+      
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {items.map((item, index) => (
+          <Link to={item.link} key={index}>
+            
+            <div
+              className="relative group h-[300px] rounded-xl overflow-hidden 
+              border border-white/10 bg-black transition duration-300"
+            >
+              
+              {/* 🔥 Main Image */}
+              <img
+                src={item.img}
+                alt={item.title}
+                className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
+              />
+
+              {/* 🔥 Gradient overlay (depth) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+              {/* 🔥 Hover dark overlay */}
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition duration-300" />
+
+              {/* 🔥 Content */}
+              <div className="absolute bottom-6 left-6 text-white z-10">
+                <h3 className="text-lg font-semibold tracking-wide font-titleFont">
+                  {item.title}
+                </h3>
+
+                <button className="mt-3 text-xs border border-white px-4 py-1.5 transition hover:bg-white hover:text-black">
+                  Shop Now
+                </button>
+              </div>
+
+              {/* 🔥 subtle top glow */}
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+
             </div>
+
           </Link>
-        </div>
-        <div className="h-1/2 w-full">
-          <Link to="/category/children">
-            <div className="relative">
-              <Image className="h-full w-full object-cover rounded-lg" imgSrc={childrenPerfume} />
-              <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
-                Buy Now
-              </button>
-            </div>
-          </Link>
-        </div>
-      </div>
-  
-      {/* Right Section */}
-      <div className="w-full md:w-2/3 lg:w-1/2 h-auto flex flex-col gap-4 lg:gap-10">
-        <div className="h-1/2 w-full">
-          <Link to="/category/Male">
-            <div className="relative">
-              <Image className="h-full w-full object-cover rounded-lg" imgSrc={menPerfume} />
-              <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
-                Buy Now
-              </button>
-            </div>
-          </Link>
-        </div>
-        <div className="h-1/2 w-full">
-          <Link to="/category/female">
-            <div className="relative">
-              <Image className="h-full w-full object-cover rounded-lg" imgSrc={womenPerfume} />
-              <button className="absolute bottom-4 left-4 bg-red-500 text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-600 transition">
-                Buy Now
-              </button>
-            </div>
-          </Link>
-        </div>
+        ))}
       </div>
     </div>
   );
-  
 };
 
 export default Sale;
