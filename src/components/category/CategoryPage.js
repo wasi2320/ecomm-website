@@ -61,7 +61,7 @@ const CategoryPage = () => {
                 ))}
               </div>
             ) : (
-              <p className="text-center text-gray-500">No products available in this category.</p>
+              <p className="text-center text-gray-500">&&&&&No products available in this category.</p>
             )}
           </div>
         </div>
