@@ -20,36 +20,83 @@ const FooterBottom = () => {
     <>
       <h3 className="font-semibold mb-2">1. Information We Collect</h3>
       <p>
-        We collect personal information such as your name, email address, phone number,
-        shipping address, and payment details when you place an order or contact us.
+        We collect personal information that you voluntarily provide when interacting
+        with our website, including but not limited to your full name, email address,
+        phone number, billing address, shipping address, and payment details.
+        Additionally, we may collect technical data such as IP address, browser type,
+        device information, and browsing behavior through cookies and analytics tools.
       </p>
   
       <h3 className="font-semibold mt-4 mb-2">2. How We Use Your Information</h3>
       <p>
-        Your information is used to process orders, provide customer support, improve our
-        services, and communicate updates related to your purchase.
+        Your information is used to process orders, manage payments, deliver products,
+        provide customer support, personalize your shopping experience, improve our
+        services, detect fraud, and send transactional or promotional communications.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">3. Data Protection</h3>
+      <h3 className="font-semibold mt-4 mb-2">3. Legal Basis for Processing</h3>
       <p>
-        We implement industry-standard security measures to protect your personal data.
-        However, no method of transmission over the internet is 100% secure.
+        We process your data based on contractual necessity (to fulfill orders),
+        legitimate business interests (to improve services), legal obligations,
+        and your consent where applicable.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">4. Sharing Information</h3>
+      <h3 className="font-semibold mt-4 mb-2">4. Data Protection & Security</h3>
       <p>
-        We do not sell or rent your personal information. We may share data with trusted
-        partners such as payment processors and shipping providers.
+        We implement industry-standard security measures including SSL encryption,
+        secure servers, and restricted access controls. However, no method of data
+        transmission over the internet can be guaranteed 100% secure.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">5. Cookies</h3>
+      <h3 className="font-semibold mt-4 mb-2">5. Sharing of Information</h3>
       <p>
-        Our website uses cookies to enhance user experience and analyze website traffic.
+        We do not sell or rent your personal data. We may share your information with
+        trusted third-party service providers such as payment processors, logistics
+        partners, email marketing services, and analytics providers strictly for
+        business operations.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">6. Contact</h3>
+      <h3 className="font-semibold mt-4 mb-2">6. Cookies & Tracking Technologies</h3>
       <p>
-        For privacy-related inquiries, contact us at: info@therideconnect.com
+        We use cookies, pixels, and similar technologies to enhance user experience,
+        remember preferences, analyze traffic, and deliver targeted advertisements.
+        You may disable cookies through your browser settings.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">7. Data Retention</h3>
+      <p>
+        We retain your information only for as long as necessary to fulfill the purposes
+        outlined in this policy, including legal, accounting, or reporting requirements.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">8. Your Rights</h3>
+      <p>
+        You have the right to request access, correction, deletion, or restriction of
+        your personal data. You may also object to processing or request data portability
+        where applicable.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">9. Third-Party Links</h3>
+      <p>
+        Our website may contain links to third-party websites. We are not responsible
+        for the privacy practices or content of those external sites.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">10. Children’s Privacy</h3>
+      <p>
+        Our services are not intended for individuals under the age of 13. We do not
+        knowingly collect personal data from children.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">11. Policy Updates</h3>
+      <p>
+        We reserve the right to update this Privacy Policy at any time. Changes will
+        be posted on this page with an updated revision date.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">12. Contact</h3>
+      <p>
+        Email: info@therideconnect.com | Phone: 480-787-0039
       </p>
     </>
   );
@@ -58,60 +105,98 @@ const FooterBottom = () => {
     <>
       <h3 className="font-semibold mb-2">1. Return Eligibility</h3>
       <p>
-        Items may be returned within 7 days of delivery. Products must be unused,
-        in original packaging, and in the same condition received.
+        Returns are accepted within 7 days of delivery. Items must be unused,
+        unopened, and in their original packaging with all seals intact.
       </p>
   
       <h3 className="font-semibold mt-4 mb-2">2. Non-Returnable Items</h3>
       <p>
-        Certain items such as opened perfumes, testers, and clearance items are
-        non-refundable unless defective.
+        Due to hygiene and safety reasons, opened perfumes, testers, clearance items,
+        and gift cards are non-returnable unless defective or damaged upon arrival.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">3. Refund Process</h3>
+      <h3 className="font-semibold mt-4 mb-2">3. Damaged or Incorrect Items</h3>
       <p>
-        Once your return is received and inspected, we will notify you of approval.
-        Refunds are processed within 5–7 business days.
+        If you receive a damaged, defective, or incorrect product, you must notify us
+        within 48 hours of delivery with photo evidence for resolution.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">4. Shipping Costs</h3>
+      <h3 className="font-semibold mt-4 mb-2">4. Return Process</h3>
       <p>
-        Shipping fees are non-refundable unless the return is due to our error.
+        To initiate a return, contact our support team. Once approved, you will receive
+        return instructions. Unauthorized returns may not be accepted.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">5. Contact</h3>
+      <h3 className="font-semibold mt-4 mb-2">5. Refund Timeline</h3>
       <p>
-        Email: info@therideconnect.com for return requests.
+        Refunds are processed within 5–10 business days after inspection. Processing
+        time may vary depending on your payment provider.
       </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">6. Shipping Costs</h3>
+      <p>
+        Original shipping charges are non-refundable. Return shipping costs are the
+        responsibility of the customer unless the return is due to our error.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">7. Order Cancellation</h3>
+      <p>
+        Orders may be canceled within a limited time before shipment. Once shipped,
+        cancellation is not possible.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">8. Fraud Prevention</h3>
+      <p>
+        We reserve the right to deny refunds in cases of suspected abuse, fraud,
+        or violation of our policies.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">9. Contact</h3>
+      <p>Email: info@therideconnect.com</p>
     </>
   );
   
   const shippingContent = (
     <>
-      <h3 className="font-semibold mb-2">1. Processing Time</h3>
+      <h3 className="font-semibold mb-2">1. Order Processing</h3>
       <p>
-        Orders are processed within 1–2 business days (excluding weekends and holidays).
+        Orders are processed within 1–3 business days. Processing times may increase
+        during peak seasons or promotional periods.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">2. Delivery Time</h3>
+      <h3 className="font-semibold mt-4 mb-2">2. Shipping Time</h3>
       <p>
-        Delivery typically takes 5–10 business days depending on your location.
+        Estimated delivery time is 5–10 business days depending on location and
+        carrier availability.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">3. Tracking</h3>
+      <h3 className="font-semibold mt-4 mb-2">3. Shipping Fees</h3>
       <p>
-        Tracking information will be provided once your order has shipped.
+        Shipping costs are calculated at checkout and may vary based on destination
+        and order weight.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">4. Delays</h3>
+      <h3 className="font-semibold mt-4 mb-2">4. Tracking Information</h3>
       <p>
-        We are not responsible for delays caused by carriers, customs, or unforeseen events.
+        Once shipped, a tracking number will be provided via email.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">5. Shipping Address</h3>
+      <h3 className="font-semibold mt-4 mb-2">5. Delays & Liability</h3>
       <p>
-        Please ensure your shipping address is correct. We are not responsible for lost
-        packages due to incorrect information.
+        We are not responsible for delays caused by shipping carriers, customs,
+        weather conditions, or unforeseen circumstances.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">6. Incorrect Address</h3>
+      <p>
+        Customers are responsible for providing accurate shipping details. We are not
+        liable for lost or delayed shipments due to incorrect addresses.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">7. Lost Packages</h3>
+      <p>
+        If a package is marked delivered but not received, customers must contact the
+        carrier directly. We will assist where possible but are not liable for carrier issues.
       </p>
     </>
   );
@@ -120,33 +205,50 @@ const FooterBottom = () => {
     <>
       <h3 className="font-semibold mb-2">1. Acceptance of Terms</h3>
       <p>
-        By accessing and using this website, you agree to be bound by these terms.
+        By accessing this website, you agree to comply with and be bound by these Terms.
+        If you do not agree, you must not use our services.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">2. Products & Pricing</h3>
+      <h3 className="font-semibold mt-4 mb-2">2. Eligibility</h3>
       <p>
-        We reserve the right to modify prices, discontinue products, or update
-        descriptions at any time without notice.
+        You must be at least 18 years old or have parental consent to use this website.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">3. Orders</h3>
+      <h3 className="font-semibold mt-4 mb-2">3. Products & Pricing</h3>
       <p>
-        We reserve the right to refuse or cancel any order at our discretion.
+        We reserve the right to modify product pricing, descriptions, and availability
+        without notice.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">4. Intellectual Property</h3>
+      <h3 className="font-semibold mt-4 mb-2">4. Orders & Payments</h3>
       <p>
-        All content on this site is the property of Ride Connect and may not be used
-        without permission.
+        We reserve the right to refuse or cancel any order at our discretion, including
+        suspected fraud or pricing errors.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">5. Limitation of Liability</h3>
+      <h3 className="font-semibold mt-4 mb-2">5. Intellectual Property</h3>
       <p>
-        We are not liable for any indirect or incidental damages arising from the
-        use of our website or products.
+        All content, logos, and materials are the property of Ride Connect and may not
+        be copied, reproduced, or distributed without permission.
       </p>
   
-      <h3 className="font-semibold mt-4 mb-2">6. Contact</h3>
+      <h3 className="font-semibold mt-4 mb-2">6. Limitation of Liability</h3>
+      <p>
+        We shall not be liable for any indirect, incidental, or consequential damages
+        arising from the use of our services.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">7. Governing Law</h3>
+      <p>
+        These Terms shall be governed by and interpreted under the laws of the United States.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">8. Changes to Terms</h3>
+      <p>
+        We reserve the right to update these Terms at any time without prior notice.
+      </p>
+  
+      <h3 className="font-semibold mt-4 mb-2">9. Contact</h3>
       <p>
         Phone: 480-787-0039 | Email: info@therideconnect.com
       </p>
@@ -161,9 +263,9 @@ const FooterBottom = () => {
           <p className="text-[11px] tracking-[0.25em] text-gray-500 uppercase">
             Verified Business
           </p>
-          <p className="text-sm text-white/80 mt-2">
+          {/* <p className="text-sm text-white/80 mt-2">
             Registered with Better Business Bureau & Authorized Distributor Network
-          </p>
+          </p> */}
         </div>
 
         {/* 🔥 POLICY LINKS */}

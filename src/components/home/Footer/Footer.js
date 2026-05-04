@@ -162,7 +162,7 @@ const Footer = () => {
           </div>
   
           {/* 🔥 BIG LOGOS */}
-          <div className="flex justify-center items-center gap-16 mt-10">
+          {/* <div className="flex justify-center items-center gap-16 mt-10">
   
             <img
               src={bbb}
@@ -180,7 +180,7 @@ const Footer = () => {
               transition duration-300"
             />
   
-          </div>
+          </div> */}
   
           {/* PAYMENT */}
           <div className="mt-10 flex justify-center">
