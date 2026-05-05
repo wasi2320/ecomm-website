@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
 
 // images (same as yours)
 import tools from "../../../assets/images/categoryGird2/tools.png";
@@ -38,7 +37,11 @@ const categories = [
 const CategoryCard = ({ category, navigate }) => {
   const [style, setStyle] = useState({});
 
+  const isMobile = window.innerWidth < 768;
+
   const handleMouseMove = (e) => {
+    if (isMobile) return; // ❌ disable tilt on mobile
+
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -49,7 +52,6 @@ const CategoryCard = ({ category, navigate }) => {
     const rotateX = -(y - centerY) / 12;
     const rotateY = (x - centerX) / 12;
 
-    // Magnetic pull
     const translateX = (x - centerX) / 10;
     const translateY = (y - centerY) / 10;
 
@@ -67,7 +69,8 @@ const CategoryCard = ({ category, navigate }) => {
 
   const resetStyle = () => {
     setStyle({
-      transform: "perspective(1000px) rotateX(0) rotateY(0) translateX(0) translateY(0) scale(1)",
+      transform:
+        "perspective(1000px) rotateX(0) rotateY(0) translateX(0) translateY(0) scale(1)",
       transition: "all 0.4s ease",
     });
   };
@@ -82,29 +85,31 @@ const CategoryCard = ({ category, navigate }) => {
     >
       <div
         style={style}
-        className="relative h-[180px] rounded-2xl overflow-hidden 
+        className="relative 
+        h-[140px] sm:h-[160px] md:h-[180px] lg:h-[200px]   /* ✅ equal height */
+        rounded-xl sm:rounded-2xl overflow-hidden 
         bg-white/5 backdrop-blur-md border border-white/10
         transition-all duration-300 will-change-transform"
       >
-        {/* Image */}
+        {/* IMAGE */}
         <img
           src={category.image}
           alt={category.name}
           className="w-full h-full object-cover opacity-80"
         />
 
-        {/* Overlay */}
+        {/* OVERLAY */}
         <div className="absolute inset-0 bg-black/40" />
 
-        {/* Title */}
-        <div className="absolute bottom-4 left-4 right-4 text-center">
-          <h3 className="text-sm md:text-base font-medium tracking-wide text-white">
+        {/* TITLE */}
+        <div className="absolute bottom-3 sm:bottom-4 left-2 right-2 text-center px-2">
+          <h3 className="text-[11px] sm:text-xs md:text-sm lg:text-base font-medium text-white leading-tight line-clamp-2">
             {category.name}
           </h3>
         </div>
 
-        {/* Glow */}
-        <div className="absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 pointer-events-none">
+        {/* GLOW (desktop only) */}
+        <div className="hidden md:block absolute inset-0 opacity-0 hover:opacity-100 transition duration-500 pointer-events-none">
           <div className="absolute -inset-1 bg-gradient-to-r from-white/10 via-transparent to-white/10 blur-xl"></div>
         </div>
       </div>
@@ -116,20 +121,23 @@ const CategoryGrid = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-[#0f0f0f] px-6 py-16 text-white">
-      
-      {/* Heading */}
-      <div className="max-w-7xl mx-auto mb-12 text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-wide">
+    <div className="w-full bg-[#0f0f0f] px-4 sm:px-6 lg:px-8 py-12 sm:py-14 md:py-16 text-white">
+
+      {/* HEADING */}
+      <div className="max-w-7xl mx-auto mb-10 sm:mb-12 text-center">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold tracking-wide">
           Shop Categories
         </h2>
-        <p className="text-gray-400 mt-2 text-sm">
+        <p className="text-gray-400 mt-2 text-xs sm:text-sm">
           Explore our premium collections
         </p>
       </div>
 
-      {/* Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      {/* GRID */}
+      <div className="max-w-7xl mx-auto 
+        grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 
+        gap-4 sm:gap-6 md:gap-8"
+      >
         {categories.map((category) => (
           <CategoryCard
             key={category.id}

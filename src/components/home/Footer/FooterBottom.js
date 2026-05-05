@@ -256,56 +256,80 @@ const FooterBottom = () => {
   );
   return (
     <div className="w-full bg-black border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-10">
-
-        {/* TRUST TEXT */}
-        <div className="text-center mb-8">
-          <p className="text-[11px] tracking-[0.25em] text-gray-500 uppercase">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
+  
+        {/* 🔥 TRUST TEXT */}
+        <div className="text-center mb-6 sm:mb-8">
+          <p className="text-[10px] sm:text-[11px] tracking-[0.25em] text-gray-500 uppercase">
             Verified Business
           </p>
-          {/* <p className="text-sm text-white/80 mt-2">
+  
+          <p className="text-xs sm:text-sm text-white/80 mt-2 max-w-xl mx-auto leading-relaxed">
             Registered with Better Business Bureau & Authorized Distributor Network
-          </p> */}
+          </p>
         </div>
-
+  
         {/* 🔥 POLICY LINKS */}
-        <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
-
-          <button onClick={() => openPolicy("Privacy Policy", privacyContent)}>
+        <div className="flex flex-wrap justify-center items-center gap-3 sm:gap-6 text-xs sm:text-sm text-gray-400 mb-6 sm:mb-8">
+  
+          <button
+            onClick={() => openPolicy("Privacy Policy", privacyContent)}
+            className="hover:text-white transition duration-200"
+          >
             Privacy Policy
           </button>
-
-          <button onClick={() => openPolicy("Return & Refund Policy", refundContent)}>
+  
+          <span className="hidden sm:block text-gray-600">|</span>
+  
+          <button
+            onClick={() => openPolicy("Return & Refund Policy", refundContent)}
+            className="hover:text-white transition duration-200"
+          >
             Return & Refund
           </button>
-
-          <button onClick={() => openPolicy("Shipping Policy", shippingContent)}>
+  
+          <span className="hidden sm:block text-gray-600">|</span>
+  
+          <button
+            onClick={() => openPolicy("Shipping Policy", shippingContent)}
+            className="hover:text-white transition duration-200"
+          >
             Shipping Policy
           </button>
-
-          <button onClick={() => openPolicy("Terms of Service", termsContent)}>
+  
+          <span className="hidden sm:block text-gray-600">|</span>
+  
+          <button
+            onClick={() => openPolicy("Terms of Service", termsContent)}
+            className="hover:text-white transition duration-200"
+          >
             Terms of Service
           </button>
-
+  
         </div>
-
-        {/* DIVIDER */}
-        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-
-        {/* COPYRIGHT */}
-        <p className="text-center text-xs text-gray-500 flex justify-center items-center gap-1">
+  
+        {/* 🔥 DIVIDER */}
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent mb-5 sm:mb-6" />
+  
+        {/* 🔥 COPYRIGHT */}
+        <p className="text-center text-[11px] sm:text-xs text-gray-500 flex flex-wrap justify-center items-center gap-1">
           <AiOutlineCopyright />
           {new Date().getFullYear()} TRC Shop — All Rights Reserved
         </p>
-
-        {/* ADDRESS */}
-        <p className="text-center text-xs text-gray-500 mt-2 flex justify-center items-center gap-1">
-          2041 W Marconi Ave, Phoenix AZ 85023 — RIDECONNECT LLC
-          <AiOutlineTrademarkCircle />
+  
+        {/* 🔥 ADDRESS */}
+        <p className="text-center text-[11px] sm:text-xs text-gray-500 mt-2 flex flex-col sm:flex-row justify-center items-center gap-1 sm:gap-2 leading-relaxed">
+          <span>
+            2041 W Marconi Ave, Phoenix AZ 85023
+          </span>
+          <span className="hidden sm:inline">—</span>
+          <span className="flex items-center gap-1">
+            RIDECONNECT LLC <AiOutlineTrademarkCircle />
+          </span>
         </p>
-
+  
       </div>
-
+  
       {/* 🔥 MODAL */}
       <PolicyModal
         isOpen={modal.open}

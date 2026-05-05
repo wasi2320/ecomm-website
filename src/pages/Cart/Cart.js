@@ -10,125 +10,134 @@ import ItemCard from "./ItemCard";
 const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.orebiReducer.products);
-  const [totalAmt, setTotalAmt] = useState("");
-  const [shippingCharge, setShippingCharge] = useState("");
+
+  const [totalAmt, setTotalAmt] = useState(0);
+  const [shippingCharge, setShippingCharge] = useState(0);
+
+  // 🔥 TOTAL
   useEffect(() => {
     let price = 0;
-    products.map((item) => {
+    products.forEach((item) => {
       price += item.price * item.quantity;
-      return price;
     });
     setTotalAmt(price);
   }, [products]);
+
+  // 🔥 SHIPPING
   useEffect(() => {
-    if (totalAmt <= 200) {
-      setShippingCharge(30);
-    } else if (totalAmt <= 400) {
-      setShippingCharge(0);
-    } else if (totalAmt > 401) {
-      setShippingCharge(20);
-    }
+    if (totalAmt <= 200) setShippingCharge(30);
+    else if (totalAmt <= 400) setShippingCharge(0);
+    else setShippingCharge(20);
   }, [totalAmt]);
+
   return (
-    <div className="max-w-container mx-auto px-4">
-      <Breadcrumbs title="Cart" />
+    <div className="w-full bg-[#0f0f0f] text-white min-h-screen pb-20">
+
+      {/* BREADCRUMB */}
+      <div className="max-w-7xl mx-auto px-4 pt-6">
+        <Breadcrumbs title="Cart" />
+      </div>
+
       {products.length > 0 ? (
-        <div className="pb-20">
-          <div className="w-full h-20 bg-[#F5F7F7] text-primeColor hidden lgl:grid grid-cols-5 place-content-center px-6 text-lg font-titleFont font-semibold">
-            <h2 className="col-span-2">Product</h2>
-            <h2>Price</h2>
-            <h2>Quantity</h2>
-            <h2>Sub Total</h2>
+        <div className="max-w-7xl mx-auto px-4 mt-8">
+
+          {/* 🔥 HEADER (DESKTOP ONLY) */}
+          <div className="hidden md:grid grid-cols-5 text-sm text-gray-400 border-b border-white/10 pb-4 mb-4">
+            <span className="col-span-2">Product</span>
+            <span>Price</span>
+            <span>Qty</span>
+            <span>Total</span>
           </div>
-          <div className="mt-5">
+
+          {/* 🔥 ITEMS */}
+          <div className="flex flex-col gap-4">
             {products.map((item) => (
-              <div key={item._id}>
-                <ItemCard item={item} />
-              </div>
+              <ItemCard key={item._id} item={item} />
             ))}
           </div>
 
-          <button
-            onClick={() => dispatch(resetCart())}
-            className="py-2 px-10 bg-red-500 text-white font-semibold uppercase mb-4 hover:bg-red-700 duration-300"
-          >
-            Reset cart
-          </button>
+          {/* 🔥 ACTIONS */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 mt-8">
 
-          <div className="flex flex-col mdl:flex-row justify-between border py-4 px-4 items-center gap-2 mdl:gap-0">
-            <div className="flex items-center gap-4">
+            {/* LEFT */}
+            <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
               <input
-                className="w-44 mdl:w-52 h-8 px-4 border text-primeColor text-sm outline-none border-gray-400"
                 type="text"
-                placeholder="Coupon Number"
+                placeholder="Coupon code"
+                className="bg-black border border-white/10 px-4 py-2 text-sm outline-none focus:border-white/30 w-full sm:w-52"
               />
-              <p className="text-sm mdl:text-base font-semibold">
-                Apply Coupon
-              </p>
+              <button className="border border-white px-4 py-2 text-sm hover:bg-white hover:text-black transition">
+                Apply
+              </button>
             </div>
-            <p className="text-lg font-semibold">Update Cart</p>
+
+            {/* RIGHT */}
+            <button
+              onClick={() => dispatch(resetCart())}
+              className="text-sm text-red-400 hover:text-red-600 transition"
+            >
+              Reset Cart
+            </button>
           </div>
-          <div className="max-w-7xl gap-4 flex justify-end mt-4">
-            <div className="w-96 flex flex-col gap-4">
-              <h1 className="text-2xl font-semibold text-right">Cart totals</h1>
-              <div>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Subtotal
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${totalAmt}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 border-b-0 py-1.5 text-lg px-4 font-medium">
-                  Shipping Charge
-                  <span className="font-semibold tracking-wide font-titleFont">
-                    ${shippingCharge}
-                  </span>
-                </p>
-                <p className="flex items-center justify-between border-[1px] border-gray-400 py-1.5 text-lg px-4 font-medium">
-                  Total
-                  <span className="font-bold tracking-wide text-lg font-titleFont">
-                    ${totalAmt + shippingCharge}
-                  </span>
-                </p>
+
+          {/* 🔥 TOTAL SECTION */}
+          <div className="mt-10 flex justify-end">
+            <div className="w-full sm:w-[400px] bg-black border border-white/10 rounded-xl p-6 space-y-4">
+
+              <h2 className="text-lg font-semibold">Order Summary</h2>
+
+              <div className="flex justify-between text-sm text-gray-400">
+                <span>Subtotal</span>
+                <span className="text-white">${totalAmt}</span>
               </div>
-              <div className="flex justify-end">
-                <Link to="/paymentgateway">
-                  <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">
-                    Proceed to Checkout
-                  </button>
-                </Link>
+
+              <div className="flex justify-between text-sm text-gray-400">
+                <span>Shipping</span>
+                <span className="text-white">${shippingCharge}</span>
               </div>
+
+              <div className="border-t border-white/10 pt-3 flex justify-between text-base font-semibold">
+                <span>Total</span>
+                <span>${totalAmt + shippingCharge}</span>
+              </div>
+
+              <Link to="/paymentgateway">
+                <button className="w-full mt-4 py-3 bg-white text-black font-medium hover:opacity-90 transition">
+                  Proceed to Checkout
+                </button>
+              </Link>
+
             </div>
           </div>
+
         </div>
       ) : (
+        /* 🔥 EMPTY STATE */
         <motion.div
-          initial={{ y: 30, opacity: 0 }}
+          initial={{ y: 40, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          className="flex flex-col mdl:flex-row justify-center items-center gap-4 pb-20"
+          className="flex flex-col items-center justify-center text-center px-4 mt-20"
         >
-          <div>
-            <img
-              className="w-80 rounded-lg p-4 mx-auto"
-              src={emptyCart}
-              alt="emptyCart"
-            />
-          </div>
-          <div className="max-w-[500px] p-4 py-8 bg-white flex gap-4 flex-col items-center rounded-md shadow-lg">
-            <h1 className="font-titleFont text-xl font-bold uppercase">
-              Your Cart feels lonely.
-            </h1>
-            <p className="text-sm text-center px-10 -mt-2">
-              Your Shopping cart lives to serve. Give it purpose - fill it with
-              books, electronics, videos, etc. and make it happy.
-            </p>
-            <Link to="/shop">
-              <button className="bg-primeColor rounded-md cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
-                Continue Shopping
-              </button>
-            </Link>
-          </div>
+          <img
+            src={emptyCart}
+            alt="emptyCart"
+            className="w-60 sm:w-72 opacity-80"
+          />
+
+          <h2 className="text-xl sm:text-2xl font-semibold mt-6">
+            Your cart is empty
+          </h2>
+
+          <p className="text-gray-400 text-sm mt-2 max-w-md">
+            Looks like you haven’t added anything yet. Start exploring and
+            discover premium products curated for you.
+          </p>
+
+          <Link to="/shop">
+            <button className="mt-6 px-8 py-3 bg-white text-black text-sm font-medium hover:opacity-90 transition">
+              Continue Shopping
+            </button>
+          </Link>
         </motion.div>
       )}
     </div>

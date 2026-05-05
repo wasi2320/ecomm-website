@@ -69,7 +69,6 @@ const HelpCenter = () => {
 
   const categories = Object.keys(data);
 
-  // 🔥 Filtered FAQs
   const filteredFAQs = useMemo(() => {
     if (!search) return data[activeCategory];
 
@@ -89,9 +88,33 @@ const HelpCenter = () => {
 
   return (
     <div className="w-full min-h-screen bg-[#0f0f0f] text-white flex flex-col md:flex-row">
-      
-      {/* 🔥 SIDEBAR */}
-      <div className="md:w-1/4 border-r border-white/10 p-6">
+
+      {/* 🔥 MOBILE CATEGORY TABS */}
+      <div className="md:hidden overflow-x-auto no-scrollbar px-4 py-3 border-b border-white/10">
+        <div className="flex gap-3 min-w-max">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => {
+                setActiveCategory(cat);
+                setSearch("");
+                setOpenIndex(null);
+              }}
+              className={`px-4 py-2 text-xs rounded-full whitespace-nowrap transition
+                ${
+                  activeCategory === cat
+                    ? "bg-white text-black"
+                    : "bg-white/10 text-white"
+                }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* 🔥 SIDEBAR (DESKTOP ONLY) */}
+      <div className="hidden md:block md:w-1/4 border-r border-white/10 p-6">
         <h2 className="text-xl font-semibold mb-6">Help Center</h2>
 
         <div className="space-y-2">
@@ -116,10 +139,10 @@ const HelpCenter = () => {
       </div>
 
       {/* 🔥 CONTENT */}
-      <div className="flex-1 p-6 md:p-10">
+      <div className="flex-1 px-4 sm:px-6 md:px-10 py-6 md:py-10">
 
-        {/* Search */}
-        <div className="max-w-xl mb-10 relative">
+        {/* SEARCH */}
+        <div className="max-w-xl mb-8 md:mb-10 relative">
           <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-sm" />
           <input
             type="text"
@@ -129,13 +152,13 @@ const HelpCenter = () => {
               setSearch(e.target.value);
               setOpenIndex(null);
             }}
-            className="w-full bg-[#111] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-sm focus:outline-none focus:border-white/20"
+            className="w-full bg-[#111] border border-white/10 rounded-xl pl-10 pr-4 py-3 text-xs sm:text-sm focus:outline-none focus:border-white/20"
           />
         </div>
 
-        {/* Title */}
+        {/* TITLE */}
         {!search && (
-          <h3 className="text-2xl font-semibold mb-6">
+          <h3 className="text-xl sm:text-2xl font-semibold mb-6">
             {activeCategory}
           </h3>
         )}
@@ -156,14 +179,16 @@ const HelpCenter = () => {
               >
                 <div
                   onClick={() => toggle(i)}
-                  className="flex justify-between items-center p-5 cursor-pointer"
+                  className="flex justify-between items-center p-4 sm:p-5 cursor-pointer"
                 >
-                  <h4 className="text-sm md:text-base">{item.q}</h4>
+                  <h4 className="text-xs sm:text-sm md:text-base pr-4">
+                    {item.q}
+                  </h4>
 
                   <motion.div
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ duration: 0.25 }}
-                    className="text-gray-400"
+                    className="text-gray-400 flex-shrink-0"
                   >
                     <FaPlus />
                   </motion.div>
@@ -177,7 +202,7 @@ const HelpCenter = () => {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className="px-5 pb-5 text-gray-400 text-sm leading-relaxed">
+                      <div className="px-4 sm:px-5 pb-4 sm:pb-5 text-gray-400 text-xs sm:text-sm leading-relaxed">
                         {item.a}
                       </div>
                     </motion.div>
@@ -187,6 +212,7 @@ const HelpCenter = () => {
             );
           })}
         </div>
+
       </div>
     </div>
   );

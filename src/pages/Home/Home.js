@@ -12,6 +12,7 @@ import FAQSection from "../../components/Faq/FAQSection";
 import BusinessGraph from "../../components/category/Bussiness/BussinessGraph";
 import HomeVideo from "../../constants/HomeVideo";
 const Home = () => {
+ 
   return (
     <div className="w-full mx-auto">
       <Banner />
