@@ -10,8 +10,12 @@ module.exports = {
       animation: {
         "spin-slow": "spin 8s linear infinite",
 
-        // 🔥 NEW smooth gradient animation
+        // existing
         floatGradient: "floatGradient 14s ease-in-out infinite",
+
+        // 🔥 NEW
+        shimmer: "shimmer 1.6s ease-in-out infinite",
+        glowPulse: "glowPulse 2.5s ease-in-out infinite",
       },
 
       keyframes: {
@@ -24,6 +28,28 @@ module.exports = {
           },
           "100%": {
             transform: "translateX(-10%) translateY(0%)",
+          },
+        },
+
+        // 🔥 SHIMMER SWEEP
+        shimmer: {
+          "0%": {
+            transform: "translateX(-150%)",
+          },
+          "100%": {
+            transform: "translateX(250%)",
+          },
+        },
+
+        // 🔥 SOFT GLOW PULSE (for badges / highlights)
+        glowPulse: {
+          "0%, 100%": {
+            opacity: 0.4,
+            transform: "scale(1)",
+          },
+          "50%": {
+            opacity: 0.8,
+            transform: "scale(1.05)",
           },
         },
       },
@@ -51,6 +77,11 @@ module.exports = {
 
       boxShadow: {
         testShadow: "0px 0px 54px -13px rgba(0,0,0,0.7)",
+
+        // 🔥 premium glow shadows (optional usage)
+        glowWhite: "0 0 40px rgba(255,255,255,0.08)",
+        glowPurple: "0 0 60px rgba(168,85,247,0.25)",
+        glowOrange: "0 0 60px rgba(249,115,22,0.25)",
       },
     },
   },
