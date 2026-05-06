@@ -151,16 +151,74 @@ const Footer = () => {
 
           {/* LOGOS */}
           <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-16 mt-8 sm:mt-10">
-            <img
-              src={bbb}
-              alt="BBB"
-              className="h-10 sm:h-14 md:h-16 object-contain opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition"
-            />
-            <img
-              src={dh}
-              alt="D&H"
-              className="h-10 sm:h-14 md:h-16 object-contain opacity-80 grayscale hover:grayscale-0 hover:opacity-100 transition"
-            />
+          <motion.a
+  href="https://www.bbb.org/us/az/phoenix/profile/online-retailer/rideconnect-llc-1126-1000170949" // 👉 replace with your actual BBB profile link
+  target="_blank"
+  rel="noopener noreferrer"
+  initial={{ opacity: 0, scale: 0.8 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.6 }}
+  whileHover={{ scale: 1.08 }}
+  className="relative group"
+>
+  {/* GLOW EFFECT */}
+  <div className="absolute inset-0 bg-yellow-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl" />
+
+  {/* BADGE */}
+  <motion.img
+    src={bbb}
+    alt="BBB Accredited Business"
+    className="h-20 sm:h-24 md:h-28 object-contain relative z-10 
+               drop-shadow-[0_0_20px_rgba(255,215,0,0.25)]"
+    animate={{
+      y: [0, -6, 0],
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
+
+  {/* TEXT CTA */}
+  <p className="text-xs sm:text-sm text-gray-400 mt-2 group-hover:text-yellow-400 transition">
+    Verified by BBB
+  </p>
+</motion.a>
+<motion.a
+  href="https://www.dandh.com/" // replace if needed
+  target="_blank"
+  rel="noopener noreferrer"
+  initial={{ opacity: 0, scale: 0.8 }}
+  whileInView={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.6 }}
+  whileHover={{ scale: 1.08 }}
+  className="relative group"
+>
+  {/* 🔵 GLOW (changed from yellow → blue) */}
+  <div className="absolute inset-0 bg-blue-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl" />
+
+  {/* BADGE */}
+  <motion.img
+    src={dh}
+    alt="D&H Partner"
+    className="h-20 sm:h-24 md:h-28 object-contain relative z-10 
+               drop-shadow-[0_0_20px_rgba(59,130,246,0.25)]"
+    animate={{
+      y: [0, -6, 0],
+    }}
+    transition={{
+      duration: 2,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+  />
+
+  {/* TEXT */}
+  <p className="text-xs sm:text-sm text-gray-400 mt-2 group-hover:text-blue-400 transition">
+    Authorized Distributor
+  </p>
+</motion.a>
           </div>
 
           {/* PAYMENT */}
