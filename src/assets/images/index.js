@@ -1,4 +1,4 @@
-import logo from "./RTC.png";
+import logo from "./rideconnect2.png";
 import logoLight from "./logoLight.png";
 import bannerImgOne from "./banner/bannerImgOne.webp";
 import bannerImgTwo from "./banner/bannerImgTwo.webp";
