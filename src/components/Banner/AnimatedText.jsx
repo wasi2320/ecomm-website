@@ -8,7 +8,7 @@ const AnimatedText = ({ text = "", className = "" }) => {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.04,
+        staggerChildren: 0.015, // 🔥 much faster
       },
     },
   };
@@ -16,15 +16,13 @@ const AnimatedText = ({ text = "", className = "" }) => {
   const child = {
     hidden: {
       opacity: 0,
-      y: -60,
-      rotateX: 60,
+      y: -20, // 🔥 reduced movement (was -60)
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: {
-        duration: 0.45,
+        duration: 0.25, // 🔥 faster
         ease: "easeOut",
       },
     },
@@ -36,16 +34,14 @@ const AnimatedText = ({ text = "", className = "" }) => {
       initial="hidden"
       animate="visible"
       className={`inline-block ${className}`}
-      style={{ perspective: 1000 }}
     >
       {letters.map((char, index) => (
         <motion.span
           key={index}
           variants={child}
-          className="inline-block font-bold"
+          className="inline-block font-bold will-change-transform"
           style={{
             whiteSpace: char === " " ? "pre" : "normal",
-            textShadow: "0 4px 10px rgba(0,0,0,0.6)", // 🔥 3D feel
           }}
         >
           {char}

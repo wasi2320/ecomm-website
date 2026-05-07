@@ -6,46 +6,21 @@ import { Link } from "react-router-dom";
 import AnimatedText from "./AnimatedText";
 import ImageWithGlow from "./ImageWithGlow";
 
-
-// 🔥 GENERAL
+// 🔥 IMAGES
 import rcb1 from "../../assets/images/banner/rcb1.png";
 import rcb2 from "../../assets/images/banner/rcb2.png";
-
-// 🔥 PERFUMES
 import perfumeBanner1 from "../../assets/images/banner/perfumeb.png";
-
-
-// 🔥 CATEGORY BANNERS (use your generated images here)
-
-// Tools
 import toolsBanner from "../../assets/images/banner/toolsb.png";
-
-// Office
 import officeBanner from "../../assets/images/banner/officeb.png";
-
-// Plumbing
 import plumbingBanner from "../../assets/images/banner/plumbingb.png";
-
-// Safety
 import safetyBanner from "../../assets/images/banner/safteyb.png";
-
-// Grounds
 import groundBanner from "../../assets/images/banner/groundb.png";
-
-// Electronics
 import electronicsBanner from "../../assets/images/banner/electronicsb.png";
-
-// Janitorial
 import janitorialBanner from "../../assets/images/banner/cleaningb.png";
-
-// Food Service
 import foodBanner from "../../assets/images/banner/foodb.png";
-
-// Lab Equipment
 import labBanner from "../../assets/images/banner/labb.png";
 
 const slides = [
-  // 🔥 GENERAL (ALL CATEGORIES)
   {
     img: rcb1,
     title: "Everything You Need. One Trusted Store.",
@@ -60,8 +35,6 @@ const slides = [
       "Shop across multiple categories with confidence — verified products, competitive pricing, and fast fulfillment.",
     gradient: "from-neutral-900 via-black to-black",
   },
-
-  // 🔥 PERFUMES
   {
     img: perfumeBanner1,
     title: "Luxury Fragrance Collection",
@@ -69,8 +42,6 @@ const slides = [
       "Authentic perfumes crafted for identity, presence, and long-lasting impressions.",
     gradient: "from-purple-900 via-black to-black",
   },
-
-  // 🔥 TOOLS
   {
     img: toolsBanner,
     title: "Professional Tools & Equipment",
@@ -78,8 +49,6 @@ const slides = [
       "Durable, high-performance tools built for precision, efficiency, and reliability on every job.",
     gradient: "from-yellow-900 via-black to-black",
   },
-
-  // 🔥 OFFICE
   {
     img: officeBanner,
     title: "Office Essentials That Work Smarter",
@@ -87,8 +56,6 @@ const slides = [
       "Boost productivity with premium office supplies designed for modern workspaces.",
     gradient: "from-blue-900 via-black to-black",
   },
-
-  // 🔥 PLUMBING
   {
     img: plumbingBanner,
     title: "Reliable Plumbing Solutions",
@@ -96,8 +63,6 @@ const slides = [
       "Engineered for durability and performance — everything you need for secure installations.",
     gradient: "from-cyan-900 via-black to-black",
   },
-
-  // 🔥 SAFETY
   {
     img: safetyBanner,
     title: "Safety You Can Trust",
@@ -105,8 +70,6 @@ const slides = [
       "Certified protective gear and equipment to keep your team safe in every environment.",
     gradient: "from-red-900 via-black to-black",
   },
-
-  // 🔥 GROUNDS
   {
     img: groundBanner,
     title: "Grounds & Maintenance Equipment",
@@ -114,8 +77,6 @@ const slides = [
       "Powerful tools to maintain outdoor spaces with efficiency and precision.",
     gradient: "from-green-900 via-black to-black",
   },
-
-  // 🔥 ELECTRONICS
   {
     img: electronicsBanner,
     title: "Smart Electronics & Components",
@@ -123,8 +84,6 @@ const slides = [
       "From essential devices to advanced components — power your projects with innovation.",
     gradient: "from-indigo-900 via-black to-black",
   },
-
-  // 🔥 JANITORIAL
   {
     img: janitorialBanner,
     title: "Clean Spaces, Professional Results",
@@ -132,8 +91,6 @@ const slides = [
       "High-quality cleaning supplies for commercial and industrial environments.",
     gradient: "from-slate-900 via-black to-black",
   },
-
-  // 🔥 FOOD SERVICE
   {
     img: foodBanner,
     title: "Food Service Essentials",
@@ -141,8 +98,6 @@ const slides = [
       "Reliable kitchen equipment and supplies for consistent performance and hygiene.",
     gradient: "from-orange-900 via-black to-black",
   },
-
-  // 🔥 LAB
   {
     img: labBanner,
     title: "Precision Lab Equipment",
@@ -158,8 +113,9 @@ const Banner = () => {
   const settings = {
     infinite: true,
     autoplay: true,
-    autoplaySpeed: 5000,
-    speed: 800,
+    autoplaySpeed: 3500, // 🔥 faster autoplay
+    speed: 500, // 🔥 smoother transition
+    cssEase: "ease-out",
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -169,26 +125,26 @@ const Banner = () => {
   return (
     <div className="relative w-full overflow-hidden">
 
-      {/* 🔥 Gradient Background */}
-      <AnimatePresence mode="wait">
+      {/* 🔥 FAST BACKGROUND */}
+      <AnimatePresence>
         <motion.div
           key={active}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.4 }}
           className={`absolute inset-0 bg-gradient-to-r ${slides[active]?.gradient}`}
         />
       </AnimatePresence>
 
-      {/* 🔥 Slider */}
+      {/* 🔥 SLIDER */}
       <div className="relative">
         <Slider {...settings}>
           {slides.map((slide, index) => (
             <div key={index}>
-              <div className="w-full h-[420px] sm:h-[480px] md:h-[50vh] flex flex-col md:flex-row items-center perspective-[1000px]">
+              <div className="w-full h-[420px] sm:h-[480px] md:h-[50vh] flex flex-col md:flex-row items-center">
 
-                {/* 🔥 TEXT (40%) */}
+                {/* 🔥 TEXT */}
                 <div className="w-full md:w-[40%] px-6 sm:px-10 md:px-16 text-white flex flex-col justify-center z-10">
                   
                   <h1 className="text-2xl sm:text-3xl md:text-4xl leading-tight">
@@ -200,9 +156,9 @@ const Banner = () => {
                   </p>
 
                   <motion.div
-                    initial={{ opacity: 0, y: -30 }}
+                    initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
                   >
                     <Link to="/shop">
                       <button className="mt-6 px-6 py-2 border border-white hover:bg-white hover:text-black transition">
@@ -213,7 +169,7 @@ const Banner = () => {
 
                 </div>
 
-                {/* 🔥 IMAGE (60%) */}
+                {/* 🔥 IMAGE */}
                 <ImageWithGlow
                   src={slide.img}
                   active={active === index}
@@ -225,7 +181,7 @@ const Banner = () => {
         </Slider>
       </div>
 
-      {/* 🔥 Overlay */}
+      {/* 🔥 LIGHT OVERLAY */}
       <div className="absolute inset-0 bg-black/20 pointer-events-none" />
 
     </div>
