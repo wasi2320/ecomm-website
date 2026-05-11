@@ -30,6 +30,7 @@ import OfficeAcc from "./components/category/OfficeAcc";
 import Categories from "./pages/categories/categories";
 import CategoryPage from "./components/category/CategoryPage";
 import HomeVideo from "./constants/HomeVideo";
+import OrderSuccess from "./pages/payment/OrderSuccess";
 const Layout = () => {
   return (
     <div>
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
       <Route path="/gadgets" element={<Gadgets />}></Route>
       {/* <Route path="/electronics" element={<Electronics />}></Route> */}
       <Route path="/officeacc" element={<OfficeAcc />}></Route>
+      <Route path="/order-success" element={<OrderSuccess />} />
     </Route>
   )
 );
