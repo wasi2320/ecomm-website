@@ -6,7 +6,7 @@ import { FaCheckCircle } from "react-icons/fa";
 const OrderSuccess = () => {
   const location = useLocation();
 
-  const orderId = location.state?.orderId || "RTC-000000";
+  const orderId = location.state?.orderId || "RC-000000";
   const customer = location.state?.customer || "Customer";
 
   return (
