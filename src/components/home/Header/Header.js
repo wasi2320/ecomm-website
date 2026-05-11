@@ -1,9 +1,18 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FiUser } from "react-icons/fi";
-import { HiOutlineMenu } from "react-icons/hi";
+import {
+  FiUser,
+  FiSearch,
+  FiChevronRight,
+} from "react-icons/fi";
+import { HiOutlineMenuAlt3 } from "react-icons/hi";
 import { RiShoppingCart2Fill } from "react-icons/ri";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import { useSelector } from "react-redux";
 
 import productsData from "../../category/productsData";
@@ -17,75 +26,213 @@ import electronics from "../../../assets/images/categoryGird2/monitors-displays-
 import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
 import perfume from "../../../assets/images/giftsets/gs4.jpg";
 
-// ITEM
-const Item = ({ icon, label, link, badge }) => (
-  <Link to={link} className="relative flex items-center gap-2 group">
-    {icon}
-    <span className="hidden group-hover:block text-sm">{label}</span>
+//////////////////////////////////////////////////////////
+// DATA
+//////////////////////////////////////////////////////////
 
-    {badge > 0 && (
-      <span className="absolute -top-2 -right-2 bg-yellow-400 text-black text-xs px-1.5 rounded-full">
-        {badge}
-      </span>
-    )}
-  </Link>
-);
-
-// CATEGORIES
 const categoriesData = [
-  { title: "Tools", key: "tools", path: "/category/tools", image: tools, sections: [{ title: "Hand Tools", links: [{ name: "Hammer", path: "/category/tools?type=hammer" }, { name: "Wrench", path: "/category/tools?type=wrench" }] }] },
-  { title: "Office Supplies", key: "office", path: "/category/office", image: office, sections: [{ title: "Stationery", links: [{ name: "Pens", path: "/category/office?type=pens" }] }] },
-  { title: "Cleaning", key: "cleaning", path: "/category/cleaning", image: janitorial, sections: [{ title: "Tools", links: [{ name: "Mops", path: "/category/cleaning?type=mops" }] }] },
-  { title: "Plumbing", key: "plumbing", path: "/category/plumbing", image: plumbing, sections: [{ title: "Pipes", links: [{ name: "PVC Pipes", path: "/category/plumbing?type=pvc" }] }] },
-  { title: "Safety", key: "safety", path: "/category/safety", image: safety, sections: [{ title: "Protection", links: [{ name: "Gloves", path: "/category/safety?type=gloves" }] }] },
-  { title: "Electronics", key: "electronics", path: "/category/electronics", image: electronics, sections: [{ title: "Devices", links: [{ name: "Laptops", path: "/category/electronics?type=laptops" }] }] },
-  { title: "Perfumes", key: "perfumes", path: "/category/perfumes", image: perfume, sections: [{ title: "Types", links: [{ name: "Men", path: "/category/male" }] }] },
+  {
+    title: "Tools",
+    key: "tools",
+    path: "/category/tools",
+    image: tools,
+    sections: [
+      {
+        title: "Popular",
+        links: [
+          { name: "Hammer", path: "/category/tools?type=hammer" },
+          { name: "Wrench", path: "/category/tools?type=wrench" },
+          { name: "Drill", path: "/category/tools?type=drill" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Office",
+    key: "office",
+    path: "/category/office",
+    image: office,
+    sections: [
+      {
+        title: "Office Essentials",
+        links: [
+          { name: "Pens", path: "/category/office?type=pens" },
+          { name: "Files", path: "/category/office?type=files" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Cleaning",
+    key: "cleaning",
+    path: "/category/cleaning",
+    image: janitorial,
+    sections: [
+      {
+        title: "Cleaning Tools",
+        links: [
+          { name: "Mops", path: "/category/cleaning?type=mops" },
+          { name: "Brushes", path: "/category/cleaning?type=brushes" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Plumbing",
+    key: "plumbing",
+    path: "/category/plumbing",
+    image: plumbing,
+    sections: [
+      {
+        title: "Pipe Solutions",
+        links: [
+          { name: "PVC Pipes", path: "/category/plumbing?type=pvc" },
+          { name: "Valves", path: "/category/plumbing?type=valves" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Safety",
+    key: "safety",
+    path: "/category/safety",
+    image: safety,
+    sections: [
+      {
+        title: "Protection",
+        links: [
+          { name: "Gloves", path: "/category/safety?type=gloves" },
+          { name: "Helmets", path: "/category/safety?type=helmets" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Electronics",
+    key: "electronics",
+    path: "/category/electronics",
+    image: electronics,
+    sections: [
+      {
+        title: "Devices",
+        links: [
+          { name: "Laptops", path: "/category/electronics?type=laptops" },
+          { name: "Monitors", path: "/category/electronics?type=monitors" },
+        ],
+      },
+    ],
+  },
+
+  {
+    title: "Perfumes",
+    key: "perfumes",
+    path: "/category/perfumes",
+    image: perfume,
+    sections: [
+      {
+        title: "Collections",
+        links: [
+          { name: "Men", path: "/category/male" },
+          { name: "Women", path: "/category/female" },
+        ],
+      },
+    ],
+  },
 ];
 
+//////////////////////////////////////////////////////////
+// NAV ITEM
+//////////////////////////////////////////////////////////
+
+const NavItem = ({ children, to }) => {
+  return (
+    <NavLink
+      to={to}
+      className={({ isActive }) =>
+        `relative text-sm tracking-wide transition duration-300 ${
+          isActive
+            ? "text-yellow-400"
+            : "text-gray-300 hover:text-white"
+        }`
+      }
+    >
+      {children}
+    </NavLink>
+  );
+};
+
+//////////////////////////////////////////////////////////
+// ACTION ICON
+//////////////////////////////////////////////////////////
+
+const ActionItem = ({ icon, link, badge }) => {
+  return (
+    <Link
+      to={link}
+      className="relative w-11 h-11 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl flex items-center justify-center text-gray-300 hover:text-yellow-400 hover:border-yellow-400/30 transition-all duration-300"
+    >
+      {icon}
+
+      {badge > 0 && (
+        <motion.span
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          className="absolute -top-1 -right-1 min-w-[20px] h-5 px-1 rounded-full bg-yellow-400 text-black text-[11px] font-semibold flex items-center justify-center"
+        >
+          {badge}
+        </motion.span>
+      )}
+    </Link>
+  );
+};
+
+//////////////////////////////////////////////////////////
+// HEADER
+//////////////////////////////////////////////////////////
+
 const Header = () => {
-  const cartProducts = useSelector((state) => state.orebiReducer.products);
   const navigate = useNavigate();
 
+  const cartProducts = useSelector(
+    (state) => state.orebiReducer.products
+  );
+
+  //////////////////////////////////////////////////////////
   // SEARCH
+  //////////////////////////////////////////////////////////
+
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const [showSearch, setShowSearch] = useState(false);
 
-  const allProducts = Object.values(productsData).flat();
+  const allProducts = useMemo(
+    () => Object.values(productsData).flat(),
+    []
+  );
 
-  const handleSearch = (e) => {
-    const value = e.target.value;
-    setSearchTerm(value);
+  const searchResults = useMemo(() => {
+    if (!searchTerm.trim()) return [];
 
-    if (!value.trim()) {
-      setSearchResults([]);
-      setShowSearch(false);
-      return;
-    }
+    return allProducts
+      .filter((item) =>
+        item.productName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase())
+      )
+      .slice(0, 6);
+  }, [searchTerm, allProducts]);
 
-    const filtered = allProducts.filter((item) =>
-      item.productName.toLowerCase().includes(value.toLowerCase())
-    );
+  //////////////////////////////////////////////////////////
+  // MEGA MENU
+  //////////////////////////////////////////////////////////
 
-    setSearchResults(filtered.slice(0, 6));
-    setShowSearch(true);
-  };
-
-  const handleSelectProduct = (id) => {
-    setSearchTerm("");
-    setShowSearch(false);
-    navigate(`/product/${id}`);
-  };
-
-  useEffect(() => {
-    const close = () => setShowSearch(false);
-    window.addEventListener("click", close);
-    return () => window.removeEventListener("click", close);
-  }, []);
-
-  // MEGA MENU (DESKTOP ONLY)
   const [showMega, setShowMega] = useState(false);
   const [activeCat, setActiveCat] = useState(categoriesData[0]);
+
   const timeoutRef = useRef(null);
 
   const openMenu = () => {
@@ -94,161 +241,442 @@ const Header = () => {
   };
 
   const closeMenu = () => {
-    timeoutRef.current = setTimeout(() => setShowMega(false), 150);
+    timeoutRef.current = setTimeout(() => {
+      setShowMega(false);
+    }, 120);
   };
 
+  //////////////////////////////////////////////////////////
   // MOBILE MENU
+  //////////////////////////////////////////////////////////
+
   const [mobileMenu, setMobileMenu] = useState(false);
+
+  //////////////////////////////////////////////////////////
+  // CLOSE SEARCH
+  //////////////////////////////////////////////////////////
+
+  useEffect(() => {
+    const close = () => setShowSearch(false);
+
+    window.addEventListener("click", close);
+
+    return () => window.removeEventListener("click", close);
+  }, []);
+
+  //////////////////////////////////////////////////////////
+  // PRODUCT SELECT
+  //////////////////////////////////////////////////////////
+
+  const handleSelectProduct = (id) => {
+    navigate(`/product/${id}`);
+    setSearchTerm("");
+    setShowSearch(false);
+  };
 
   return (
     <>
-      <div className="w-full bg-[#0f0f0f] sticky top-0 z-50 border-b border-gray-800">
-        <div className="max-w-[1400px] mx-auto px-4 md:px-6 flex items-center justify-between h-16 md:h-20">
+      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#050505]/80 backdrop-blur-2xl">
+        <div className="max-w-[1450px] mx-auto px-4 md:px-8">
 
-          {/* LEFT */}
-          <div className="flex items-center gap-3 md:gap-6">
+          {/* TOP BAR */}
+          <div className="h-[78px] flex items-center justify-between">
 
-            {/* MOBILE BTN */}
-            <div className="md:hidden text-white text-2xl cursor-pointer" onClick={() => setMobileMenu(true)}>
-              <HiOutlineMenu />
-            </div>
+            {/* LEFT */}
+            <div className="flex items-center gap-4 lg:gap-10">
 
-            {/* LOGO */}
-            <Link to="/">
-              <h1 className="text-white text-lg md:text-2xl font-extrabold">
-                RIDE<span className="text-yellow-400">CONNECT</span>
-              </h1>
-            </Link>
-
-            {/* DESKTOP NAV */}
-            <div className="hidden md:flex items-center gap-6">
-
-              <div
-                className="relative"
-                onMouseEnter={openMenu}
-                onMouseLeave={closeMenu}
+              {/* MOBILE BTN */}
+              <button
+                onClick={() => setMobileMenu(true)}
+                className="md:hidden text-white text-3xl"
               >
-                <div className="flex items-center gap-2 text-white cursor-pointer px-3 py-2 hover:bg-[#1a1a1a] rounded">
-                  <HiOutlineMenu />
-                  Categories
-                </div>
+                <HiOutlineMenuAlt3 />
+              </button>
 
-                <AnimatePresence>
-                  {showMega && (
-                    <motion.div className="absolute left-0 top-full mt-2 w-[1000px] bg-white text-black rounded-xl shadow-xl flex">
+              {/* LOGO */}
+              <Link to="/" className="group">
+                <h1 className="text-2xl md:text-3xl font-black tracking-[0.2em] text-white">
+                  RIDE
+                  <span className="text-yellow-400 group-hover:text-white transition duration-500">
+                    CONNECT
+                  </span>
+                </h1>
+              </Link>
 
-                      <div className="w-[260px] bg-gray-50 border-r">
-                        {categoriesData.map((cat) => (
-                          <Link key={cat.key} to={cat.path} onMouseEnter={() => setActiveCat(cat)}
-                            className={`px-4 py-3 flex items-center gap-2 ${activeCat.key === cat.key ? "bg-white font-semibold" : "hover:bg-gray-100"}`}>
-                            <img src={cat.image} className="w-7 h-7" />
-                            {cat.title}
-                          </Link>
-                        ))}
-                      </div>
+              {/* DESKTOP NAV */}
+              <div className="hidden lg:flex items-center gap-8">
 
-                      <div className="flex-1 p-6 grid grid-cols-3 gap-6">
-                        {activeCat.sections.map((sec, i) => (
-                          <div key={i}>
-                            <h3 className="font-semibold mb-3">{sec.title}</h3>
-                            {sec.links.map((l, j) => (
-                              <Link key={j} to={l.path} className="block text-sm text-gray-600 hover:text-black mb-1">
-                                {l.name}
-                              </Link>
+                {/* MEGA MENU */}
+                <div
+                  className="relative"
+                  onMouseEnter={openMenu}
+                  onMouseLeave={closeMenu}
+                >
+                  <button className="h-11 px-5 rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur-xl text-gray-300 hover:text-white hover:border-yellow-400/30 transition-all duration-300">
+                    Categories
+                  </button>
+
+                  <AnimatePresence>
+                    {showMega && (
+                      <motion.div
+                        initial={{
+                          opacity: 0,
+                          y: 15,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          y: 0,
+                        }}
+                        exit={{
+                          opacity: 0,
+                          y: 10,
+                        }}
+                        transition={{
+                          duration: 0.22,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="absolute top-full left-0 mt-4 w-[1050px] overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0b]/95 backdrop-blur-3xl shadow-2xl"
+                      >
+                        <div className="grid grid-cols-[280px_1fr]">
+
+                          {/* LEFT */}
+                          <div className="border-r border-white/5 bg-white/[0.02] p-3">
+
+                            {categoriesData.map((cat) => (
+                              <button
+                                key={cat.key}
+                                onMouseEnter={() =>
+                                  setActiveCat(cat)
+                                }
+                                className={`w-full flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 ${
+                                  activeCat.key === cat.key
+                                    ? "bg-white/10"
+                                    : "hover:bg-white/[0.05]"
+                                }`}
+                              >
+                                <img
+                                  src={cat.image}
+                                  alt={cat.title}
+                                  className="w-14 h-14 rounded-xl object-cover"
+                                />
+
+                                <div className="text-left">
+                                  <p className="text-white font-medium">
+                                    {cat.title}
+                                  </p>
+
+                                  <p className="text-xs text-gray-500">
+                                    Explore Collection
+                                  </p>
+                                </div>
+                              </button>
                             ))}
                           </div>
-                        ))}
 
-                        <div>
-                          <h3 className="font-semibold mb-3">Featured</h3>
-                          <img src={activeCat.image} className="w-full h-28 object-cover rounded" />
-                          <Link to={activeCat.path} className="mt-3 block w-full bg-black text-white py-2 rounded text-center">
-                            Shop All
-                          </Link>
+                          {/* RIGHT */}
+                          <div className="p-8 grid grid-cols-3 gap-8">
+
+                            {/* LINKS */}
+                            <div className="col-span-2 grid grid-cols-2 gap-8">
+                              {activeCat.sections.map(
+                                (sec, i) => (
+                                  <div key={i}>
+                                    <h3 className="text-white text-lg font-semibold mb-5">
+                                      {sec.title}
+                                    </h3>
+
+                                    <div className="space-y-3">
+                                      {sec.links.map(
+                                        (l, j) => (
+                                          <Link
+                                            key={j}
+                                            to={l.path}
+                                            className="group flex items-center justify-between text-gray-400 hover:text-white transition"
+                                          >
+                                            <span>
+                                              {l.name}
+                                            </span>
+
+                                            <FiChevronRight className="opacity-0 group-hover:opacity-100 transition" />
+                                          </Link>
+                                        )
+                                      )}
+                                    </div>
+                                  </div>
+                                )
+                              )}
+                            </div>
+
+                            {/* FEATURE */}
+                            <div>
+                              <div className="relative overflow-hidden rounded-3xl h-full min-h-[280px]">
+                                <img
+                                  src={activeCat.image}
+                                  alt=""
+                                  className="w-full h-full object-cover scale-105"
+                                />
+
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+                                <div className="absolute bottom-6 left-6">
+                                  <p className="text-sm text-gray-300 mb-2">
+                                    Featured Collection
+                                  </p>
+
+                                  <h3 className="text-2xl font-semibold text-white">
+                                    {activeCat.title}
+                                  </h3>
+
+                                  <Link
+                                    to={activeCat.path}
+                                    className="mt-4 inline-flex items-center gap-2 px-5 h-11 rounded-full bg-yellow-400 text-black font-medium hover:scale-105 transition"
+                                  >
+                                    Shop Now
+                                  </Link>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
                         </div>
-                      </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <NavItem to="/">Home</NavItem>
+                <NavItem to="/shop">Shop</NavItem>
+                <NavItem to="/about">About</NavItem>
+                <NavItem to="/contact">Contact</NavItem>
+
+              </div>
+            </div>
+
+            {/* SEARCH */}
+            <div
+              className="hidden md:block relative w-[420px]"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative">
+
+                <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
+
+                <input
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value);
+                    setShowSearch(true);
+                  }}
+                  placeholder="Search products..."
+                  className="w-full h-14 rounded-2xl bg-white/[0.03] border border-white/10 pl-14 pr-5 text-white placeholder:text-gray-500 outline-none focus:border-yellow-400/40 transition-all duration-300"
+                />
               </div>
 
-              <NavLink to="/" className="text-white">Home</NavLink>
-              <NavLink to="/shop" className="text-white">Shop</NavLink>
-              <NavLink to="/about" className="text-white">About</NavLink>
-              <NavLink to="/contact" className="text-white">Contact</NavLink>
+              {/* SEARCH DROPDOWN */}
+              <AnimatePresence>
+                {showSearch && searchResults.length > 0 && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: 10,
+                    }}
+                    transition={{
+                      duration: 0.2,
+                    }}
+                    className="absolute top-full left-0 mt-4 w-full overflow-hidden rounded-3xl border border-white/10 bg-[#0b0b0b]/95 backdrop-blur-2xl"
+                  >
+                    {searchResults.map((item) => (
+                      <button
+                        key={item._id}
+                        onClick={() =>
+                          handleSelectProduct(item._id)
+                        }
+                        className="w-full flex items-center gap-4 p-4 hover:bg-white/[0.04] transition"
+                      >
+                        <img
+                          src={item.img}
+                          alt=""
+                          className="w-14 h-14 rounded-2xl object-cover"
+                        />
+
+                        <div className="text-left">
+                          <p className="text-white text-sm">
+                            {item.productName}
+                          </p>
+
+                          <p className="text-yellow-400 text-sm mt-1">
+                            ${item.price}
+                          </p>
+                        </div>
+                      </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* RIGHT */}
+            <div className="flex items-center gap-3">
+
+              <ActionItem
+                icon={<FiUser size={20} />}
+                link="/signin"
+              />
+
+              <ActionItem
+                icon={<RiShoppingCart2Fill size={20} />}
+                link="/cart"
+                badge={cartProducts?.length || 0}
+              />
 
             </div>
           </div>
 
-          {/* SEARCH DESKTOP */}
-          <div className="hidden md:block relative w-[40%]" onClick={(e) => e.stopPropagation()}>
-            <input value={searchTerm} onChange={handleSearch}
-              className="w-full h-10 px-3 rounded-md outline-none"
-              placeholder="Search products..." />
+          {/* MOBILE SEARCH */}
+          <div className="md:hidden pb-4">
+            <div className="relative">
 
-            {showSearch && (
-              <div className="absolute top-full left-0 w-full bg-white text-black shadow-xl rounded-md max-h-80 overflow-y-auto">
-                {searchResults.map((item) => (
-                  <div key={item._id} onClick={() => handleSelectProduct(item._id)}
-                    className="flex items-center gap-3 p-3 hover:bg-gray-100 cursor-pointer">
-                    <img src={item.img} className="w-10 h-10 rounded" />
-                    <div>
-                      <p className="text-sm">{item.productName}</p>
-                      <p className="text-xs text-gray-500">${item.price}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+              <FiSearch className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
+
+              <input
+                value={searchTerm}
+                onChange={(e) => {
+                  setSearchTerm(e.target.value);
+                  setShowSearch(true);
+                }}
+                placeholder="Search..."
+                className="w-full h-12 rounded-2xl bg-white/[0.03] border border-white/10 pl-12 pr-4 text-white outline-none"
+              />
+            </div>
           </div>
-
-          {/* RIGHT */}
-          <div className="flex items-center gap-3 md:gap-5 text-white">
-            <Item icon={<FiUser />} label="Profile" link="/signin" />
-            <Item icon={<RiShoppingCart2Fill />} label="Cart" link="/cart" badge={cartProducts?.length || 0} />
-          </div>
-
         </div>
-
-        {/* MOBILE SEARCH */}
-        <div className="md:hidden px-4 pb-3" onClick={(e) => e.stopPropagation()}>
-          <input value={searchTerm} onChange={handleSearch}
-            className="w-full h-10 px-3 rounded-md outline-none"
-            placeholder="Search products..." />
-        </div>
-
-      </div>
+      </header>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileMenu && (
-          <motion.div initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }}
-            className="fixed top-0 left-0 w-[80%] h-full bg-white z-50 p-5 overflow-y-auto">
+          <>
+            {/* OVERLAY */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileMenu(false)}
+              className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+            />
 
-            <div className="flex justify-between items-center mb-5">
-              <h2 className="text-lg font-bold">Menu</h2>
-              <button onClick={() => setMobileMenu(false)}>✕</button>
-            </div>
+            {/* MENU */}
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{
+                type: "spring",
+                stiffness: 120,
+                damping: 22,
+              }}
+              className="fixed top-0 left-0 z-[60] w-[88%] max-w-[380px] h-full bg-[#090909] border-r border-white/10 overflow-y-auto"
+            >
+              <div className="p-6">
 
-            <div className="flex flex-col gap-4">
-              <Link to="/" onClick={() => setMobileMenu(false)}>Home</Link>
-              <Link to="/shop" onClick={() => setMobileMenu(false)}>Shop</Link>
-              <Link to="/about" onClick={() => setMobileMenu(false)}>About</Link>
-              <Link to="/contact" onClick={() => setMobileMenu(false)}>Contact</Link>
-            </div>
+                {/* TOP */}
+                <div className="flex items-center justify-between mb-8">
+                  <h2 className="text-white text-2xl font-bold">
+                    Menu
+                  </h2>
 
-            <div className="mt-6">
-              <h3 className="font-semibold mb-2">Categories</h3>
-              {categoriesData.map((cat) => (
-                <Link key={cat.key} to={cat.path} onClick={() => setMobileMenu(false)}
-                  className="block py-2 border-b">
-                  {cat.title}
-                </Link>
-              ))}
-            </div>
+                  <button
+                    onClick={() => setMobileMenu(false)}
+                    className="w-10 h-10 rounded-full bg-white/10 text-white"
+                  >
+                    ✕
+                  </button>
+                </div>
 
-          </motion.div>
+                {/* NAV */}
+                <div className="space-y-2">
+
+                  {[
+                    {
+                      name: "Home",
+                      path: "/",
+                    },
+                    {
+                      name: "Shop",
+                      path: "/shop",
+                    },
+                    {
+                      name: "About",
+                      path: "/about",
+                    },
+                    {
+                      name: "Contact",
+                      path: "/contact",
+                    },
+                  ].map((item, i) => (
+                    <Link
+                      key={i}
+                      to={item.path}
+                      onClick={() =>
+                        setMobileMenu(false)
+                      }
+                      className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 text-gray-300 hover:text-white transition"
+                    >
+                      {item.name}
+
+                      <FiChevronRight />
+                    </Link>
+                  ))}
+                </div>
+
+                {/* CATEGORIES */}
+                <div className="mt-10">
+
+                  <h3 className="text-white text-lg font-semibold mb-5">
+                    Categories
+                  </h3>
+
+                  <div className="space-y-3">
+                    {categoriesData.map((cat) => (
+                      <Link
+                        key={cat.key}
+                        to={cat.path}
+                        onClick={() =>
+                          setMobileMenu(false)
+                        }
+                        className="flex items-center gap-4 p-3 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] transition"
+                      >
+                        <img
+                          src={cat.image}
+                          alt=""
+                          className="w-14 h-14 rounded-xl object-cover"
+                        />
+
+                        <div>
+                          <p className="text-white">
+                            {cat.title}
+                          </p>
+
+                          <p className="text-xs text-gray-500">
+                            Explore Products
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

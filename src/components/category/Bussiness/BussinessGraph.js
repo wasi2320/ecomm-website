@@ -1,145 +1,466 @@
-import { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
-import { FaChartLine, FaDollarSign, FaBoxOpen } from "react-icons/fa";
+import { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useInView,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 
-// Counter
+import {
+  FaChartLine,
+  FaDollarSign,
+  FaBoxOpen,
+  FaUsers,
+} from "react-icons/fa";
+
+////////////////////////////////////////////////////////////
+// COUNTER
+////////////////////////////////////////////////////////////
+
 const Counter = ({ value, start }) => {
-  const [display, setDisplay] = useState(0);
+  const [display, setDisplay] = useState("0");
 
   useEffect(() => {
     if (!start) return;
 
-    let startTime = null;
-    const duration = 2000;
-    const end = parseFloat(value.replace(/[^0-9.]/g, ""));
+    let startTimestamp = null;
 
-    const animate = (time) => {
-      if (!startTime) startTime = time;
-      const progress = Math.min((time - startTime) / duration, 1);
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const current = end * easeOut;
+    const duration = 2200;
 
-      setDisplay(current.toFixed(value.includes(".") ? 1 : 0));
+    const endValue = parseFloat(
+      value.replace(/[^0-9.]/g, "")
+    );
 
-      if (progress < 1) requestAnimationFrame(animate);
+    const hasDecimal = value.includes(".");
+
+    const step = (timestamp) => {
+      if (!startTimestamp)
+        startTimestamp = timestamp;
+
+      const progress = Math.min(
+        (timestamp - startTimestamp) /
+          duration,
+        1
+      );
+
+      // smoother easing
+      const ease =
+        1 - Math.pow(1 - progress, 4);
+
+      const current = endValue * ease;
+
+      setDisplay(
+        hasDecimal
+          ? current.toFixed(1)
+          : Math.floor(current).toString()
+      );
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
     };
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(step);
   }, [value, start]);
 
-  return <span>{value.replace(/[0-9.]+/, display)}</span>;
+  return (
+    <span>
+      {value.replace(/[0-9.]+/, display)}
+    </span>
+  );
 };
 
-// Card
-const StatCard = ({ stat, inView }) => {
-  const ref = useRef(null);
+////////////////////////////////////////////////////////////
+// CARD
+////////////////////////////////////////////////////////////
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const smoothX = useSpring(x, { stiffness: 100, damping: 20 });
-  const smoothY = useSpring(y, { stiffness: 100, damping: 20 });
-
-  const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
-    x.set(e.clientX - rect.left);
-    y.set(e.clientY - rect.top);
-  };
-
+const StatCard = ({
+  stat,
+  inView,
+  index,
+}) => {
   return (
     <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      className="relative group rounded-3xl p-[1px] overflow-hidden"
-      initial={{ opacity: 0, y: 60 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8 }}
+      initial={{
+        opacity: 0,
+        y: 50,
+      }}
+      animate={
+        inView
+          ? {
+              opacity: 1,
+              y: 0,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.8,
+        delay: index * 0.1,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      whileHover={{
+        y: -10,
+        scale: 1.02,
+      }}
+      className="
+        group relative
+        transform-gpu will-change-transform
+      "
     >
-      {/* Border glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 opacity-0 group-hover:opacity-100 blur-xl transition duration-500" />
+      {/* OUTER GLOW */}
+      <div
+        className="
+        absolute inset-0
+        rounded-[32px]
+        opacity-0
+        group-hover:opacity-100
+        transition duration-500
+        bg-yellow-400/10
+        blur-2xl
+      "
+      />
 
-      <div className="relative bg-[#111] border border-white/10 rounded-3xl p-12 text-center overflow-hidden">
-
-        {/* Spotlight */}
-        <motion.div
-          className="pointer-events-none absolute w-40 h-40 rounded-full bg-white/10 blur-2xl"
+      {/* CARD */}
+      <div
+        className="
+        relative overflow-hidden
+        rounded-[32px]
+        border border-white/10
+        bg-[#111111]
+        p-8 sm:p-10
+        transition duration-500
+        group-hover:border-yellow-400/20
+      "
+      >
+        {/* GRID BG */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
           style={{
-            left: smoothX,
-            top: smoothY,
-            translateX: "-50%",
-            translateY: "-50%",
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
           }}
         />
 
-        {/* Icon */}
-        <div className="text-2xl mb-4 text-white/70 flex justify-center">
-          {stat.icon}
+        {/* TOP LIGHT */}
+        <div
+          className="
+          absolute top-0 left-0
+          h-[1px] w-full
+          bg-gradient-to-r
+          from-transparent
+          via-yellow-400/40
+          to-transparent
+          opacity-0
+          group-hover:opacity-100
+          transition duration-500
+        "
+        />
+
+        {/* SHIMMER */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div
+            className="
+            absolute top-0 -left-[120%]
+            h-full w-[40%]
+            rotate-12
+            bg-gradient-to-r
+            from-transparent
+            via-white/10
+            to-transparent
+            group-hover:animate-shimmer
+          "
+          />
         </div>
 
-        {/* Number */}
-        <div className="text-5xl font-semibold tracking-wide">
-          <Counter value={stat.value} start={inView} />
-        </div>
+        {/* CONTENT */}
+        <div className="relative z-10 text-center">
 
-        {/* Label */}
-        <p className="mt-4 text-gray-400 text-sm tracking-wide">
-          {stat.label}
-        </p>
+          {/* ICON */}
+          <motion.div
+            whileHover={{
+              rotate: 5,
+              scale: 1.08,
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 15,
+            }}
+            className="
+              mx-auto
+              w-20 h-20
+              rounded-2xl
+              flex items-center justify-center
+              text-3xl
+              text-yellow-400
+              border border-yellow-400/20
+              bg-yellow-400/5
+              shadow-[0_0_40px_rgba(250,204,21,0.08)]
+            "
+          >
+            {stat.icon}
+          </motion.div>
+
+          {/* NUMBER */}
+          <div
+            className="
+            mt-8
+            text-5xl sm:text-6xl
+            font-bold
+            tracking-tight
+            text-white
+          "
+          >
+            <Counter
+              value={stat.value}
+              start={inView}
+            />
+          </div>
+
+          {/* LABEL */}
+          <p
+            className="
+            mt-4
+            text-gray-400
+            text-sm sm:text-base
+            tracking-wide
+          "
+          >
+            {stat.label}
+          </p>
+
+          {/* LINE */}
+          <div
+            className="
+            mx-auto mt-6
+            h-[2px] w-10
+            bg-yellow-400/30
+            transition-all duration-500
+            group-hover:w-24
+          "
+          />
+        </div>
       </div>
     </motion.div>
   );
 };
 
+////////////////////////////////////////////////////////////
+// MAIN COMPONENT
+////////////////////////////////////////////////////////////
+
 export default function BusinessGraph() {
-  const [inView, setInView] = useState(false);
   const sectionRef = useRef(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setInView(true);
-      },
-      { threshold: 0.3 }
-    );
+  const isInView = useInView(sectionRef, {
+    once: true,
+    margin: "-100px",
+  });
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
+  ////////////////////////////////////////////////////////////
+  // SMOOTH PARALLAX
+  ////////////////////////////////////////////////////////////
 
-    return () => observer.disconnect();
-  }, []);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, -60]
+  );
+
+  const y2 = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 60]
+  );
+
+  ////////////////////////////////////////////////////////////
+  // DATA
+  ////////////////////////////////////////////////////////////
 
   const stats = [
-    { value: "$2M", label: "Total Revenue", icon: <FaDollarSign /> },
-    { value: "86%", label: "Growth Rate", icon: <FaChartLine /> },
-    { value: "12000+", label: "Products Sold", icon: <FaBoxOpen /> },
+    {
+      value: "$2M+",
+      label: "Total Revenue",
+      icon: <FaDollarSign />,
+    },
+
+    {
+      value: "86%",
+      label: "Growth Rate",
+      icon: <FaChartLine />,
+    },
+
+    {
+      value: "12000+",
+      label: "Products Sold",
+      icon: <FaBoxOpen />,
+    },
+
+    {
+      value: "25K+",
+      label: "Happy Customers",
+      icon: <FaUsers />,
+    },
   ];
 
   return (
-    <div
+    <section
       ref={sectionRef}
-      className="relative w-full bg-[#0f0f0f] py-32 px-6 text-white overflow-hidden"
+      className="
+      relative overflow-hidden
+      bg-[#050505]
+      py-24 sm:py-32
+      text-white
+    "
     >
-      {/* 🔥 SMOOTH BACKGROUND (FIXED) */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-[140%] h-[140%] bg-[#0f0f0f] from-white/10 via-transparent to-white/10 blur-3xl animate-floatGradient" />
-        <div className="absolute w-[160%] h-[160%] bg-[#0f0f0f] from-transparent via-white/5 to-transparent blur-3xl animate-floatGradient" />
+      {/* BACKGROUND */}
+      <div className="absolute inset-0">
+
+        {/* GRID */}
+        <div
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+            backgroundSize: "70px 70px",
+          }}
+        />
+
+        {/* LIGHTS */}
+        <motion.div
+          style={{ y: y1 }}
+          className="
+          absolute top-0 left-0
+          w-[350px] h-[350px]
+          rounded-full
+          bg-yellow-400/10
+          blur-3xl
+        "
+        />
+
+        <motion.div
+          style={{ y: y2 }}
+          className="
+          absolute bottom-0 right-0
+          w-[350px] h-[350px]
+          rounded-full
+          bg-yellow-400/10
+          blur-3xl
+        "
+        />
       </div>
 
-      {/* Heading */}
-      <div className="text-center mb-24 relative z-10">
-        <h2 className="text-4xl md:text-6xl font-semibold tracking-wide">
-          Performance That Speaks
-        </h2>
-        <p className="text-gray-400 mt-4 text-sm">
-          Precision. Growth. Excellence.
-        </p>
-      </div>
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
 
-      {/* Stats */}
-      <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-14 relative z-10">
-        {stats.map((stat, i) => (
-          <StatCard key={i} stat={stat} inView={inView} />
-        ))}
+        {/* HEADER */}
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 40,
+          }}
+          animate={
+            isInView
+              ? {
+                  opacity: 1,
+                  y: 0,
+                }
+              : {}
+          }
+          transition={{
+            duration: 0.8,
+          }}
+          className="text-center mb-20"
+        >
+          {/* BADGE */}
+          <div
+            className="
+            inline-flex items-center gap-2
+            px-5 py-2
+            rounded-full
+            border border-yellow-400/20
+            bg-yellow-400/5
+            mb-6
+          "
+          >
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+
+            <span
+              className="
+              text-xs uppercase
+              tracking-[0.3em]
+              text-yellow-300
+            "
+            >
+              Business Insights
+            </span>
+          </div>
+
+          {/* TITLE */}
+          <h2
+            className="
+            text-4xl sm:text-5xl lg:text-6xl
+            font-bold
+            leading-tight
+          "
+          >
+            Performance That
+            <span
+              className="
+              block text-transparent
+              bg-clip-text
+              bg-gradient-to-r
+              from-white
+              to-yellow-400
+            "
+            >
+              Speaks For Itself
+            </span>
+          </h2>
+
+          {/* TEXT */}
+          <p
+            className="
+            max-w-2xl mx-auto
+            mt-6
+            text-gray-400
+            text-sm sm:text-base
+            leading-relaxed
+          "
+          >
+            Trusted by thousands of customers
+            worldwide with premium quality,
+            fast growth, and exceptional
+            service.
+          </p>
+        </motion.div>
+
+        {/* STATS */}
+        <div
+          className="
+          grid
+          grid-cols-1
+          sm:grid-cols-2
+          xl:grid-cols-4
+          gap-8
+        "
+        >
+          {stats.map((stat, index) => (
+            <StatCard
+              key={index}
+              stat={stat}
+              inView={isInView}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

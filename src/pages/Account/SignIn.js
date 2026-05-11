@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
+import {
+  FaGoogle,
+  FaApple,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/rideconnect2.png";
 import PolicyModal from "../../components/home/Footer/PolicyModal";
+
 const SignIn = () => {
+  const [showPassword, setShowPassword] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,6 +22,9 @@ const SignIn = () => {
 
   const [successMsg, setSuccessMsg] = useState("");
 
+  //////////////////////////////////////////////////////
+  // INPUTS
+  //////////////////////////////////////////////////////
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setErrEmail("");
@@ -22,21 +35,38 @@ const SignIn = () => {
     setErrPassword("");
   };
 
-  const handleSignUp = (e) => {
+  //////////////////////////////////////////////////////
+  // SIGN IN
+  //////////////////////////////////////////////////////
+  const handleSignIn = (e) => {
     e.preventDefault();
 
-    if (!email) setErrEmail("Enter your email");
-    if (!password) setErrPassword("Enter your password");
+    let valid = true;
 
-    if (email && password) {
+    if (!email) {
+      setErrEmail("Please enter your email");
+      valid = false;
+    }
+
+    if (!password) {
+      setErrPassword("Please enter your password");
+      valid = false;
+    }
+
+    if (valid) {
       setSuccessMsg(
-        `Welcome back. We’re verifying your access and will contact you at ${email}`
+        `Welcome back. Your account has been verified successfully.`
       );
+
       setEmail("");
       setPassword("");
     }
   };
- const [modal, setModal] = useState({
+
+  //////////////////////////////////////////////////////
+  // POLICY MODAL
+  //////////////////////////////////////////////////////
+  const [modal, setModal] = useState({
     open: false,
     title: "",
     content: "",
@@ -49,398 +79,371 @@ const SignIn = () => {
   const closePolicy = () => {
     setModal({ open: false, title: "", content: "" });
   };
+
+  //////////////////////////////////////////////////////
+  // POLICIES
+  //////////////////////////////////////////////////////
   const privacyContent = (
     <>
-      <h3 className="font-semibold mb-2">1. Information We Collect</h3>
+      <h3 className="font-semibold mb-2">Privacy Policy</h3>
       <p>
-        We collect personal information that you voluntarily provide when interacting
-        with our website, including but not limited to your full name, email address,
-        phone number, billing address, shipping address, and payment details.
-        Additionally, we may collect technical data such as IP address, browser type,
-        device information, and browsing behavior through cookies and analytics tools.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">2. How We Use Your Information</h3>
-      <p>
-        Your information is used to process orders, manage payments, deliver products,
-        provide customer support, personalize your shopping experience, improve our
-        services, detect fraud, and send transactional or promotional communications.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">3. Legal Basis for Processing</h3>
-      <p>
-        We process your data based on contractual necessity (to fulfill orders),
-        legitimate business interests (to improve services), legal obligations,
-        and your consent where applicable.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">4. Data Protection & Security</h3>
-      <p>
-        We implement industry-standard security measures including SSL encryption,
-        secure servers, and restricted access controls. However, no method of data
-        transmission over the internet can be guaranteed 100% secure.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">5. Sharing of Information</h3>
-      <p>
-        We do not sell or rent your personal data. We may share your information with
-        trusted third-party service providers such as payment processors, logistics
-        partners, email marketing services, and analytics providers strictly for
-        business operations.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">6. Cookies & Tracking Technologies</h3>
-      <p>
-        We use cookies, pixels, and similar technologies to enhance user experience,
-        remember preferences, analyze traffic, and deliver targeted advertisements.
-        You may disable cookies through your browser settings.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">7. Data Retention</h3>
-      <p>
-        We retain your information only for as long as necessary to fulfill the purposes
-        outlined in this policy, including legal, accounting, or reporting requirements.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">8. Your Rights</h3>
-      <p>
-        You have the right to request access, correction, deletion, or restriction of
-        your personal data. You may also object to processing or request data portability
-        where applicable.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">9. Third-Party Links</h3>
-      <p>
-        Our website may contain links to third-party websites. We are not responsible
-        for the privacy practices or content of those external sites.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">10. Children’s Privacy</h3>
-      <p>
-        Our services are not intended for individuals under the age of 13. We do not
-        knowingly collect personal data from children.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">11. Policy Updates</h3>
-      <p>
-        We reserve the right to update this Privacy Policy at any time. Changes will
-        be posted on this page with an updated revision date.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">12. Contact</h3>
-      <p>
-        Email: info@therideconnect.com | Phone: 480-787-0039
+        We collect personal information to improve your shopping experience,
+        process orders securely, and provide customer support.
       </p>
     </>
   );
-  
+
   const refundContent = (
     <>
-      <h3 className="font-semibold mb-2">1. Return Eligibility</h3>
+      <h3 className="font-semibold mb-2">Refund Policy</h3>
       <p>
-        Returns are accepted within 7 days of delivery. Items must be unused,
-        unopened, and in their original packaging with all seals intact.
+        Returns are accepted within 7 days for unused products in original
+        packaging.
       </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">2. Non-Returnable Items</h3>
-      <p>
-        Due to hygiene and safety reasons, opened perfumes, testers, clearance items,
-        and gift cards are non-returnable unless defective or damaged upon arrival.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">3. Damaged or Incorrect Items</h3>
-      <p>
-        If you receive a damaged, defective, or incorrect product, you must notify us
-        within 48 hours of delivery with photo evidence for resolution.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">4. Return Process</h3>
-      <p>
-        To initiate a return, contact our support team. Once approved, you will receive
-        return instructions. Unauthorized returns may not be accepted.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">5. Refund Timeline</h3>
-      <p>
-        Refunds are processed within 5–10 business days after inspection. Processing
-        time may vary depending on your payment provider.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">6. Shipping Costs</h3>
-      <p>
-        Original shipping charges are non-refundable. Return shipping costs are the
-        responsibility of the customer unless the return is due to our error.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">7. Order Cancellation</h3>
-      <p>
-        Orders may be canceled within a limited time before shipment. Once shipped,
-        cancellation is not possible.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">8. Fraud Prevention</h3>
-      <p>
-        We reserve the right to deny refunds in cases of suspected abuse, fraud,
-        or violation of our policies.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">9. Contact</h3>
-      <p>Email: info@therideconnect.com</p>
     </>
   );
-  
+
   const shippingContent = (
     <>
-      <h3 className="font-semibold mb-2">1. Order Processing</h3>
+      <h3 className="font-semibold mb-2">Shipping Policy</h3>
       <p>
-        Orders are processed within 1–3 business days. Processing times may increase
-        during peak seasons or promotional periods.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">2. Shipping Time</h3>
-      <p>
-        Estimated delivery time is 5–10 business days depending on location and
-        carrier availability.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">3. Shipping Fees</h3>
-      <p>
-        Shipping costs are calculated at checkout and may vary based on destination
-        and order weight.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">4. Tracking Information</h3>
-      <p>
-        Once shipped, a tracking number will be provided via email.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">5. Delays & Liability</h3>
-      <p>
-        We are not responsible for delays caused by shipping carriers, customs,
-        weather conditions, or unforeseen circumstances.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">6. Incorrect Address</h3>
-      <p>
-        Customers are responsible for providing accurate shipping details. We are not
-        liable for lost or delayed shipments due to incorrect addresses.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">7. Lost Packages</h3>
-      <p>
-        If a package is marked delivered but not received, customers must contact the
-        carrier directly. We will assist where possible but are not liable for carrier issues.
+        Orders are processed within 1–3 business days with tracking provided.
       </p>
     </>
   );
-  
+
   const termsContent = (
     <>
-      <h3 className="font-semibold mb-2">1. Acceptance of Terms</h3>
+      <h3 className="font-semibold mb-2">Terms of Service</h3>
       <p>
-        By accessing this website, you agree to comply with and be bound by these Terms.
-        If you do not agree, you must not use our services.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">2. Eligibility</h3>
-      <p>
-        You must be at least 18 years old or have parental consent to use this website.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">3. Products & Pricing</h3>
-      <p>
-        We reserve the right to modify product pricing, descriptions, and availability
-        without notice.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">4. Orders & Payments</h3>
-      <p>
-        We reserve the right to refuse or cancel any order at our discretion, including
-        suspected fraud or pricing errors.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">5. Intellectual Property</h3>
-      <p>
-        All content, logos, and materials are the property of Ride Connect and may not
-        be copied, reproduced, or distributed without permission.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">6. Limitation of Liability</h3>
-      <p>
-        We shall not be liable for any indirect, incidental, or consequential damages
-        arising from the use of our services.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">7. Governing Law</h3>
-      <p>
-        These Terms shall be governed by and interpreted under the laws of the United States.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">8. Changes to Terms</h3>
-      <p>
-        We reserve the right to update these Terms at any time without prior notice.
-      </p>
-  
-      <h3 className="font-semibold mt-4 mb-2">9. Contact</h3>
-      <p>
-        Phone: 480-787-0039 | Email: info@therideconnect.com
+        By using this website, you agree to our terms, policies, and conditions.
       </p>
     </>
   );
+
   return (
-    <div className="w-full min-h-screen bg-[#0f0f0f] text-white flex flex-col lg:flex-row">
+    <div className="min-h-screen bg-[#0b0b0b] text-white flex overflow-hidden">
+      {/* ========================================= */}
+      {/* LEFT PREMIUM PANEL */}
+      {/* ========================================= */}
+      <div className="hidden lg:flex w-1/2 relative border-r border-white/10 overflow-hidden">
+        {/* BACKGROUND GLOW */}
+        <div className="absolute top-[-100px] left-[-100px] w-[350px] h-[350px] bg-white/10 blur-[140px] rounded-full" />
 
-      {/* 🔥 LEFT SIDE (HIDDEN ON MOBILE) */}
-      <div className="hidden lg:flex w-1/2 p-12 flex-col justify-between border-r border-white/10">
+        <div className="absolute bottom-[-100px] right-[-100px] w-[300px] h-[300px] bg-white/5 blur-[120px] rounded-full" />
 
-        <div>
-          <Link to="/">
-            <img src={logo} alt="logo" className="w-32 mb-10" />
-          </Link>
+        <div className="relative z-10 flex flex-col justify-between p-14 w-full">
+          {/* TOP */}
+          <div>
+            <Link to="/">
+              <motion.img
+                whileHover={{ scale: 1.05 }}
+                src={logo}
+                alt="logo"
+                className="w-36 object-contain"
+              />
+            </Link>
 
-          <h1 className="text-3xl font-semibold leading-snug">
-            Welcome back
-          </h1>
-          <p className="text-gray-400 mt-2">
-            Sign in to access your account and continue shopping.
-          </p>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="mt-20"
+            >
+              <p className="uppercase tracking-[0.3em] text-gray-500 text-sm">
+                Premium Experience
+              </p>
 
-          {/* FEATURES */}
-          <div className="mt-10 space-y-6">
+              <h1 className="text-5xl font-bold leading-tight mt-4">
+                Welcome
+                <br />
+                Back.
+              </h1>
 
-            {[
-              "Fast checkout experience",
-              "Track your orders easily",
-              "Trusted by thousands of customers",
-            ].map((text, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <BsCheckCircleFill className="text-green-500 mt-1" />
-                <p className="text-sm text-gray-400">{text}</p>
-              </div>
-            ))}
+              <p className="text-gray-400 mt-6 max-w-md leading-relaxed">
+                Access your account to manage orders, wishlist, premium
+                products, and enjoy a seamless luxury shopping experience.
+              </p>
+            </motion.div>
 
+            {/* FEATURES */}
+            <div className="mt-14 space-y-5">
+              {[
+                "Secure checkout & encrypted payments",
+                "Fast shipping with live tracking",
+                "Premium products from trusted brands",
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.15 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
+                    <BsCheckCircleFill className="text-green-400 text-sm" />
+                  </div>
+
+                  <p className="text-gray-300">{item}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* FOOTER */}
+          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
+            <button
+              onClick={() =>
+                openPolicy("Privacy Policy", privacyContent)
+              }
+              className="hover:text-white transition"
+            >
+              Privacy
+            </button>
+
+            <span>|</span>
+
+            <button
+              onClick={() =>
+                openPolicy("Refund Policy", refundContent)
+              }
+              className="hover:text-white transition"
+            >
+              Refunds
+            </button>
+
+            <span>|</span>
+
+            <button
+              onClick={() =>
+                openPolicy("Shipping Policy", shippingContent)
+              }
+              className="hover:text-white transition"
+            >
+              Shipping
+            </button>
+
+            <span>|</span>
+
+            <button
+              onClick={() =>
+                openPolicy("Terms", termsContent)
+              }
+              className="hover:text-white transition"
+            >
+              Terms
+            </button>
           </div>
         </div>
+      </div>
 
-      
-        <div className="flex gap-6 text-xs text-gray-500">
-        <button
-            onClick={() => openPolicy("Privacy Policy", privacyContent)}
-            className="hover:text-white transition duration-200"
-          >
-            Privacy Policy
-          </button>
-  
-          <span className="hidden sm:block text-gray-600">|</span>
-  
-          <button
-            onClick={() => openPolicy("Return & Refund Policy", refundContent)}
-            className="hover:text-white transition duration-200"
-          >
-            Return & Refund
-          </button>
-  
-          <span className="hidden sm:block text-gray-600">|</span>
-  
-          <button
-            onClick={() => openPolicy("Shipping Policy", shippingContent)}
-            className="hover:text-white transition duration-200"
-          >
-            Shipping Policy
-          </button>
-  
-          <span className="hidden sm:block text-gray-600">|</span>
-  
-          <button
-            onClick={() => openPolicy("Terms of Service", termsContent)}
-            className="hover:text-white transition duration-200"
-          >
-            Terms of Service
-          </button>
-        <PolicyModal
+      {/* ========================================= */}
+      {/* RIGHT FORM */}
+      {/* ========================================= */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center px-5 py-10 relative">
+        {/* MOBILE LOGO */}
+        <Link to="/" className="lg:hidden absolute top-6 left-6">
+          <img src={logo} alt="logo" className="w-28" />
+        </Link>
+
+        {/* GLOW */}
+        <div className="absolute w-[300px] h-[300px] bg-white/5 blur-[120px] rounded-full" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="relative z-10 w-full max-w-md"
+        >
+          {successMsg ? (
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              className="bg-white/5 border border-white/10 rounded-3xl p-10 backdrop-blur-2xl text-center"
+            >
+              <div className="w-20 h-20 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mx-auto mb-6">
+                <BsCheckCircleFill className="text-green-400 text-4xl" />
+              </div>
+
+              <h2 className="text-3xl font-semibold">
+                Signed In
+              </h2>
+
+              <p className="text-gray-400 mt-4 leading-relaxed">
+                {successMsg}
+              </p>
+
+              <Link to="/">
+                <button className="w-full mt-8 h-14 rounded-2xl bg-white text-black font-semibold hover:scale-[1.02] transition">
+                  Continue Shopping
+                </button>
+              </Link>
+            </motion.div>
+          ) : (
+            <div className="bg-white/5 border border-white/10 rounded-[32px] p-7 sm:p-10 backdrop-blur-2xl shadow-2xl">
+              {/* HEADER */}
+              <div className="mb-8">
+                <p className="text-sm uppercase tracking-[0.3em] text-gray-500">
+                  Account Access
+                </p>
+
+                <h2 className="text-4xl font-bold mt-3">
+                  Sign In
+                </h2>
+
+                <p className="text-gray-400 mt-3">
+                  Enter your credentials to continue.
+                </p>
+              </div>
+
+              {/* SOCIAL */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <button
+                  className="h-14 rounded-2xl border border-white/10 bg-black/40
+                  hover:bg-white hover:text-black transition duration-300
+                  flex items-center justify-center gap-3"
+                >
+                  <FaGoogle />
+                  Google
+                </button>
+
+                <button
+                  className="h-14 rounded-2xl border border-white/10 bg-black/40
+                  hover:bg-white hover:text-black transition duration-300
+                  flex items-center justify-center gap-3"
+                >
+                  <FaApple />
+                  Apple
+                </button>
+              </div>
+
+              {/* DIVIDER */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="flex-1 h-[1px] bg-white/10" />
+
+                <span className="text-xs text-gray-500">
+                  OR CONTINUE WITH EMAIL
+                </span>
+
+                <div className="flex-1 h-[1px] bg-white/10" />
+              </div>
+
+              {/* FORM */}
+              <form onSubmit={handleSignIn} className="space-y-5">
+                {/* EMAIL */}
+                <div>
+                  <label className="text-sm text-gray-400 mb-2 block">
+                    Email Address
+                  </label>
+
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={handleEmail}
+                    placeholder="you@example.com"
+                    className="w-full h-14 px-5 rounded-2xl bg-black/40 border border-white/10
+                    outline-none focus:border-white/30 transition"
+                  />
+
+                  {errEmail && (
+                    <p className="text-red-500 text-sm mt-2">
+                      {errEmail}
+                    </p>
+                  )}
+                </div>
+
+                {/* PASSWORD */}
+                <div>
+                  <div className="flex justify-between mb-2">
+                    <label className="text-sm text-gray-400">
+                      Password
+                    </label>
+
+                    <button
+                      type="button"
+                      className="text-sm text-gray-500 hover:text-white transition"
+                    >
+                      Forgot Password?
+                    </button>
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      value={password}
+                      onChange={handlePassword}
+                      placeholder="••••••••"
+                      className="w-full h-14 px-5 pr-14 rounded-2xl bg-black/40 border border-white/10
+                      outline-none focus:border-white/30 transition"
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowPassword(!showPassword)
+                      }
+                      className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white"
+                    >
+                      {showPassword ? (
+                        <FaEyeSlash />
+                      ) : (
+                        <FaEye />
+                      )}
+                    </button>
+                  </div>
+
+                  {errPassword && (
+                    <p className="text-red-500 text-sm mt-2">
+                      {errPassword}
+                    </p>
+                  )}
+                </div>
+
+                {/* REMEMBER */}
+                <div className="flex items-center justify-between text-sm">
+                  <label className="flex items-center gap-2 text-gray-400">
+                    <input type="checkbox" />
+                    Remember me
+                  </label>
+
+                  <span className="text-green-400">
+                    Secure Login
+                  </span>
+                </div>
+
+                {/* BUTTON */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="submit"
+                  className="w-full h-14 rounded-2xl bg-white text-black font-semibold text-lg
+                  hover:bg-gray-200 transition duration-300 mt-2"
+                >
+                  Sign In
+                </motion.button>
+              </form>
+
+              {/* FOOTER */}
+              <p className="text-center text-gray-400 text-sm mt-8">
+                Don’t have an account?{" "}
+                <Link to="/signup">
+                  <span className="text-white hover:underline">
+                    Create Account
+                  </span>
+                </Link>
+              </p>
+            </div>
+          )}
+        </motion.div>
+      </div>
+
+      {/* MODAL */}
+      <PolicyModal
         isOpen={modal.open}
         onClose={closePolicy}
         title={modal.title}
         content={modal.content}
       />
-        </div>
-      </div>
-
-      {/* 🔥 RIGHT SIDE */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6">
-
-        {successMsg ? (
-          <div className="w-full max-w-md text-center space-y-6">
-            <p className="text-green-500 text-sm">{successMsg}</p>
-
-            <Link to="/signup">
-              <button className="w-full py-3 bg-white text-black font-medium hover:opacity-90 transition rounded-md">
-                Go to Sign Up
-              </button>
-            </Link>
-          </div>
-        ) : (
-          <form className="w-full max-w-md space-y-6">
-
-            <h2 className="text-2xl sm:text-3xl font-semibold">
-              Sign In
-            </h2>
-
-            {/* EMAIL */}
-            <div className="space-y-1">
-              <label className="text-sm text-gray-400">Email</label>
-              <input
-                onChange={handleEmail}
-                value={email}
-                type="email"
-                placeholder="you@example.com"
-                className="w-full px-4 py-3 bg-black border border-white/10 rounded-md 
-                text-sm outline-none focus:border-white/30 transition"
-              />
-              {errEmail && (
-                <p className="text-xs text-red-500">{errEmail}</p>
-              )}
-            </div>
-
-            {/* PASSWORD */}
-            <div className="space-y-1">
-              <label className="text-sm text-gray-400">Password</label>
-              <input
-                onChange={handlePassword}
-                value={password}
-                type="password"
-                placeholder="••••••••"
-                className="w-full px-4 py-3 bg-black border border-white/10 rounded-md 
-                text-sm outline-none focus:border-white/30 transition"
-              />
-              {errPassword && (
-                <p className="text-xs text-red-500">{errPassword}</p>
-              )}
-            </div>
-
-            {/* BUTTON */}
-            <button
-              onClick={handleSignUp}
-              className="w-full py-3 bg-white text-black font-medium 
-              hover:opacity-90 transition rounded-md"
-            >
-              Sign In
-            </button>
-
-            {/* SIGNUP */}
-            <p className="text-sm text-center text-gray-400">
-              Don’t have an account?{" "}
-              <Link to="/signup">
-                <span className="text-white hover:underline">
-                  Sign up
-                </span>
-              </Link>
-            </p>
-
-          </form>
-        )}
-
-      </div>
     </div>
   );
 };
