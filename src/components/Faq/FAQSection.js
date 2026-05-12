@@ -5,60 +5,115 @@ import { FaPlus, FaSearch } from "react-icons/fa";
 const data = {
   "Orders & Shipping": [
     { q: "How long does shipping take?", a: "Shipping typically takes 3–7 business days depending on your location." },
-    { q: "Do you offer international shipping?", a: "Yes, we ship to multiple countries. Delivery time may vary based on region." },
-    { q: "Can I track my order?", a: "Yes, you will receive a tracking link once your order is dispatched." },
-    { q: "What happens if my order is delayed?", a: "If your order is delayed, our support team will notify you and assist with updates." },
-    { q: "Do you offer express shipping?", a: "Yes, express delivery options are available at checkout." },
-    { q: "How are orders packaged?", a: "All products are securely packaged to ensure safe delivery." },
+    { q: "Do you offer international shipping?", a: "Yes, we ship to multiple countries." },
+    { q: "Can I track my order?", a: "Yes, tracking link is provided after dispatch." },
+    { q: "Do you offer express delivery?", a: "Yes, express shipping is available at checkout." },
+    { q: "Can I change my shipping address?", a: "Only before order is shipped." },
+    { q: "Do you ship on weekends?", a: "Orders are processed on working days only." },
   ],
 
   "Products": [
-    { q: "Are your perfumes authentic?", a: "Yes, all perfumes are 100% original and sourced from trusted suppliers." },
-    { q: "How long do perfumes last?", a: "Most fragrances last between 6–10 hours depending on skin type and environment." },
-    { q: "Do you sell tester perfumes?", a: "Yes, tester perfumes are available at a lower price with the same fragrance quality." },
-    { q: "What types of perfumes do you offer?", a: "We offer Eau de Parfum, Eau de Toilette, and premium fragrance collections." },
-    { q: "Are your perfumes suitable for gifting?", a: "Yes, our perfumes come in elegant packaging, perfect for gifts." },
-    { q: "Do you offer niche fragrances?", a: "Yes, we provide both designer and niche perfume collections." },
-    { q: "How should I apply perfume for best results?", a: "Apply on pulse points like wrists and neck for longer-lasting scent." },
-    { q: "Do perfumes expire?", a: "Perfumes can last several years if stored properly away from heat and sunlight." },
-    { q: "Are your products safe for sensitive skin?", a: "Most are safe, but we recommend testing on a small area first." },
-    { q: "Do you restock sold-out products?", a: "Yes, popular items are restocked regularly based on availability." },
+    { q: "Are your perfumes authentic?", a: "Yes, all perfumes are 100% original." },
+    { q: "Do you sell testers?", a: "Yes, tester versions are available at lower price." },
+    { q: "How long do perfumes last?", a: "Usually 6–10 hours depending on usage." },
+    { q: "Do perfumes expire?", a: "They last years if stored properly." },
+    { q: "Do you offer sample sizes?", a: "Yes, selected products include samples." },
+    { q: "Are products safe for skin?", a: "Yes, but patch test is recommended." },
   ],
 
   "Returns & Refunds": [
-    { q: "Can I return a product?", a: "Yes, returns are accepted within 30 days if the product is unopened." },
-    { q: "Do you offer refunds?", a: "Yes, refunds are processed after inspection of returned items." },
-    { q: "Can I exchange a product?", a: "Yes, exchanges are available for eligible products." },
-    { q: "What if I receive a damaged item?", a: "Contact us immediately and we will arrange a replacement or refund." },
-    { q: "Are shipping fees refundable?", a: "Shipping fees are non-refundable unless the error is from our side." },
-    { q: "How long do refunds take?", a: "Refunds are typically processed within 5–7 business days." },
+    { q: "Can I return products?", a: "Yes, within 30 days if unused." },
+    { q: "Do you offer refunds?", a: "Yes, after inspection." },
+    { q: "How long do refunds take?", a: "5–7 business days." },
+    { q: "Can I cancel order?", a: "Yes, before shipment." },
   ],
 
   "Tools & Equipment": [
-    { q: "What types of tools do you offer?", a: "We offer hand tools, power tools, and industrial equipment." },
-    { q: "Are your tools durable?", a: "Yes, our tools are built for long-term professional use." },
-    { q: "Do tools come with warranty?", a: "Many tools include manufacturer warranties." },
-    { q: "Are tools suitable for heavy-duty work?", a: "Yes, they are designed for demanding environments." },
-    { q: "Do you sell tool accessories?", a: "Yes, we offer a wide range of accessories and attachments." },
-    { q: "Can beginners use your tools?", a: "Yes, we offer tools suitable for both beginners and professionals." },
+    { q: "Are tools durable?", a: "Yes, industrial-grade quality." },
+    { q: "Do tools have warranty?", a: "Yes, most include warranty." },
+    { q: "Do you sell spare parts?", a: "Yes, replacement parts available." },
+    { q: "Can beginners use tools?", a: "Yes, we offer beginner-friendly tools." },
   ],
 
   "Electronics": [
-    { q: "What electronics do you sell?", a: "We offer monitors, displays, and essential electronic equipment." },
-    { q: "Do electronics come with warranty?", a: "Yes, most electronics include warranty coverage." },
-    { q: "Are your electronics original?", a: "Yes, all electronics are sourced from verified suppliers." },
-    { q: "Do you offer bulk electronics?", a: "Yes, bulk orders are available for businesses." },
-    { q: "Can I return electronics?", a: "Yes, returns are accepted based on our return policy." },
-    { q: "Are your products tested?", a: "Yes, all electronics are quality checked before dispatch." },
+    { q: "Are electronics original?", a: "Yes, sourced from verified suppliers." },
+    { q: "Do electronics come with warranty?", a: "Yes, included on most items." },
+    { q: "Do you sell bulk electronics?", a: "Yes, for businesses." },
+    { q: "Are products tested?", a: "Yes, all are quality checked." },
   ],
 
   "Cleaning Supplies": [
-    { q: "Do you sell industrial cleaning products?", a: "Yes, we provide both household and industrial cleaning supplies." },
-    { q: "Are cleaning products safe?", a: "Yes, when used as निर्देशed, they are safe and effective." },
-    { q: "Do you offer eco-friendly options?", a: "Yes, selected eco-friendly products are available." },
-    { q: "Can I buy in bulk?", a: "Yes, bulk purchasing options are available." },
-    { q: "Are products suitable for commercial use?", a: "Yes, many are designed for commercial environments." },
-    { q: "Do you restock frequently?", a: "Yes, popular cleaning items are restocked regularly." },
+    { q: "Are cleaning products safe?", a: "Yes, when used properly." },
+    { q: "Do you offer eco-friendly products?", a: "Yes, selected items available." },
+    { q: "Can I buy in bulk?", a: "Yes, bulk orders supported." },
+    { q: "Are products commercial grade?", a: "Yes, suitable for industries." },
+  ],
+
+  // ===============================
+  // 🆕 NEW CATEGORIES ADDED
+  // ===============================
+
+  "Perfume Gifts": [
+    { q: "Are perfume gift sets available?", a: "Yes, we offer premium gift sets." },
+    { q: "Is packaging suitable for gifting?", a: "Yes, luxury gift packaging included." },
+    { q: "Do gift sets include multiple perfumes?", a: "Some sets include mini fragrances." },
+    { q: "Are perfumes original in gift sets?", a: "Yes, all are 100% original." },
+  ],
+
+  "Men Perfume": [
+    { q: "What type of men perfumes do you offer?", a: "We offer fresh, woody, and strong masculine scents." },
+    { q: "Are men perfumes long lasting?", a: "Yes, up to 10 hours depending on skin type." },
+    { q: "Are these suitable for daily use?", a: "Yes, perfect for daily wear." },
+    { q: "Do you offer luxury men perfumes?", a: "Yes, premium designer collections available." },
+  ],
+
+  "Women Perfume": [
+    { q: "What types of women perfumes are available?", a: "Floral, fruity, and sweet fragrances." },
+    { q: "Are women perfumes long lasting?", a: "Yes, 6–12 hours depending on usage." },
+    { q: "Are these suitable for parties?", a: "Yes, perfect for special occasions." },
+    { q: "Do you have luxury brands?", a: "Yes, premium fragrances available." },
+  ],
+
+  "Tester Perfume": [
+    { q: "What is a tester perfume?", a: "It is the same fragrance in simple packaging." },
+    { q: "Are testers original?", a: "Yes, same original fragrance." },
+    { q: "Why are testers cheaper?", a: "Because they come without luxury packaging." },
+    { q: "Do testers last long?", a: "Yes, same performance as regular perfumes." },
+  ],
+
+  "Children Perfume": [
+    { q: "Are children perfumes safe?", a: "Yes, made with mild ingredients." },
+    { q: "Are they alcohol-free?", a: "Many options are alcohol-free." },
+    { q: "Do they have strong smell?", a: "No, they are light and soft fragrances." },
+    { q: "Are they suitable for daily use?", a: "Yes, safe for daily application." },
+  ],
+
+  "Safety & Security": [
+    { q: "Do you sell safety equipment?", a: "Yes, helmets, gloves, and protective gear." },
+    { q: "Are products industrial grade?", a: "Yes, suitable for workplace safety." },
+    { q: "Do you offer CCTV systems?", a: "Yes, security devices are available." },
+    { q: "Are items certified?", a: "Yes, many products meet safety standards." },
+  ],
+
+  "Plumbing & HVAC": [
+    { q: "Do you sell plumbing tools?", a: "Yes, full plumbing equipment available." },
+    { q: "Do you offer HVAC systems?", a: "Yes, heating and cooling equipment available." },
+    { q: "Are tools professional grade?", a: "Yes, for industrial and home use." },
+    { q: "Do you sell spare parts?", a: "Yes, replacement parts available." },
+  ],
+
+  "Food Service": [
+    { q: "Do you sell food service equipment?", a: "Yes, restaurant-grade tools and machines." },
+    { q: "Is equipment suitable for restaurants?", a: "Yes, designed for commercial use." },
+    { q: "Do you offer kitchen tools?", a: "Yes, full kitchen and cooking equipment." },
+    { q: "Are items durable?", a: "Yes, built for heavy usage." },
+  ],
+
+  "Test Instruments": [
+    { q: "What are test instruments used for?", a: "Used for measuring and industrial testing." },
+    { q: "Are devices accurate?", a: "Yes, high precision instruments." },
+    { q: "Do you offer digital gauges?", a: "Yes, modern digital tools available." },
+    { q: "Are they calibrated?", a: "Yes, factory calibrated." },
   ],
 };
 
