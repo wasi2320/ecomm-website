@@ -43,7 +43,6 @@ const Counter = ({ value, start }) => {
         1
       );
 
-      // smoother easing
       const ease =
         1 - Math.pow(1 - progress, 4);
 
@@ -71,10 +70,108 @@ const Counter = ({ value, start }) => {
 };
 
 ////////////////////////////////////////////////////////////
-// CARD
+// MOBILE CARD
 ////////////////////////////////////////////////////////////
 
-const StatCard = ({
+const MobileStatCard = ({
+  stat,
+  inView,
+  index,
+}) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={
+        inView
+          ? {
+              opacity: 1,
+              y: 0,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.7,
+        delay: index * 0.08,
+      }}
+      className="
+        relative
+        overflow-hidden
+        rounded-[28px]
+        border
+        border-white/10
+        bg-[#111111]
+        p-6
+      "
+    >
+      {/* GLOW */}
+      <div className="absolute inset-0 bg-yellow-400/5" />
+
+      {/* CONTENT */}
+      <div className="relative z-10 text-center">
+
+        {/* ICON */}
+        <div
+          className="
+            mx-auto
+            w-16
+            h-16
+            rounded-2xl
+            flex
+            items-center
+            justify-center
+            text-2xl
+            text-yellow-400
+            border
+            border-yellow-400/20
+            bg-yellow-400/5
+          "
+        >
+          {stat.icon}
+        </div>
+
+        {/* NUMBER */}
+        <div
+          className="
+            mt-6
+            text-4xl
+            font-bold
+            text-white
+            break-words
+          "
+        >
+          <Counter
+            value={stat.value}
+            start={inView}
+          />
+        </div>
+
+        {/* LABEL */}
+        <p
+          className="
+            mt-3
+            text-gray-400
+            text-sm
+            leading-relaxed
+          "
+        >
+          {stat.label}
+        </p>
+
+        {/* LINE */}
+        <div className="mx-auto mt-5 h-[2px] w-12 bg-yellow-400/30" />
+      </div>
+    </motion.div>
+  );
+};
+
+////////////////////////////////////////////////////////////
+// DESKTOP CARD
+////////////////////////////////////////////////////////////
+
+const DesktopStatCard = ({
   stat,
   inView,
   index,
@@ -96,43 +193,48 @@ const StatCard = ({
       transition={{
         duration: 0.8,
         delay: index * 0.1,
-        ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{
         y: -10,
         scale: 1.02,
       }}
       className="
-        group relative
-        transform-gpu will-change-transform
+        group
+        relative
+        transform-gpu
       "
     >
-      {/* OUTER GLOW */}
+      {/* GLOW */}
       <div
         className="
-        absolute inset-0
-        rounded-[32px]
-        opacity-0
-        group-hover:opacity-100
-        transition duration-500
-        bg-yellow-400/10
-        blur-2xl
-      "
+          absolute
+          inset-0
+          rounded-[32px]
+          opacity-0
+          group-hover:opacity-100
+          transition
+          duration-500
+          bg-yellow-400/10
+          blur-2xl
+        "
       />
 
       {/* CARD */}
       <div
         className="
-        relative overflow-hidden
-        rounded-[32px]
-        border border-white/10
-        bg-[#111111]
-        p-8 sm:p-10
-        transition duration-500
-        group-hover:border-yellow-400/20
-      "
+          relative
+          overflow-hidden
+          rounded-[32px]
+          border
+          border-white/10
+          bg-[#111111]
+          p-8
+          transition
+          duration-500
+          group-hover:border-yellow-400/20
+        "
       >
-        {/* GRID BG */}
+        {/* GRID */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -142,34 +244,22 @@ const StatCard = ({
           }}
         />
 
-        {/* TOP LIGHT */}
-        <div
-          className="
-          absolute top-0 left-0
-          h-[1px] w-full
-          bg-gradient-to-r
-          from-transparent
-          via-yellow-400/40
-          to-transparent
-          opacity-0
-          group-hover:opacity-100
-          transition duration-500
-        "
-        />
-
         {/* SHIMMER */}
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="
-            absolute top-0 -left-[120%]
-            h-full w-[40%]
-            rotate-12
-            bg-gradient-to-r
-            from-transparent
-            via-white/10
-            to-transparent
-            group-hover:animate-shimmer
-          "
+              absolute
+              top-0
+              -left-[120%]
+              h-full
+              w-[40%]
+              rotate-12
+              bg-gradient-to-r
+              from-transparent
+              via-white/10
+              to-transparent
+              group-hover:animate-shimmer
+            "
           />
         </div>
 
@@ -177,40 +267,35 @@ const StatCard = ({
         <div className="relative z-10 text-center">
 
           {/* ICON */}
-          <motion.div
-            whileHover={{
-              rotate: 5,
-              scale: 1.08,
-            }}
-            transition={{
-              type: "spring",
-              stiffness: 200,
-              damping: 15,
-            }}
+          <div
             className="
               mx-auto
-              w-20 h-20
+              w-20
+              h-20
               rounded-2xl
-              flex items-center justify-center
+              flex
+              items-center
+              justify-center
               text-3xl
               text-yellow-400
-              border border-yellow-400/20
+              border
+              border-yellow-400/20
               bg-yellow-400/5
-              shadow-[0_0_40px_rgba(250,204,21,0.08)]
             "
           >
             {stat.icon}
-          </motion.div>
+          </div>
 
           {/* NUMBER */}
           <div
             className="
-            mt-8
-            text-5xl sm:text-6xl
-            font-bold
-            tracking-tight
-            text-white
-          "
+              mt-8
+              text-5xl
+              xl:text-6xl
+              font-bold
+              tracking-tight
+              text-white
+            "
           >
             <Counter
               value={stat.value}
@@ -221,11 +306,11 @@ const StatCard = ({
           {/* LABEL */}
           <p
             className="
-            mt-4
-            text-gray-400
-            text-sm sm:text-base
-            tracking-wide
-          "
+              mt-4
+              text-gray-400
+              text-sm
+              xl:text-base
+            "
           >
             {stat.label}
           </p>
@@ -233,12 +318,15 @@ const StatCard = ({
           {/* LINE */}
           <div
             className="
-            mx-auto mt-6
-            h-[2px] w-10
-            bg-yellow-400/30
-            transition-all duration-500
-            group-hover:w-24
-          "
+              mx-auto
+              mt-6
+              h-[2px]
+              w-10
+              bg-yellow-400/30
+              transition-all
+              duration-500
+              group-hover:w-24
+            "
           />
         </div>
       </div>
@@ -259,7 +347,7 @@ export default function BusinessGraph() {
   });
 
   ////////////////////////////////////////////////////////////
-  // SMOOTH PARALLAX
+  // PARALLAX
   ////////////////////////////////////////////////////////////
 
   const { scrollYProgress } = useScroll({
@@ -313,11 +401,13 @@ export default function BusinessGraph() {
     <section
       ref={sectionRef}
       className="
-      relative overflow-hidden
-      bg-[#050505]
-      py-24 sm:py-32
-      text-white
-    "
+        relative
+        overflow-hidden
+        bg-[#050505]
+        py-16
+        sm:py-24
+        text-white
+      "
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0">
@@ -336,29 +426,47 @@ export default function BusinessGraph() {
         <motion.div
           style={{ y: y1 }}
           className="
-          absolute top-0 left-0
-          w-[350px] h-[350px]
-          rounded-full
-          bg-yellow-400/10
-          blur-3xl
-        "
+            absolute
+            top-0
+            left-0
+            w-[250px]
+            h-[250px]
+            sm:w-[350px]
+            sm:h-[350px]
+            rounded-full
+            bg-yellow-400/10
+            blur-3xl
+          "
         />
 
         <motion.div
           style={{ y: y2 }}
           className="
-          absolute bottom-0 right-0
-          w-[350px] h-[350px]
-          rounded-full
-          bg-yellow-400/10
-          blur-3xl
-        "
+            absolute
+            bottom-0
+            right-0
+            w-[250px]
+            h-[250px]
+            sm:w-[350px]
+            sm:h-[350px]
+            rounded-full
+            bg-yellow-400/10
+            blur-3xl
+          "
         />
       </div>
 
       {/* CONTENT */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-
+      <div
+        className="
+          relative
+          z-10
+          max-w-7xl
+          mx-auto
+          px-4
+          sm:px-6
+        "
+      >
         {/* HEADER */}
         <motion.div
           initial={{
@@ -376,27 +484,33 @@ export default function BusinessGraph() {
           transition={{
             duration: 0.8,
           }}
-          className="text-center mb-20"
+          className="text-center mb-14 sm:mb-20"
         >
           {/* BADGE */}
           <div
             className="
-            inline-flex items-center gap-2
-            px-5 py-2
-            rounded-full
-            border border-yellow-400/20
-            bg-yellow-400/5
-            mb-6
-          "
+              inline-flex
+              items-center
+              gap-2
+              px-4
+              py-2
+              rounded-full
+              border
+              border-yellow-400/20
+              bg-yellow-400/5
+              mb-6
+            "
           >
             <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
 
             <span
               className="
-              text-xs uppercase
-              tracking-[0.3em]
-              text-yellow-300
-            "
+                text-[10px]
+                sm:text-xs
+                uppercase
+                tracking-[0.25em]
+                text-yellow-300
+              "
             >
               Business Insights
             </span>
@@ -405,20 +519,24 @@ export default function BusinessGraph() {
           {/* TITLE */}
           <h2
             className="
-            text-4xl sm:text-5xl lg:text-6xl
-            font-bold
-            leading-tight
-          "
+              text-3xl
+              sm:text-5xl
+              lg:text-6xl
+              font-bold
+              leading-tight
+            "
           >
             Performance That
+
             <span
               className="
-              block text-transparent
-              bg-clip-text
-              bg-gradient-to-r
-              from-white
-              to-yellow-400
-            "
+                block
+                text-transparent
+                bg-clip-text
+                bg-gradient-to-r
+                from-white
+                to-yellow-400
+              "
             >
               Speaks For Itself
             </span>
@@ -427,12 +545,15 @@ export default function BusinessGraph() {
           {/* TEXT */}
           <p
             className="
-            max-w-2xl mx-auto
-            mt-6
-            text-gray-400
-            text-sm sm:text-base
-            leading-relaxed
-          "
+              max-w-2xl
+              mx-auto
+              mt-5
+              text-gray-400
+              text-sm
+              sm:text-base
+              leading-relaxed
+              px-2
+            "
           >
             Trusted by thousands of customers
             worldwide with premium quality,
@@ -441,18 +562,30 @@ export default function BusinessGraph() {
           </p>
         </motion.div>
 
-        {/* STATS */}
+        {/* MOBILE */}
+        <div className="flex flex-col gap-4 md:hidden">
+          {stats.map((stat, index) => (
+            <MobileStatCard
+              key={index}
+              stat={stat}
+              inView={isInView}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* DESKTOP */}
         <div
           className="
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          xl:grid-cols-4
-          gap-8
-        "
+            hidden
+            md:grid
+            md:grid-cols-2
+            xl:grid-cols-4
+            gap-8
+          "
         >
           {stats.map((stat, index) => (
-            <StatCard
+            <DesktopStatCard
               key={index}
               stat={stat}
               inView={isInView}
