@@ -6,19 +6,23 @@ import { MdOutlineLabelImportant } from "react-icons/md";
 import Image from "../../designLayouts/Image";
 import Badge from "./Badge";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../redux/orebiSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, toggleWishlist } from "../../../redux/orebiSlice";
 
 const Product = (props) => {
   const dispatch = useDispatch();
-
-  const _id = props.productName;
-  const idString = (_id) => {
-    return String(_id).toLowerCase().split(" ").join("");
-  };
-  const rootId = idString(_id);
-
   const navigate = useNavigate();
+
+  // ❤️ GET WISHLIST FROM REDUX
+  const wishlist = useSelector(
+    (state) => state.orebiReducer.wishlist
+  );
+
+  const rootId = props._id;
+
+  const isWishlisted = wishlist?.some(
+    (item) => item._id === rootId
+  );
 
   const handleProductDetails = () => {
     navigate(`/product/${rootId}`, {
@@ -26,51 +30,56 @@ const Product = (props) => {
     });
   };
 
-  // ⭐ STARS
-  const renderStars = () => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={i < props.rating ? "text-yellow-400" : "text-gray-600"}>
+  const renderStars = () =>
+    Array.from({ length: 5 }, (_, i) => (
+      <span
+        key={i}
+        className={
+          i < props.rating ? "text-yellow-400" : "text-gray-600"
+        }
+      >
         ★
       </span>
     ));
-  };
 
-  // 🔥 TITLE SLICE
-  const truncateTitle = (title, maxLength = 38) => {
-    if (!title) return "";
-    return title.length > maxLength
-      ? title.substring(0, maxLength).trim() + "..."
+  const truncateTitle = (title, max = 38) =>
+    !title
+      ? ""
+      : title.length > max
+      ? title.slice(0, max) + "..."
       : title;
-  };
 
   return (
     <div className="w-full h-full flex flex-col group">
 
       {/* IMAGE */}
-      <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
-
-        {/* 🔥 SMALLER IMAGE ON MOBILE */}
+      <div
+        onClick={handleProductDetails}
+        className="relative overflow-hidden rounded-lg sm:rounded-xl cursor-pointer"
+      >
         <Image
           className="w-full h-[140px] sm:h-[180px] md:h-[240px] lg:h-[260px] object-cover"
           imgSrc={props.img}
         />
 
         {props.badge && (
-          <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+          <div className="absolute top-2 left-2">
             <Badge text="New" />
           </div>
         )}
 
-        {/* DESKTOP HOVER ONLY */}
+        {/* DESKTOP ACTIONS */}
         <div className="hidden md:block absolute bottom-0 left-0 w-full bg-white translate-y-full group-hover:translate-y-0 transition duration-500">
-          <ul className="flex flex-col text-xs md:text-sm px-3 py-2 gap-2 border-t">
+          <ul className="flex flex-col text-xs px-3 py-2 gap-2 border-t">
 
-            <li className="flex justify-end items-center gap-2 text-gray-600 cursor-pointer">
+            <li className="flex justify-end items-center gap-2 text-gray-600">
               Compare <GiReturnArrow />
             </li>
 
+            {/* CART */}
             <li
-              onClick={() =>
+              onClick={(e) => {
+                e.stopPropagation();
                 dispatch(
                   addToCart({
                     _id: props._id,
@@ -79,13 +88,14 @@ const Product = (props) => {
                     image: props.img,
                     price: props.price,
                   })
-                )
-              }
+                );
+              }}
               className="flex justify-end items-center gap-2 text-gray-600 cursor-pointer"
             >
               Add to Cart <FaShoppingCart />
             </li>
 
+            {/* DETAILS */}
             <li
               onClick={handleProductDetails}
               className="flex justify-end items-center gap-2 text-gray-600 cursor-pointer"
@@ -93,47 +103,59 @@ const Product = (props) => {
               View Details <MdOutlineLabelImportant />
             </li>
 
-            <li className="flex justify-end items-center gap-2 text-gray-600 cursor-pointer">
-              Wishlist <BsSuitHeartFill />
+            {/* ❤️ WISHLIST (FULLY WORKING) */}
+            <li
+              onClick={(e) => {
+                e.stopPropagation();
+
+                dispatch(
+                  toggleWishlist({
+                    _id: props._id,
+                    name: props.productName,
+                    image: props.img,
+                    price: props.price,
+                  })
+                );
+              }}
+              className="flex justify-end items-center gap-2 text-gray-600 cursor-pointer"
+            >
+              <span
+                className={
+                  isWishlisted ? "text-red-500" : "text-gray-600"
+                }
+              >
+                Wishlist
+              </span>
+
+              <BsSuitHeartFill
+                className={
+                  isWishlisted ? "text-red-500" : "text-gray-400"
+                }
+              />
             </li>
+
           </ul>
         </div>
       </div>
 
       {/* CONTENT */}
-      <div className="flex flex-col flex-1 justify-between border border-t-0 border-white/10 px-2 sm:px-4 py-2 sm:py-4 bg-black">
+      <div className="flex flex-col flex-1 justify-between border border-t-0 border-white/10 px-2 sm:px-4 py-2 bg-black">
 
-        {/* TOP */}
         <div className="flex justify-between items-start gap-2">
-
-          <h2 className="text-[11px] sm:text-sm md:text-base font-semibold text-white leading-tight 
-          line-clamp-2 h-[34px] sm:h-[40px] md:h-[44px] overflow-hidden">
+          <h2 className="text-[11px] sm:text-sm font-semibold text-white line-clamp-2 h-[44px]">
             {truncateTitle(props.productName)}
           </h2>
 
-          <p className="text-[11px] sm:text-sm text-white whitespace-nowrap">
+          <p className="text-[11px] sm:text-sm text-white">
             ${props.price}
           </p>
         </div>
 
-        {/* MIDDLE */}
-        <div className="mt-1 sm:mt-2 space-y-[2px] sm:space-y-1">
-
-          <p className="text-[9px] sm:text-xs text-gray-400 line-clamp-1 h-[14px]">
-            {props.color}
-          </p>
-
-          <p className="text-[9px] sm:text-xs text-white font-medium line-clamp-1 h-[14px]">
-            {props.reviewName}
-          </p>
-
-          <p className="text-[9px] sm:text-xs text-gray-500 line-clamp-2 h-[26px] overflow-hidden">
-            {props.review}
-          </p>
+        <div className="mt-1 text-[10px] text-gray-400 line-clamp-2">
+          {props.review}
         </div>
 
-        {/* BOTTOM */}
-        <div className="mt-1 flex items-center text-[9px] sm:text-xs">
+        <div className="mt-2 flex text-xs">
           {renderStars()}
         </div>
 

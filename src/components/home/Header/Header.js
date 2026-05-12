@@ -446,6 +446,7 @@ const Header = () => {
 
                 <NavItem to="/">Home</NavItem>
                 <NavItem to="/shop">Shop</NavItem>
+                <NavItem to="/wishlist">Wishlist</NavItem>
                 <NavItem to="/about">About</NavItem>
                 <NavItem to="/contact">Contact</NavItem>
 
@@ -612,6 +613,10 @@ const Header = () => {
                     {
                       name: "Shop",
                       path: "/shop",
+                    },
+                    {
+                      name: "Wishlist",
+                      path: "/wishlist",
                     },
                     {
                       name: "About",

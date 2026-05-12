@@ -20,7 +20,7 @@ const BannerBottom = () => {
   const [ordersToday, setOrdersToday] = useState(0);
 
   //////////////////////////////////////////////////////
-  // LIVE ORDERS COUNTER
+  // LIVE ORDERS
   //////////////////////////////////////////////////////
   useEffect(() => {
     const base = 120;
@@ -29,14 +29,14 @@ const BannerBottom = () => {
     setOrdersToday(base + random);
 
     const interval = setInterval(() => {
-      setOrdersToday((prev) => prev + Math.floor(Math.random() * 2));
+      setOrdersToday((prev) => prev + 1);
     }, 7000);
 
     return () => clearInterval(interval);
   }, []);
 
   //////////////////////////////////////////////////////
-  // SMOOTHER PARALLAX
+  // PARALLAX
   //////////////////////////////////////////////////////
   const ref = useRef(null);
 
@@ -45,11 +45,9 @@ const BannerBottom = () => {
     offset: ["start end", "end start"],
   });
 
-  // 🔥 MUCH SMOOTHER VALUES
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 40,
     damping: 20,
-    mass: 0.8,
   });
 
   const yParallax = useTransform(
@@ -70,7 +68,7 @@ const BannerBottom = () => {
   });
 
   //////////////////////////////////////////////////////
-  // DELIVERY ETA
+  // ETA
   //////////////////////////////////////////////////////
   const getETA = () => {
     const today = new Date();
@@ -140,7 +138,14 @@ const BannerBottom = () => {
   return (
     <section
       ref={ref}
-      className="relative w-full overflow-hidden bg-[#050505] py-16 sm:py-20 lg:py-28"
+      className="
+        relative
+        w-full
+        overflow-hidden
+        bg-[#050505]
+        py-14
+        sm:py-20
+      "
     >
       {/* BACKGROUND */}
       <div className="absolute inset-0 overflow-hidden">
@@ -155,10 +160,10 @@ const BannerBottom = () => {
           }}
         />
 
-        {/* BLUR ORBS */}
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-yellow-500/5 blur-[140px] rounded-full" />
+        {/* BLURS */}
+        <div className="absolute top-0 left-0 w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-yellow-500/5 blur-[120px] rounded-full" />
 
-        <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-yellow-400/5 blur-[140px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[250px] h-[250px] sm:w-[450px] sm:h-[450px] bg-yellow-400/5 blur-[120px] rounded-full" />
       </div>
 
       {/* CONTENT */}
@@ -167,7 +172,15 @@ const BannerBottom = () => {
           y: yParallax,
           opacity,
         }}
-        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6"
+        className="
+          relative
+          z-10
+          w-full
+          max-w-7xl
+          mx-auto
+          px-4
+          sm:px-6
+        "
       >
         {/* TOP */}
         <motion.div
@@ -175,38 +188,103 @@ const BannerBottom = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{
             duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
           }}
-          className="text-center mb-14"
+          className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-yellow-500/20 bg-yellow-500/5 backdrop-blur-md mb-6">
-
+          {/* BADGE */}
+          <div
+            className="
+              inline-flex
+              items-center
+              gap-2
+              px-4
+              py-2
+              rounded-full
+              border
+              border-yellow-500/20
+              bg-yellow-500/5
+              backdrop-blur-md
+              mb-6
+            "
+          >
             <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
 
-            <span className="text-xs uppercase tracking-[0.3em] text-yellow-300">
+            <span
+              className="
+                text-[10px]
+                sm:text-xs
+                uppercase
+                tracking-[0.25em]
+                text-yellow-300
+              "
+            >
               Trusted Worldwide
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
+          {/* TITLE */}
+          <h2
+            className="
+              text-3xl
+              sm:text-5xl
+              font-bold
+              text-white
+              leading-tight
+            "
+          >
             Why Customers
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-500 to-orange-400">
+
+            <span
+              className="
+                block
+                text-transparent
+                bg-clip-text
+                bg-gradient-to-r
+                from-yellow-300
+                via-yellow-500
+                to-orange-400
+              "
+            >
               Choose Our Store
             </span>
           </h2>
 
-          <p className="text-gray-500 max-w-2xl mx-auto mt-5 text-sm sm:text-base leading-relaxed">
+          {/* DESC */}
+          <p
+            className="
+              text-gray-500
+              max-w-2xl
+              mx-auto
+              mt-5
+              text-sm
+              sm:text-base
+              leading-relaxed
+              px-2
+            "
+          >
             Premium quality products, luxury shopping experience,
             lightning-fast shipping, and secure checkout trusted
             by thousands of customers worldwide.
           </p>
         </motion.div>
 
-        {/* CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        {/* MOBILE */}
+        <div className="flex flex-col gap-4 md:hidden w-full">
+          {items.map((item, index) => (
+            <MobileCard
+              key={index}
+              item={item}
+              index={index}
+              isInView={isInView}
+            />
+          ))}
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden md:grid grid-cols-2 xl:grid-cols-3 gap-5">
           <AnimatePresence>
             {items.map((item, index) => (
-              <Card
+              <DesktopCard
                 key={index}
                 item={item}
                 index={index}
@@ -221,30 +299,120 @@ const BannerBottom = () => {
 };
 
 ////////////////////////////////////////////////////////
-// CARD
+// MOBILE CARD
 ////////////////////////////////////////////////////////
 
-const Card = ({ item, index, isInView }) => {
+const MobileCard = ({ item, index, isInView }) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+            }
+          : {}
+      }
+      transition={{
+        duration: 0.7,
+        delay: index * 0.08,
+      }}
+      className="
+        relative
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/[0.03]
+        backdrop-blur-xl
+        p-5
+      "
+    >
+      {/* GLOW */}
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${item.glow} opacity-40`}
+      />
+
+      {/* CONTENT */}
+      <div className="relative z-10 flex items-start gap-4">
+
+        {/* ICON */}
+        <div
+          className="
+            min-w-[58px]
+            h-[58px]
+            rounded-2xl
+            flex
+            items-center
+            justify-center
+            text-2xl
+            text-yellow-400
+            border
+            border-yellow-500/20
+            bg-yellow-500/5
+          "
+        >
+          {item.icon}
+        </div>
+
+        {/* TEXT */}
+        <div className="flex-1 min-w-0">
+
+          <h3
+            className="
+              text-white
+              text-xl
+              font-semibold
+              leading-snug
+              break-words
+            "
+          >
+            {item.title}
+          </h3>
+
+          <p
+            className="
+              text-sm
+              text-gray-400
+              mt-2
+              leading-relaxed
+              break-words
+            "
+          >
+            {item.desc}
+          </p>
+
+          <div className="mt-4 w-12 h-[2px] bg-yellow-500/40" />
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+////////////////////////////////////////////////////////
+// DESKTOP CARD
+////////////////////////////////////////////////////////
+
+const DesktopCard = ({ item, index, isInView }) => {
   const cardRef = useRef(null);
 
   const prefersReducedMotion = useReducedMotion();
 
-  //////////////////////////////////////////////////////
-  // SMOOTHER TILT
-  //////////////////////////////////////////////////////
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
   const springX = useSpring(x, {
     stiffness: 60,
     damping: 18,
-    mass: 0.6,
   });
 
   const springY = useSpring(y, {
     stiffness: 60,
     damping: 18,
-    mass: 0.6,
   });
 
   const rotateX = useTransform(
@@ -259,9 +427,6 @@ const Card = ({ item, index, isInView }) => {
     [-5, 5]
   );
 
-  //////////////////////////////////////////////////////
-  // MOUSE MOVE
-  //////////////////////////////////////////////////////
   const handleMouseMove = (e) => {
     if (window.innerWidth < 768 || prefersReducedMotion) return;
 
@@ -302,7 +467,6 @@ const Card = ({ item, index, isInView }) => {
       transition={{
         duration: 0.8,
         delay: index * 0.08,
-        ease: [0.22, 1, 0.36, 1],
       }}
       style={{
         rotateX,
@@ -310,12 +474,21 @@ const Card = ({ item, index, isInView }) => {
         x: springX,
         y: springY,
         transformStyle: "preserve-3d",
-        willChange: "transform",
       }}
       whileHover={{
         scale: 1.02,
       }}
-      className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-2xl p-6 sm:p-7"
+      className="
+        group
+        relative
+        overflow-hidden
+        rounded-3xl
+        border
+        border-white/10
+        bg-white/[0.03]
+        backdrop-blur-2xl
+        p-7
+      "
     >
       {/* GLOW */}
       <div
@@ -325,39 +498,28 @@ const Card = ({ item, index, isInView }) => {
       {/* BORDER */}
       <div className="absolute inset-0 rounded-3xl border border-yellow-500/10 group-hover:border-yellow-500/30 transition duration-500" />
 
-      {/* SHIMMER */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute -left-[120%] top-0 h-full w-[40%] rotate-12 
-          bg-gradient-to-r from-transparent via-yellow-300/10 to-transparent 
-          group-hover:animate-shimmer"
-        />
-      </div>
-
       {/* CONTENT */}
       <div className="relative z-10 flex items-start gap-5">
 
         {/* ICON */}
-        <motion.div
-          whileHover={{
-            scale: 1.08,
-            rotate: 4,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 180,
-            damping: 12,
-          }}
-          className="relative min-w-[60px] h-[60px] rounded-2xl flex items-center justify-center 
-          text-2xl text-yellow-400 border border-yellow-500/20 bg-yellow-500/5"
+        <div
+          className="
+            relative
+            min-w-[60px]
+            h-[60px]
+            rounded-2xl
+            flex
+            items-center
+            justify-center
+            text-2xl
+            text-yellow-400
+            border
+            border-yellow-500/20
+            bg-yellow-500/5
+          "
         >
-          {/* ICON GLOW */}
-          <div className="absolute inset-0 rounded-2xl bg-yellow-400/20 blur-xl opacity-0 group-hover:opacity-100 transition duration-500" />
-
-          <div className="relative z-10">
-            {item.icon}
-          </div>
-        </motion.div>
+          {item.icon}
+        </div>
 
         {/* TEXT */}
         <div className="flex-1">
@@ -370,15 +532,9 @@ const Card = ({ item, index, isInView }) => {
             {item.desc}
           </p>
 
-          {/* LINE */}
           <div className="mt-5 w-10 h-[2px] bg-yellow-500/40 group-hover:w-20 transition-all duration-500" />
         </div>
       </div>
-
-      {/* PARTICLES */}
-      <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-yellow-400/40 animate-pulse" />
-
-      <div className="absolute bottom-6 right-10 w-1 h-1 rounded-full bg-yellow-300/30 animate-ping" />
     </motion.div>
   );
 };

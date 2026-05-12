@@ -8,10 +8,17 @@ import { useSelector } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 
 const SpecialCase = () => {
-  const products = useSelector((state) => state.orebiReducer.products);
+  // ✅ FIXED: safe fallback (prevents crash if store not loaded yet)
+  const products =
+    useSelector((state) => state.orebiReducer.products) || [];
+
+  const wishlist =
+    useSelector((state) => state.orebiReducer.wishlist) || [];
+
   const [open, setOpen] = useState(true);
 
-  const scrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollTop = () =>
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
   const Item = ({ icon, label, link, onClick, badge }) => (
     <motion.div
@@ -22,10 +29,12 @@ const SpecialCase = () => {
     >
       {link ? (
         <Link to={link} className="flex items-center w-full">
-          
-          {/* ICON (FIXED CENTER) */}
+
+          {/* ICON */}
           <div className="min-w-[48px] h-12 flex items-center justify-center relative">
             {icon}
+
+            {/* ✅ BADGE FIXED */}
             {badge > 0 && (
               <span className="absolute -top-1 -right-1 bg-yellow-400 text-black text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full">
                 {badge}
@@ -55,7 +64,7 @@ const SpecialCase = () => {
   return (
     <div className="fixed top-1/2 -translate-y-1/2 right-4 z-50 hidden md:flex flex-col items-end gap-4">
 
-      {/* TOGGLE */}
+      {/* TOGGLE (UNCHANGED) */}
       <motion.button
         whileTap={{ scale: 0.9 }}
         onClick={() => setOpen(!open)}
@@ -73,12 +82,46 @@ const SpecialCase = () => {
             exit={{ opacity: 0 }}
             className="flex flex-col gap-4"
           >
-            <Item icon={<MdSwitchAccount size={20} />} label="Profile" link="/signin" />
-            <Item icon={<RiShoppingCart2Fill size={20} />} label="Cart" link="/cart" badge={products.length} />
-            <Item icon={<FaHeart size={18} />} label="Wishlist" link="/offer" />
-            <Item icon={<MdOutlineCompare size={20} />} label="Compare" link="/cart" />
-            <Item icon={<BsChatDotsFill size={18} />} label="Support" link="/contact"/>
-            <Item icon={<FaArrowUp size={18} />} label="Top" onClick={scrollTop} />
+
+            <Item
+              icon={<MdSwitchAccount size={20} />}
+              label="Profile"
+              link="/signin"
+            />
+
+            <Item
+              icon={<RiShoppingCart2Fill size={20} />}
+              label="Cart"
+              link="/cart"
+              badge={products.length}
+            />
+
+            {/* ✅ FIXED: Wishlist now works */}
+            <Item
+              icon={<FaHeart size={18} />}
+              label="Wishlist"
+              link="/wishlist"
+              badge={wishlist.length}
+            />
+
+            <Item
+              icon={<MdOutlineCompare size={20} />}
+              label="Compare"
+              link="/cart"
+            />
+
+            <Item
+              icon={<BsChatDotsFill size={18} />}
+              label="Support"
+              link="/contact"
+            />
+
+            <Item
+              icon={<FaArrowUp size={18} />}
+              label="Top"
+              onClick={scrollTop}
+            />
+
           </motion.div>
         )}
       </AnimatePresence>
@@ -87,6 +130,3 @@ const SpecialCase = () => {
 };
 
 export default SpecialCase;
-
-
-

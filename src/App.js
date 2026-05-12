@@ -31,6 +31,7 @@ import Categories from "./pages/categories/categories";
 import CategoryPage from "./components/category/CategoryPage";
 import HomeVideo from "./constants/HomeVideo";
 import OrderSuccess from "./pages/payment/OrderSuccess";
+import Wishlist from "./components/home/Wishlist";
 const Layout = () => {
   return (
     <div>
@@ -56,6 +57,7 @@ const router = createBrowserRouter(
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/categories" element={<Categories />}></Route>
         <Route path="/journal" element={<Journal />}></Route>
+        <Route path="/wishlist" element={<Wishlist />} />
         {/* ==================== Header Navlink End here ===================== */}
         <Route path="/offer" element={<Offer />}></Route>
         <Route path="/product/:_id" element={<ProductDetails />}></Route>
@@ -70,6 +72,7 @@ const router = createBrowserRouter(
       {/* <Route path="/electronics" element={<Electronics />}></Route> */}
       <Route path="/officeacc" element={<OfficeAcc />}></Route>
       <Route path="/order-success" element={<OrderSuccess />} />
+      
     </Route>
   )
 );
