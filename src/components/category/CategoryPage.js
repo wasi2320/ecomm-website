@@ -1,9 +1,10 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 import ShopSideNav from "../../components/pageProps/shopPage/ShopSideNav";
 import Product from "../../components/home/Products/Product";
 import productsData from "./productsData";
+import { FaArrowLeft } from "react-icons/fa";
 
 const categoryProductMapping = {
   tools: "tools",
@@ -25,6 +26,7 @@ const categoryProductMapping = {
 
 const CategoryPage = () => {
   const { category } = useParams();
+  const navigate = useNavigate();
 
   const categoryKey = categoryProductMapping[category.toLowerCase()];
   const products = categoryKey ? productsData[categoryKey] : [];
@@ -33,6 +35,15 @@ const CategoryPage = () => {
     <div className="bg-[#0f0f0f] text-white min-h-screen">
 
       <div className="max-w-[1400px] mx-auto px-6 py-8">
+
+        {/* 🔙 BACK BUTTON */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-white/70 hover:text-white transition mb-4"
+        >
+          <FaArrowLeft />
+          Back
+        </button>
 
         {/* 🔥 HEADER */}
         <div className="mb-8">

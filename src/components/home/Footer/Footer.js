@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import FooterListTitle from "./FooterListTitle";
 import { paymentCard } from "../../../assets/images";
 import Image from "../../designLayouts/Image";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 
 import bbb from "../../../assets/trust/bbb.png";
 import dh from "../../../assets/trust/D&H.jpeg";
@@ -29,11 +29,23 @@ const Footer = () => {
   };
 
   const categories = [
+    // ================= PERFUME SECTION =================
     { name: "Giftsets", path: "/category/perfumes" },
     { name: "Men", path: "/category/male" },
     { name: "Women", path: "/category/female" },
     { name: "Children", path: "/category/children" },
     { name: "Tester", path: "/category/tester" },
+  
+    // ================= INDUSTRIAL / BUSINESS =================
+    { name: "Tools & Equipment", path: "/category/tools" },
+    { name: "Office & Shipping", path: "/category/office" },
+    { name: "Plumbing & HVAC", path: "/category/plumbing" },
+    { name: "Safety & Security", path: "/category/safety" },
+    { name: "Grounds Maintenance", path: "/category/ground" },
+    { name: "Electronics", path: "/category/electronics" },
+    { name: "Cleaning Supplies", path: "/category/janitorial" },
+    { name: "Food Service", path: "/category/food" },
+    { name: "Test Instruments", path: "/category/test" },
   ];
 
   return (
@@ -79,13 +91,40 @@ const Footer = () => {
 
           {/* ACCOUNT */}
           <div className="text-white">
-            <FooterListTitle title="Account" />
-            <ul className="mt-4 space-y-2 sm:space-y-3">
-              {["Profile", "Orders", "Addresses", "Payments"].map((item, i) => (
-                <MagneticText key={i}>{item}</MagneticText>
-              ))}
-            </ul>
-          </div>
+  <FooterListTitle title="Account" />
+
+  <ul className="mt-4 space-y-2 sm:space-y-3">
+
+  <li>
+  <Link to="/" className="hover:text-yellow-400 transition">
+    Home
+  </Link>
+</li>
+<li>
+  <Link to="/shop" className="hover:text-yellow-400 transition">
+    Shop
+  </Link>
+</li>
+<li>
+  <Link to="/wishlist" className="hover:text-yellow-400 transition">
+    Wishlist
+  </Link>
+</li>
+<li>
+  <Link to="/about" className="hover:text-yellow-400 transition">
+    About
+  </Link>
+</li>
+<li>
+  <Link to="/contact" className="hover:text-yellow-400 transition">
+    Contact
+  </Link>
+</li>
+
+   
+
+  </ul>
+</div>
 
           {/* NEWSLETTER */}
           <div className="text-white">
