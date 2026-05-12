@@ -25,6 +25,15 @@ import safety from "../../../assets/images/categoryGird2/safety-and-security.png
 import electronics from "../../../assets/images/categoryGird2/monitors-displays-and-projectors.png";
 import janitorial from "../../../assets/images/categoryGird2/cleaning-supplies.png";
 import perfume from "../../../assets/images/giftsets/gs4.jpg";
+import ground from "../../../assets/images/categoryGird2/grounds-maintenance-and-outdoor-equipment.png";
+import foodService from "../../../assets/images/categoryGird2/G5201001.png";
+import testInstruments from "../../../assets/images/categoryGird2/test-instruments-and-gauges.png";
+
+
+
+//////////////////////////////////////////////////////////
+// DATA
+//////////////////////////////////////////////////////////
 
 //////////////////////////////////////////////////////////
 // DATA
@@ -38,11 +47,19 @@ const categoriesData = [
     image: tools,
     sections: [
       {
-        title: "Popular",
+        title: "Hand Tools",
         links: [
-          { name: "Hammer", path: "/category/tools?type=hammer" },
-          { name: "Wrench", path: "/category/tools?type=wrench" },
-          { name: "Drill", path: "/category/tools?type=drill" },
+          { name: "Hammers", path: "/category/tools?type=hammers" },
+          { name: "Screwdrivers", path: "/category/tools?type=screwdrivers" },
+          { name: "Wrenches", path: "/category/tools?type=wrenches" },
+        ],
+      },
+      {
+        title: "Power Tools",
+        links: [
+          { name: "Drills", path: "/category/tools?type=drills" },
+          { name: "Grinders", path: "/category/tools?type=grinders" },
+          { name: "Saws", path: "/category/tools?type=saws" },
         ],
       },
     ],
@@ -58,7 +75,16 @@ const categoriesData = [
         title: "Office Essentials",
         links: [
           { name: "Pens", path: "/category/office?type=pens" },
+          { name: "Notebooks", path: "/category/office?type=notebooks" },
+          { name: "Staplers", path: "/category/office?type=staplers" },
+        ],
+      },
+      {
+        title: "Organization",
+        links: [
           { name: "Files", path: "/category/office?type=files" },
+          { name: "Folders", path: "/category/office?type=folders" },
+          { name: "Binders", path: "/category/office?type=binders" },
         ],
       },
     ],
@@ -74,7 +100,16 @@ const categoriesData = [
         title: "Cleaning Tools",
         links: [
           { name: "Mops", path: "/category/cleaning?type=mops" },
+          { name: "Brooms", path: "/category/cleaning?type=brooms" },
           { name: "Brushes", path: "/category/cleaning?type=brushes" },
+        ],
+      },
+      {
+        title: "Cleaning Supplies",
+        links: [
+          { name: "Detergents", path: "/category/cleaning?type=detergents" },
+          { name: "Disinfectants", path: "/category/cleaning?type=disinfectants" },
+          { name: "Towels", path: "/category/cleaning?type=towels" },
         ],
       },
     ],
@@ -87,10 +122,19 @@ const categoriesData = [
     image: plumbing,
     sections: [
       {
-        title: "Pipe Solutions",
+        title: "Pipe Systems",
         links: [
           { name: "PVC Pipes", path: "/category/plumbing?type=pvc" },
-          { name: "Valves", path: "/category/plumbing?type=valves" },
+          { name: "Copper Pipes", path: "/category/plumbing?type=copper" },
+          { name: "Fittings", path: "/category/plumbing?type=fittings" },
+        ],
+      },
+      {
+        title: "Valves & Fixtures",
+        links: [
+          { name: "Ball Valves", path: "/category/plumbing?type=ball-valves" },
+          { name: "Faucets", path: "/category/plumbing?type=faucets" },
+          { name: "Hose Bibbs", path: "/category/plumbing?type=hose-bibbs" },
         ],
       },
     ],
@@ -103,10 +147,19 @@ const categoriesData = [
     image: safety,
     sections: [
       {
-        title: "Protection",
+        title: "Personal Protection",
         links: [
           { name: "Gloves", path: "/category/safety?type=gloves" },
           { name: "Helmets", path: "/category/safety?type=helmets" },
+          { name: "Goggles", path: "/category/safety?type=goggles" },
+        ],
+      },
+      {
+        title: "Workwear",
+        links: [
+          { name: "Safety Vests", path: "/category/safety?type=vests" },
+          { name: "Boots", path: "/category/safety?type=boots" },
+          { name: "Face Shields", path: "/category/safety?type=face-shields" },
         ],
       },
     ],
@@ -123,6 +176,15 @@ const categoriesData = [
         links: [
           { name: "Laptops", path: "/category/electronics?type=laptops" },
           { name: "Monitors", path: "/category/electronics?type=monitors" },
+          { name: "Smart Watches", path: "/category/electronics?type=smartwatches" },
+        ],
+      },
+      {
+        title: "Accessories",
+        links: [
+          { name: "Chargers", path: "/category/electronics?type=chargers" },
+          { name: "Cables", path: "/category/electronics?type=cables" },
+          { name: "Headphones", path: "/category/electronics?type=headphones" },
         ],
       },
     ],
@@ -135,10 +197,97 @@ const categoriesData = [
     image: perfume,
     sections: [
       {
-        title: "Collections",
+        title: "For Men",
         links: [
-          { name: "Men", path: "/category/male" },
-          { name: "Women", path: "/category/female" },
+          { name: "Classic", path: "/category/male?type=classic" },
+          { name: "Sport", path: "/category/male?type=sport" },
+          { name: "Luxury", path: "/category/male?type=luxury" },
+        ],
+      },
+      {
+        title: "For Women",
+        links: [
+          { name: "Floral", path: "/category/female?type=floral" },
+          { name: "Sweet", path: "/category/female?type=sweet" },
+          { name: "Luxury", path: "/category/female?type=luxury" },
+        ],
+      },
+    ],
+  },
+
+  // ✅ NEW CATEGORY 1
+  {
+    title: "Grounds & Outdoor",
+    key: "grounds_outdoor",
+    path: "/category/grounds",
+    image: ground,
+    sections: [
+      {
+        title: "Gardening Tools",
+        links: [
+          { name: "Shovels", path: "/category/grounds?type=shovels" },
+          { name: "Rakes", path: "/category/grounds?type=rakes" },
+          { name: "Trowels", path: "/category/grounds?type=trowels" },
+        ],
+      },
+      {
+        title: "Outdoor Equipment",
+        links: [
+          { name: "Hoses", path: "/category/grounds?type=hose" },
+          { name: "Sprayers", path: "/category/grounds?type=sprayers" },
+          { name: "Tents", path: "/category/grounds?type=tents" },
+        ],
+      },
+    ],
+  },
+
+  // ✅ NEW CATEGORY 2
+  {
+    title: "Food Service",
+    key: "food_service",
+    path: "/category/food",
+    image: foodService,
+    sections: [
+      {
+        title: "Kitchen Equipment",
+        links: [
+          { name: "Cutlery", path: "/category/food?type=cutlery" },
+          { name: "Cookware", path: "/category/food?type=cookware" },
+          { name: "Food Prep", path: "/category/food?type=food-prep" },
+        ],
+      },
+      {
+        title: "Service Supplies",
+        links: [
+          { name: "Trays", path: "/category/food?type=trays" },
+          { name: "Containers", path: "/category/food?type=containers" },
+          { name: "Tableware", path: "/category/food?type=tableware" },
+        ],
+      },
+    ],
+  },
+
+  // ✅ NEW CATEGORY 3
+  {
+    title: "Test Instruments",
+    key: "test_instruments",
+    path: "/category/test",
+    image: testInstruments,
+    sections: [
+      {
+        title: "Measuring Tools",
+        links: [
+          { name: "Tape Measures", path: "/category/test?type=tape-measures" },
+          { name: "Calipers", path: "/category/test?type=calipers" },
+          { name: "Micrometers", path: "/category/test?type=micrometers" },
+        ],
+      },
+      {
+        title: "Electrical Testing",
+        links: [
+          { name: "Multimeters", path: "/category/test?type=multimeters" },
+          { name: "Voltage Testers", path: "/category/test?type=voltage-testers" },
+          { name: "Gauges", path: "/category/test?type=gauges" },
         ],
       },
     ],

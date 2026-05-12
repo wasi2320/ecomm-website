@@ -25,6 +25,10 @@ import {
   FiTool,
 } from "react-icons/fi";
 
+////////////////////////////////////////////////////////////
+// DATA
+////////////////////////////////////////////////////////////
+
 const categories = [
   {
     id: 1,
@@ -127,10 +131,144 @@ const categories = [
 ];
 
 ////////////////////////////////////////////////////////////
-// CARD
+// MOBILE CARD
 ////////////////////////////////////////////////////////////
 
-const CategoryCard = ({ category, navigate, index }) => {
+const MobileCategoryCard = ({
+  category,
+  navigate,
+  index,
+}) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.4,
+        delay: index * 0.03,
+      }}
+      onClick={() => navigate(category.path)}
+      className="cursor-pointer"
+    >
+      <div
+        className="
+          relative
+          overflow-hidden
+          rounded-[24px]
+          border
+          border-white/10
+          bg-[#111]
+          h-[180px]
+        "
+      >
+        {/* IMAGE */}
+        <img
+          src={category.image}
+          alt={category.name}
+          loading="lazy"
+          className="
+            absolute
+            inset-0
+            w-full
+            h-full
+            object-cover
+          "
+        />
+
+        {/* OVERLAY */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+        {/* ICON */}
+        <div
+          className="
+            absolute
+            top-3
+            left-3
+            z-20
+            w-10
+            h-10
+            rounded-full
+            bg-black/50
+            backdrop-blur-xl
+            border
+            border-white/10
+            flex
+            items-center
+            justify-center
+            text-yellow-400
+            text-sm
+          "
+        >
+          {category.icon}
+        </div>
+
+        {/* CONTENT */}
+        <div
+          className="
+            absolute
+            bottom-0
+            left-0
+            w-full
+            p-4
+            z-20
+          "
+        >
+          <div className="flex items-center justify-between gap-2">
+            <div className="min-w-0">
+              <h3
+                className="
+                  text-white
+                  text-base
+                  font-semibold
+                  truncate
+                "
+              >
+                {category.name}
+              </h3>
+
+              <p className="text-gray-400 text-xs mt-1">
+                Premium Collection
+              </p>
+            </div>
+
+            {/* ARROW */}
+            <div
+              className="
+                min-w-[38px]
+                h-[38px]
+                rounded-full
+                bg-yellow-400
+                text-black
+                flex
+                items-center
+                justify-center
+              "
+            >
+              <FiArrowUpRight size={16} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+////////////////////////////////////////////////////////////
+// DESKTOP CARD
+////////////////////////////////////////////////////////////
+
+const DesktopCategoryCard = ({
+  category,
+  navigate,
+  index,
+}) => {
   return (
     <motion.div
       initial={{
@@ -155,14 +293,19 @@ const CategoryCard = ({ category, navigate, index }) => {
     >
       <div
         className="
-        relative overflow-hidden rounded-[28px]
-        border border-white/10
-        bg-[#111]
-        h-[180px] sm:h-[220px] lg:h-[260px]
-        transition-all duration-500
-        hover:border-yellow-400/40
-        hover:shadow-[0_0_60px_rgba(250,204,21,0.08)]
-      "
+          relative
+          overflow-hidden
+          rounded-[28px]
+          border
+          border-white/10
+          bg-[#111]
+          h-[240px]
+          xl:h-[260px]
+          transition-all
+          duration-500
+          hover:border-yellow-400/40
+          hover:shadow-[0_0_60px_rgba(250,204,21,0.08)]
+        "
       >
         {/* IMAGE */}
         <motion.img
@@ -177,8 +320,10 @@ const CategoryCard = ({ category, navigate, index }) => {
             ease: "easeOut",
           }}
           className="
-            absolute inset-0
-            w-full h-full
+            absolute
+            inset-0
+            w-full
+            h-full
             object-cover
           "
         />
@@ -189,23 +334,35 @@ const CategoryCard = ({ category, navigate, index }) => {
         {/* LIGHT */}
         <div
           className="
-          absolute inset-0 opacity-0
-          group-hover:opacity-100
-          transition duration-700
-          bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.15),transparent_60%)]
-        "
+            absolute
+            inset-0
+            opacity-0
+            group-hover:opacity-100
+            transition
+            duration-700
+            bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.15),transparent_60%)]
+          "
         />
 
-        {/* TOP BADGE */}
+        {/* ICON */}
         <div
           className="
-          absolute top-4 left-4 z-20
-          w-10 h-10 rounded-full
-          bg-black/50 backdrop-blur-xl
-          border border-white/10
-          flex items-center justify-center
-          text-yellow-400
-        "
+            absolute
+            top-4
+            left-4
+            z-20
+            w-10
+            h-10
+            rounded-full
+            bg-black/50
+            backdrop-blur-xl
+            border
+            border-white/10
+            flex
+            items-center
+            justify-center
+            text-yellow-400
+          "
         >
           {category.icon}
         </div>
@@ -216,16 +373,16 @@ const CategoryCard = ({ category, navigate, index }) => {
             <div>
               <h3
                 className="
-                text-white
-                text-lg sm:text-xl
-                font-semibold
-                tracking-wide
-              "
+                  text-white
+                  text-lg
+                  xl:text-xl
+                  font-semibold
+                "
               >
                 {category.name}
               </h3>
 
-              <p className="text-gray-400 text-xs sm:text-sm mt-1">
+              <p className="text-gray-400 text-sm mt-1">
                 Premium Collection
               </p>
             </div>
@@ -236,42 +393,37 @@ const CategoryCard = ({ category, navigate, index }) => {
                 rotate: -45,
               }}
               className="
-              min-w-[42px] h-[42px]
-              rounded-full
-              bg-yellow-400
-              text-black
-              flex items-center justify-center
-              shadow-lg
-            "
+                min-w-[42px]
+                h-[42px]
+                rounded-full
+                bg-yellow-400
+                text-black
+                flex
+                items-center
+                justify-center
+              "
             >
               <FiArrowUpRight size={18} />
             </motion.div>
           </div>
         </div>
 
-        {/* BORDER */}
-        <div
-          className="
-          absolute inset-0 rounded-[28px]
-          border border-white/5
-          group-hover:border-yellow-400/20
-          transition duration-500
-        "
-        />
-
         {/* SHIMMER */}
         <div className="absolute inset-0 overflow-hidden">
           <div
             className="
-            absolute top-0 -left-[120%]
-            h-full w-[40%]
-            rotate-12
-            bg-gradient-to-r
-            from-transparent
-            via-white/10
-            to-transparent
-            group-hover:animate-shimmer
-          "
+              absolute
+              top-0
+              -left-[120%]
+              h-full
+              w-[40%]
+              rotate-12
+              bg-gradient-to-r
+              from-transparent
+              via-white/10
+              to-transparent
+              group-hover:animate-shimmer
+            "
           />
         </div>
       </div>
@@ -287,7 +439,8 @@ const CategoryGrid = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-20 bg-[#0a0a0a] overflow-hidden">
+    <section className="relative py-14 sm:py-20 bg-[#0a0a0a] overflow-hidden">
+
       {/* BG */}
       <div className="absolute inset-0">
 
@@ -300,13 +453,13 @@ const CategoryGrid = () => {
           }}
         />
 
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-yellow-500/10 blur-[140px] rounded-full" />
+        <div className="absolute top-0 left-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-yellow-500/10 blur-[140px] rounded-full" />
 
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-yellow-500/10 blur-[140px] rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] bg-yellow-500/10 blur-[140px] rounded-full" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* HEADER */}
         <motion.div
           initial={{
@@ -319,53 +472,123 @@ const CategoryGrid = () => {
           }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-14"
+          className="text-center mb-12 sm:mb-14"
         >
+          {/* BADGE */}
           <div
             className="
-            inline-flex items-center gap-2
-            px-5 py-2 rounded-full
-            border border-yellow-400/20
-            bg-yellow-400/5
-            backdrop-blur-xl
-            mb-6
-          "
+              inline-flex
+              items-center
+              gap-2
+              px-4
+              sm:px-5
+              py-2
+              rounded-full
+              border
+              border-yellow-400/20
+              bg-yellow-400/5
+              backdrop-blur-xl
+              mb-6
+            "
           >
             <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
 
-            <span className="text-xs tracking-[0.3em] uppercase text-yellow-300">
+            <span
+              className="
+                text-[10px]
+                sm:text-xs
+                tracking-[0.25em]
+                uppercase
+                text-yellow-300
+              "
+            >
               Shop Collections
             </span>
           </div>
 
+          {/* TITLE */}
           <h2
             className="
-            text-4xl sm:text-5xl lg:text-6xl
-            font-bold text-white
-            leading-tight
-          "
+              text-3xl
+              sm:text-5xl
+              lg:text-6xl
+              font-bold
+              text-white
+              leading-tight
+            "
           >
             Explore Categories
           </h2>
 
-          <p className="text-gray-500 max-w-2xl mx-auto mt-5 text-sm sm:text-base">
+          {/* TEXT */}
+          <p
+            className="
+              text-gray-500
+              max-w-2xl
+              mx-auto
+              mt-5
+              text-sm
+              sm:text-base
+              leading-relaxed
+              px-2
+            "
+          >
             Browse premium collections crafted for professionals,
             luxury shoppers, and modern lifestyles.
           </p>
         </motion.div>
 
-        {/* GRID */}
+        {/* MOBILE GRID */}
         <div
           className="
-          grid
-          grid-cols-2
-          md:grid-cols-3
-          xl:grid-cols-4
-          gap-5 sm:gap-7
-        "
+            grid
+            grid-cols-2
+            gap-4
+            sm:hidden
+          "
         >
           {categories.map((category, index) => (
-            <CategoryCard
+            <MobileCategoryCard
+              key={category.id}
+              category={category}
+              navigate={navigate}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* TABLET */}
+        <div
+          className="
+            hidden
+            sm:grid
+            lg:hidden
+            grid-cols-2
+            gap-5
+          "
+        >
+          {categories.map((category, index) => (
+            <DesktopCategoryCard
+              key={category.id}
+              category={category}
+              navigate={navigate}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* DESKTOP */}
+        <div
+          className="
+            hidden
+            lg:grid
+            grid-cols-3
+            xl:grid-cols-4
+            gap-7
+          "
+        >
+          {categories.map((category, index) => (
+            <DesktopCategoryCard
               key={category.id}
               category={category}
               navigate={navigate}
