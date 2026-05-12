@@ -71,11 +71,37 @@ const Footer = () => {
 
           {/* ABOUT */}
           <div className="text-white">
-            <FooterListTitle title="About Us" />
-            <p className="text-lightText text-xs sm:text-sm mt-4 leading-relaxed">
-            With over 3 years of experience in the ecommerce industry, we are dedicated to delivering high-quality products backed by reliability, transparency, and customer satisfaction. Our mission is to create a seamless shopping experience where customers can shop with confidence, knowing they are receiving genuine products at competitive prices. From secure payments to fast shipping and responsive support, every step of our process is designed to build trust and long-term relationships with our customers.
-            </p>
-          </div>
+  <FooterListTitle title="About Us" />
+
+  <p className="text-lightText text-xs sm:text-sm mt-4 leading-relaxed">
+    With over 3 years of experience in the ecommerce industry, we are dedicated to delivering high-quality products backed by reliability, transparency, and customer satisfaction. Our mission is to create a seamless shopping experience.
+  </p>
+
+  {/* CONTACT INFO */}
+  <div className="mt-5 space-y-2 text-xs sm:text-sm text-gray-300">
+
+    <p className="hover:text-white transition">
+      📧 Email:{" "}
+      <a
+        href="mailto:info@therideconnect.com"
+        className="text-yellow-400 hover:underline"
+      >
+        info@therideconnect.com
+      </a>
+    </p>
+
+    <p className="hover:text-white transition">
+      📞 Phone:{" "}
+      <a
+        href="tel:4807870039"
+        className="text-yellow-400 hover:underline"
+      >
+        480-787-0039
+      </a>
+    </p>
+
+  </div>
+</div>
 
           {/* SHOP */}
           <div className="text-white">
@@ -238,6 +264,16 @@ const Footer = () => {
   <div className="absolute inset-0 bg-blue-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl" />
 
   {/* BADGE */}
+  <motion.a
+  href="https://www.dandh.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="relative group flex flex-col items-center text-center"
+>
+  {/* GLOW */}
+  <div className="absolute inset-0 bg-blue-400/20 blur-2xl opacity-0 group-hover:opacity-100 transition duration-500 rounded-xl" />
+
+  {/* IMAGE */}
   <motion.img
     src={dh}
     alt="D&H Partner"
@@ -254,9 +290,10 @@ const Footer = () => {
   />
 
   {/* TEXT */}
-  <p className="text-xs sm:text-sm text-gray-400 mt-2 group-hover:text-blue-400 transition">
+  <p className="text-xs sm:text-sm text-gray-400 mt-2 group-hover:text-blue-400 transition text-center">
     Authorized Distributor
   </p>
+</motion.a>
 </motion.a>
           </div>
 
