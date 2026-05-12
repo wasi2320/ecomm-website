@@ -234,7 +234,7 @@ const Footer = () => {
 
       {/* BOTTOM */}
       <div className="border-t border-white/5 py-5 sm:py-6 text-center text-[10px] sm:text-xs text-gray-500">
-        © {new Date().getFullYear()} TRC Shop — All rights reserved
+        © {new Date().getFullYear()} RC Shop — All rights reserved
       </div>
 
     </div>

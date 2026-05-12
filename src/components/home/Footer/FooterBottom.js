@@ -314,7 +314,7 @@ const FooterBottom = () => {
         {/* 🔥 COPYRIGHT */}
         <p className="text-center text-[11px] sm:text-xs text-gray-500 flex flex-wrap justify-center items-center gap-1">
           <AiOutlineCopyright />
-          {new Date().getFullYear()} TRC Shop — All Rights Reserved
+          {new Date().getFullYear()} RC Shop — All Rights Reserved
         </p>
   
         {/* 🔥 ADDRESS */}
