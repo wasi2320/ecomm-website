@@ -41,7 +41,7 @@ const categories = [
   { id: 7, name: "Janitorial", image: janitorial },
   { id: 8, name: "Food Service", image: foodService },
   { id: 9, name: "Lab Equipment", image: lab },
-  { id: 10, name: "Perfumes", image: perfume},
+  // { id: 10, name: "Perfumes", image: perfume},
   
 ];
 

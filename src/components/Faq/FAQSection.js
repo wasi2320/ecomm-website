@@ -12,14 +12,14 @@ const data = {
     { q: "Do you ship on weekends?", a: "Orders are processed on working days only." },
   ],
 
-  "Products": [
-    { q: "Are your perfumes authentic?", a: "Yes, all perfumes are 100% original." },
-    { q: "Do you sell testers?", a: "Yes, tester versions are available at lower price." },
-    { q: "How long do perfumes last?", a: "Usually 6–10 hours depending on usage." },
-    { q: "Do perfumes expire?", a: "They last years if stored properly." },
-    { q: "Do you offer sample sizes?", a: "Yes, selected products include samples." },
-    { q: "Are products safe for skin?", a: "Yes, but patch test is recommended." },
-  ],
+  // "Products": [
+  //   { q: "Are your perfumes authentic?", a: "Yes, all perfumes are 100% original." },
+  //   { q: "Do you sell testers?", a: "Yes, tester versions are available at lower price." },
+  //   { q: "How long do perfumes last?", a: "Usually 6–10 hours depending on usage." },
+  //   { q: "Do perfumes expire?", a: "They last years if stored properly." },
+  //   { q: "Do you offer sample sizes?", a: "Yes, selected products include samples." },
+  //   { q: "Are products safe for skin?", a: "Yes, but patch test is recommended." },
+  // ],
 
   "Returns & Refunds": [
     { q: "Can I return products?", a: "Yes, within 30 days if unused." },
@@ -53,40 +53,40 @@ const data = {
   // 🆕 NEW CATEGORIES ADDED
   // ===============================
 
-  "Perfume Gifts": [
-    { q: "Are perfume gift sets available?", a: "Yes, we offer premium gift sets." },
-    { q: "Is packaging suitable for gifting?", a: "Yes, luxury gift packaging included." },
-    { q: "Do gift sets include multiple perfumes?", a: "Some sets include mini fragrances." },
-    { q: "Are perfumes original in gift sets?", a: "Yes, all are 100% original." },
-  ],
+  // "Perfume Gifts": [
+  //   { q: "Are perfume gift sets available?", a: "Yes, we offer premium gift sets." },
+  //   { q: "Is packaging suitable for gifting?", a: "Yes, luxury gift packaging included." },
+  //   { q: "Do gift sets include multiple perfumes?", a: "Some sets include mini fragrances." },
+  //   { q: "Are perfumes original in gift sets?", a: "Yes, all are 100% original." },
+  // ],
 
-  "Men Perfume": [
-    { q: "What type of men perfumes do you offer?", a: "We offer fresh, woody, and strong masculine scents." },
-    { q: "Are men perfumes long lasting?", a: "Yes, up to 10 hours depending on skin type." },
-    { q: "Are these suitable for daily use?", a: "Yes, perfect for daily wear." },
-    { q: "Do you offer luxury men perfumes?", a: "Yes, premium designer collections available." },
-  ],
+  // "Men Perfume": [
+  //   { q: "What type of men perfumes do you offer?", a: "We offer fresh, woody, and strong masculine scents." },
+  //   { q: "Are men perfumes long lasting?", a: "Yes, up to 10 hours depending on skin type." },
+  //   { q: "Are these suitable for daily use?", a: "Yes, perfect for daily wear." },
+  //   { q: "Do you offer luxury men perfumes?", a: "Yes, premium designer collections available." },
+  // ],
 
-  "Women Perfume": [
-    { q: "What types of women perfumes are available?", a: "Floral, fruity, and sweet fragrances." },
-    { q: "Are women perfumes long lasting?", a: "Yes, 6–12 hours depending on usage." },
-    { q: "Are these suitable for parties?", a: "Yes, perfect for special occasions." },
-    { q: "Do you have luxury brands?", a: "Yes, premium fragrances available." },
-  ],
+  // "Women Perfume": [
+  //   { q: "What types of women perfumes are available?", a: "Floral, fruity, and sweet fragrances." },
+  //   { q: "Are women perfumes long lasting?", a: "Yes, 6–12 hours depending on usage." },
+  //   { q: "Are these suitable for parties?", a: "Yes, perfect for special occasions." },
+  //   { q: "Do you have luxury brands?", a: "Yes, premium fragrances available." },
+  // ],
 
-  "Tester Perfume": [
-    { q: "What is a tester perfume?", a: "It is the same fragrance in simple packaging." },
-    { q: "Are testers original?", a: "Yes, same original fragrance." },
-    { q: "Why are testers cheaper?", a: "Because they come without luxury packaging." },
-    { q: "Do testers last long?", a: "Yes, same performance as regular perfumes." },
-  ],
+  // "Tester Perfume": [
+  //   { q: "What is a tester perfume?", a: "It is the same fragrance in simple packaging." },
+  //   { q: "Are testers original?", a: "Yes, same original fragrance." },
+  //   { q: "Why are testers cheaper?", a: "Because they come without luxury packaging." },
+  //   { q: "Do testers last long?", a: "Yes, same performance as regular perfumes." },
+  // ],
 
-  "Children Perfume": [
-    { q: "Are children perfumes safe?", a: "Yes, made with mild ingredients." },
-    { q: "Are they alcohol-free?", a: "Many options are alcohol-free." },
-    { q: "Do they have strong smell?", a: "No, they are light and soft fragrances." },
-    { q: "Are they suitable for daily use?", a: "Yes, safe for daily application." },
-  ],
+  // "Children Perfume": [
+  //   { q: "Are children perfumes safe?", a: "Yes, made with mild ingredients." },
+  //   { q: "Are they alcohol-free?", a: "Many options are alcohol-free." },
+  //   { q: "Do they have strong smell?", a: "No, they are light and soft fragrances." },
+  //   { q: "Are they suitable for daily use?", a: "Yes, safe for daily application." },
+  // ],
 
   "Safety & Security": [
     { q: "Do you sell safety equipment?", a: "Yes, helmets, gloves, and protective gear." },

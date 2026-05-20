@@ -28,11 +28,11 @@ const initialCategories = [
   { id: 7, name: "Janitorial & Cleaning Supplies", image: janitorial, path: "/category/cleaning" },
   { id: 8, name: "Food Service & Restaurant Supplies", image: foodService, path: "/category/food" },
   { id: 9, name: "Test Instruments & Gauges", image: testInstruments, path: "/category/test" },
-  { id: 9, name: "Giftsets", image: perfume, path: "/category/perfumes" },
-  { id: 10, name: "Man's", image: men, path: "/category/Male" },
-  { id: 11, name: "Woman's", image: women, path: "/category/female" },
-  { id: 13, name: "Tester", image: test, path: "/category/tester" },
-  { id: 13, name: "Childern", image: children, path: "/category/children" },
+  // { id: 9, name: "Giftsets", image: perfume, path: "/category/perfumes" },
+  // { id: 10, name: "Man's", image: men, path: "/category/Male" },
+  // { id: 11, name: "Woman's", image: women, path: "/category/female" },
+  // { id: 13, name: "Tester", image: test, path: "/category/tester" },
+  // { id: 13, name: "Childern", image: children, path: "/category/children" },
   
   
 ];

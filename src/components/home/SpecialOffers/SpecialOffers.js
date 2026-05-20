@@ -64,7 +64,7 @@ const SpecialOffers = () => {
           rating={4}
           des="Sunglasses: Fashionable eye protection that blends style and UV defense for a chic and shielded outdoor experience."
         />
-        <Product
+        {/* <Product
           _id="1104"
           img={spfFive}
           productName="Perfume"
@@ -75,7 +75,7 @@ const SpecialOffers = () => {
           review="This perfume is pure magic in a bottle!"
           rating={5}
           des="Step into a realm of timeless elegance with our exquisite perfume. Each spray is a poetic dance of floral and oriental notes, creating an aura of undeniable grace. The carefully curated blend captures the essence of femininity and mystery, making it the perfect accessory for any occasion. Immerse yourself in the symphony of scents that unfold, leaving a trail of sophistication in your wake."
-        />
+        /> */}
       </div>
     </div>
   );

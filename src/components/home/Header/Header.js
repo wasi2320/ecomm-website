@@ -190,30 +190,30 @@ const categoriesData = [
     ],
   },
 
-  {
-    title: "Perfumes",
-    key: "perfumes",
-    path: "/category/perfumes",
-    image: perfume,
-    sections: [
-      {
-        title: "For Men",
-        links: [
-          { name: "Classic", path: "/category/male?type=classic" },
-          { name: "Sport", path: "/category/male?type=sport" },
-          { name: "Luxury", path: "/category/male?type=luxury" },
-        ],
-      },
-      {
-        title: "For Women",
-        links: [
-          { name: "Floral", path: "/category/female?type=floral" },
-          { name: "Sweet", path: "/category/female?type=sweet" },
-          { name: "Luxury", path: "/category/female?type=luxury" },
-        ],
-      },
-    ],
-  },
+  // {
+  //   title: "Perfumes",
+  //   key: "perfumes",
+  //   path: "/category/perfumes",
+  //   image: perfume,
+  //   sections: [
+  //     {
+  //       title: "For Men",
+  //       links: [
+  //         { name: "Classic", path: "/category/male?type=classic" },
+  //         { name: "Sport", path: "/category/male?type=sport" },
+  //         { name: "Luxury", path: "/category/male?type=luxury" },
+  //       ],
+  //     },
+  //     {
+  //       title: "For Women",
+  //       links: [
+  //         { name: "Floral", path: "/category/female?type=floral" },
+  //         { name: "Sweet", path: "/category/female?type=sweet" },
+  //         { name: "Luxury", path: "/category/female?type=luxury" },
+  //       ],
+  //     },
+  //   ],
+  // },
 
   // ✅ NEW CATEGORY 1
   {

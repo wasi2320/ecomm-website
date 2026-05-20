@@ -62,17 +62,17 @@ const products = [
     review: "Excellent Performance",
     des: "PACKOUT 4-Drawer Tool Box, Polymer, Black/Red, 22 in W x 16-1/2 in D x 14-1/2 in H",
   },
-  {
-    _id: "1015",
-    img: BestSellersFive,
-    productName: "Perfume",
-    price: 380.00,
-    category: "New Arrival",
-    rating: 5,
-    reviewName: "K.P",
-    review: "Long Lasting",
-    des: "A luxurious and captivating fragrance.",
-  },
+  // {
+  //   _id: "1015",
+  //   img: BestSellersFive,
+  //   productName: "Perfume",
+  //   price: 380.00,
+  //   category: "New Arrival",
+  //   rating: 5,
+  //   reviewName: "K.P",
+  //   review: "Long Lasting",
+  //   des: "A luxurious and captivating fragrance.",
+  // },
 ];
 
 const BestSellers = () => {

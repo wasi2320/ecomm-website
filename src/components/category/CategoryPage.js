@@ -17,11 +17,11 @@ const categoryProductMapping = {
   cleaning: "janitorial_cleaning",
   food: "food_service",
   test: "test_instruments",
-  perfumes: "perfumes",
-  male: "male",
-  female: "female",
-  tester: "tester",
-  children: "children",
+  // perfumes: "perfumes",
+  // male: "male",
+  // female: "female",
+  // tester: "tester",
+  // children: "children",
 };
 
 const CategoryPage = () => {

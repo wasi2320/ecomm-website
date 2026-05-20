@@ -30,11 +30,11 @@ const Footer = () => {
 
   const categories = [
     // ================= PERFUME SECTION =================
-    { name: "Giftsets", path: "/category/perfumes" },
-    { name: "Men", path: "/category/male" },
-    { name: "Women", path: "/category/female" },
-    { name: "Children", path: "/category/children" },
-    { name: "Tester", path: "/category/tester" },
+    // { name: "Giftsets", path: "/category/perfumes" },
+    // { name: "Men", path: "/category/male" },
+    // { name: "Women", path: "/category/female" },
+    // { name: "Children", path: "/category/children" },
+    // { name: "Tester", path: "/category/tester" },
   
     // ================= INDUSTRIAL / BUSINESS =================
     { name: "Tools & Equipment", path: "/category/tools" },

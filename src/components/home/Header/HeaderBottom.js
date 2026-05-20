@@ -78,15 +78,15 @@ const categories = [
       { title: "Chemicals", items: ["Detergent", "Sanitizer"] },
     ],
   },
-  {
-    name: "Perfumes",
-    key: "perfumes",
-    image: perfume,
-    sections: [
-      { title: "Men", items: ["Fresh", "Woody"] },
-      { title: "Women", items: ["Floral", "Sweet"] },
-    ],
-  },
+  // {
+  //   name: "Perfumes",
+  //   key: "perfumes",
+  //   image: perfume,
+  //   sections: [
+  //     { title: "Men", items: ["Fresh", "Woody"] },
+  //     { title: "Women", items: ["Floral", "Sweet"] },
+  //   ],
+  // },
 ];
 
 const HeaderBottom = () => {

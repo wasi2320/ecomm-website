@@ -5,13 +5,20 @@ import perfumeBanner1 from "../../../assets/images/banner/perfumeb.png";
 import toolsBanner from "../../../assets/images/banner/toolsb.png";
 import officeBanner from "../../../assets/images/banner/officeb.png";
 import plumbingBanner from "../../../assets/images/banner/plumbingb.png";
+import safetyBanner from "../../../assets/images/banner/safteyb.png";
 
 const Sale = () => {
   const items = [
+    // {
+    //   img: perfumeBanner1,
+    //   link: "/category/perfumes",
+    //   title: "Perfumes",
+    //   glow: "rgba(168,85,247,0.35)",
+    // },
     {
-      img: perfumeBanner1,
-      link: "/category/perfumes",
-      title: "Perfumes",
+      img: safetyBanner,
+      link: "/category/safety",
+      title: "Safety  & Security",
       glow: "rgba(168,85,247,0.35)",
     },
     {

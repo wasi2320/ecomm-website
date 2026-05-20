@@ -7,8 +7,8 @@ import AnimatedText from "./AnimatedText";
 import ImageWithGlow from "./ImageWithGlow";
 
 // 🔥 IMAGES
-import rcb1 from "../../assets/images/banner/rcb1.png";
-import rcb2 from "../../assets/images/banner/rcb2.png";
+// import rcb1 from "../../assets/images/banner/rcb1.png";
+import rcb2 from "../../assets/images/banner/rcbp2.png";
 import perfumeBanner1 from "../../assets/images/banner/perfumeb.png";
 import toolsBanner from "../../assets/images/banner/toolsb.png";
 import officeBanner from "../../assets/images/banner/officeb.png";
@@ -19,6 +19,7 @@ import electronicsBanner from "../../assets/images/banner/electronicsb.png";
 import janitorialBanner from "../../assets/images/banner/cleaningb.png";
 import foodBanner from "../../assets/images/banner/foodb.png";
 import labBanner from "../../assets/images/banner/labb.png";
+import rcb1 from "../../assets/images/banner/rcbp1.png";
 
 const slides = [
   {
@@ -35,13 +36,13 @@ const slides = [
       "Shop across multiple categories with confidence — verified products, competitive pricing, and fast fulfillment.",
     gradient: "from-neutral-900 via-black to-black",
   },
-  {
-    img: perfumeBanner1,
-    title: "Luxury Fragrance Collection",
-    subtitle:
-      "Authentic perfumes crafted for identity, presence, and long-lasting impressions.",
-    gradient: "from-purple-900 via-black to-black",
-  },
+  // {
+  //   img: perfumeBanner1,
+  //   title: "Luxury Fragrance Collection",
+  //   subtitle:
+  //     "Authentic perfumes crafted for identity, presence, and long-lasting impressions.",
+  //   gradient: "from-purple-900 via-black to-black",
+  // },
   {
     img: toolsBanner,
     title: "Professional Tools & Equipment",

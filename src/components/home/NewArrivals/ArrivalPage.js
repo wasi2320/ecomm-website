@@ -75,18 +75,18 @@ const products = [
     review: "Lightweight",
     des: "Funny Toys for Babies: Playful and engaging companions designed to bring smiles and laughter to little ones, fostering joy and developmental exploration.",
   },
-  {
-    _id: "100006",
-    img: newArrFive,
-    productName: "Perfume",
-    price: "260.00",
-    color: "Transparent",
-    badge: false,
-    rating: 4,
-    reviewName: "Henry.",
-    review: "Absolutely mesmerizing!",
-    des: "Unveil a world of allure with our enchanting perfume. A carefully crafted blend of sophistication and allure that transcends time. The initial burst of top notes introduces you to a journey of sensuality, while the lingering base notes leave a lasting impression.",
-  },
+  // {
+  //   _id: "100006",
+  //   img: newArrFive,
+  //   productName: "Perfume",
+  //   price: "260.00",
+  //   color: "Transparent",
+  //   badge: false,
+  //   rating: 4,
+  //   reviewName: "Henry.",
+  //   review: "Absolutely mesmerizing!",
+  //   des: "Unveil a world of allure with our enchanting perfume. A carefully crafted blend of sophistication and allure that transcends time. The initial burst of top notes introduces you to a journey of sensuality, while the lingering base notes leave a lasting impression.",
+  // },
 ];
 
 const ArrivalPage = () => {
